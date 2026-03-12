@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Atupele Nathan Mkagula | Cybersecurity & Digital Systems</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="" crossorigin="anonymous">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap');
+
+    :root{
+      --accent: #1e90ff;
+      --accent-2: #32cd32;
+      --muted: #94a3b8;
+      --duration-fast: 280ms;
+      --duration-medium: 600ms;
+      --duration-long: 900ms;
+      --easing: cubic-bezier(.2,.9,.3,1);
+      --card-ease: cubic-bezier(.16,.84,.32,1);
+    }
+
+    /* Base fonts */
+    body { font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    .heading-font { font-family: "Montserrat", system-ui, sans-serif; }
+
+    /* Page visuals */
+    .hero-bg {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    }
+    /* Consistent interactive transitions */
+    .t-smooth { transition: all var(--duration-medium) var(--easing); }
+    .t-fast { transition: all var(--duration-fast) var(--easing); }
+
+    /* Micro animations */
+    @keyframes float-slow {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
+    .float-slow { animation: float-slow 6s ease-in-out infinite; }
+
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(18px) scale(.995); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Reveal helpers */
+    .reveal { opacity: 0; transform: translateY(12px); will-change: transform, opacity; }
+    .reveal.in-view { animation: fade-up var(--duration-medium) var(--easing) both; }
+
+    /* Cards */
+    .card {
+      transition: transform 420ms var(--card-ease), box-shadow 420ms var(--card-ease);
+      will-change: transform, box-shadow;
+    }
+    .card:focus-within, .card:hover {
+      transform: translateY(-12px) scale(1.01);
+      box-shadow: 0 30px 60px -16px rgba(2,6,23,0.35), 0 8px 18px rgba(2,6,23,0.08);
+    }
+    .card .card-media { transition: transform var(--duration-long) var(--easing); }
+
+    /* Pill hover */
+    .skill-pill { transition: transform var(--duration-fast) var(--easing), background-color var(--duration-fast), color var(--duration-fast); }
+    .skill-pill:focus, .skill-pill:hover { transform: translateY(-3px) scale(1.03); }
+
+    /* Terminal */
+    .terminal { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; background: #070707; color: #00ff9f; }
+
+    /* Focus visible */
+    :focus { outline: none; }
+    .focus-ring:focus-visible { box-shadow: 0 0 0 4px rgba(30,144,255,0.12); border-radius: 12px; }
+
+    /* Subtle grayscale -> color on hover for avatar */
+    .profile-img { filter: grayscale(.35) contrast(.95) saturate(.95); transition: filter var(--duration-long) var(--easing), transform var(--duration-long) var(--easing); }
+    .profile-wrap:hover .profile-img, .profile-wrap:focus-within .profile-img { filter: grayscale(0) contrast(1.02) saturate(1); transform: translateY(-6px) rotate(-0.3deg) scale(1.02); }
+
+    /* Floating badges */
+    .badge-float { transition: transform var(--duration-medium) var(--easing), opacity var(--duration-medium); transform-origin: center; }
+    .badge-float:hover { transform: translateY(-6px) rotate(-1deg) scale(1.03); }
+
+    /* Scroll prompt */
+    .scroll-prompt { opacity: .9; transform-origin:center; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .float-slow, .reveal.in-view, .profile-wrap .profile-img, .card, .skill-pill, .badge-float, .nav-link { animation: none !important; transition: none !important; transform: none !important; }
+    }
+
+    /* Small helpers */
+    .gradient-underline { background: linear-gradient(90deg,var(--accent),var(--accent-2)); height:3px; border-radius:999px; width:64px; }
+  </style>
+</head>
+
+<body class="bg-zinc-50 text-zinc-800 leading-relaxed">
+
+  <!-- NAV -->
+  <nav class="bg-white shadow sticky top-0 z-50" role="navigation" aria-label="Primary">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-2xl flex items-center justify-center text-white font-bold text-2xl">AM</div>
+        <span class="heading-font text-2xl font-semibold tracking-tight">Atupele Mkagula</span>
+      </div>
+
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+        <a href="#about" class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">About</a>
+        <a href="#projects" class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Projects</a>
+        <a href="#labs" class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Labs</a>
+        <a href="#insights" class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Insights</a>
+        <a href="#resume" class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Resume</a>
+        <a href="#contact" class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Contact</a>
+      </div>
+
+      <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer"
+         class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-2xl flex items-center gap-2 focus-ring t-fast">
+        <i class="fab fa-linkedin" aria-hidden="true"></i>
+        <span class="sr-only">LinkedIn</span>
+        LinkedIn
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero-bg text-white min-h-screen flex items-center relative overflow-hidden">
+    <!-- subtle dot-grid -->
+    <div class="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] bg-[length:40px_40px] opacity-20 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl px-6 py-3 rounded-3xl text-sm font-medium reveal" data-anim="fade-up">
+          <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse" aria-hidden="true"></div>
+          Currently at betPawa • Open to Cybersecurity Roles
+        </div>
+
+        <h1 class="heading-font text-5xl sm:text-6xl md:text-7xl font-bold leading-tight reveal" data-anim="fade-up">
+          Atupele Nathan<br />Mkagula
+        </h1>
+
+        <p class="text-2xl sm:text-3xl font-light text-blue-100 max-w-lg reveal" data-anim="fade-up">
+          Cybersecurity Enthusiast • IT Consultant • Digital Systems Specialist
+        </p>
+
+        <p class="text-lg text-zinc-300 max-w-md reveal" data-anim="fade-up">
+          Customer Support Agent at betPawa | Music Producer turned Systems Thinker | Building secure, resilient digital platforms in Malawi.
+        </p>
+
+        <div class="flex flex-wrap gap-4 reveal" data-anim="fade-up">
+          <a href="#projects" class="px-8 py-4 bg-white text-zinc-900 font-semibold rounded-3xl flex items-center gap-3 hover:scale-105 t-smooth focus-ring">
+            View My Work <i class="fas fa-arrow-down"></i>
+          </a>
+          <a href="#contact" class="px-8 py-4 border-2 border-white/70 hover:border-white font-semibold rounded-3xl flex items-center gap-3 t-smooth focus-ring">
+            Let's Talk
+          </a>
+        </div>
+
+        <div class="flex gap-8 text-sm pt-8 border-t border-white/20 reveal" data-anim="fade-up">
+          <div>
+            <div class="text-emerald-400 font-mono text-3xl font-bold">75%</div>
+            <div class="text-zinc-400 text-xs tracking-widest">AVG FCR @ betPawa</div>
+          </div>
+          <div>
+            <div class="text-emerald-400 font-mono text-3xl font-bold">2025</div>
+            <div class="text-zinc-400 text-xs tracking-widest">6× Excellence Certificates</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile block -->
+      <div class="relative flex justify-center items-start">
+        <div class="w-80 h-80 rounded-3xl overflow-hidden border-8 border-white/30 shadow-2xl bg-zinc-900 profile-wrap reveal" data-anim="fade-up" tabindex="0" aria-label="Profile image">
+          <img class="w-full h-full object-cover profile-img" alt="Atupele Mkagula portrait" src="https://media.licdn.com/dms/image/v2/D4D03AQEE5THLHSAgDA/profile-displayphoto-crop_800_800/B4DZwYGgP5HEAI-/0/1769930886741?e=1775088000&v=beta&t=y5e38xkZSfyFj0_0LZ4Z1WBaK_jwb6_AtvpOc9zjXXA">
+        </div>
+
+        <!-- Floating badges -->
+        <div class="absolute -top-4 -right-6 bg-white text-zinc-900 text-xs font-bold px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2 badge-float">
+          <i class="fas fa-shield-alt text-emerald-500" aria-hidden="true"></i>
+          Cybersecurity Path
+        </div>
+
+        <div class="absolute -bottom-8 left-12 bg-white text-zinc-900 text-xs font-bold px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2 badge-float">
+          <i class="fas fa-music text-purple-500" aria-hidden="true"></i>
+          Music Producer
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll prompt -->
+    <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center text-xs tracking-widest text-white/70 scroll-prompt">
+      <div class="mb-2">SCROLL TO EXPLORE</div>
+      <i class="fas fa-chevron-down animate-bounce" aria-hidden="true"></i>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-12 gap-16 items-center">
+        <div class="md:col-span-7">
+          <span class="uppercase text-blue-600 text-sm font-semibold tracking-widest">WHO I AM</span>
+          <h2 class="heading-font text-4xl md:text-5xl font-semibold mt-3 leading-tight reveal" data-anim="fade-up">
+            Technology professional who sees both the code <span class="text-emerald-500">and</span> the customer
+          </h2>
+
+          <div class="mt-8 space-y-6 text-lg text-zinc-600 reveal" data-anim="fade-up">
+            <p>I currently support thousands of users daily as a <strong>Customer Support Agent at betPawa</strong>, resolving technical issues across Sportsbook, Casino, and Virtual Sports platforms while maintaining industry-leading FCR and CSAT metrics.</p>
+            <p>Since 2020 I've run my own IT consulting practice — diagnosing systems, training students, and securing small business infrastructure. My Certificate in Music Production taught me pattern recognition, systems thinking, and creative problem-solving — skills I now apply directly to cybersecurity and digital infrastructure.</p>
+          </div>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Cybersecurity</button>
+            <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">IT Infrastructure</button>
+            <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Digital Risk</button>
+            <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Systems Thinking</button>
+            <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Music Production</button>
+            <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Customer Experience</button>
+          </div>
+        </div>
+
+        <aside class="md:col-span-5 bg-zinc-900 text-white p-8 rounded-3xl reveal" data-anim="fade-up" aria-labelledby="whoami">
+          <div class="terminal p-4 rounded-2xl text-sm leading-relaxed font-mono">
+            <span class="text-emerald-400">$ whoami</span><br>
+            Atupele Nathan Mkagula<br><br>
+            <span class="text-emerald-400">$ current_role</span><br>
+            Customer Support Agent @ betPawa (2025–Present)<br><br>
+            <span class="text-emerald-400">$ focus</span><br>
+            Cybersecurity • Backend Security • Digital Infrastructure<br><br>
+            <span class="text-emerald-400">$ background</span><br>
+            Music Producer → IT Consultant → Digital Systems Specialist
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="py-20 bg-zinc-100">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex justify-between items-end mb-10">
+        <div>
+          <span class="uppercase text-emerald-600 text-sm font-semibold tracking-widest">SHOWCASE</span>
+          <h2 class="heading-font text-3xl md:text-5xl font-semibold">Selected Work</h2>
+        </div>
+        <a href="#" class="text-blue-600 font-medium flex items-center gap-2 hover:gap-3 t-fast">View all on GitHub <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Project 1 -->
+        <article class="card bg-white rounded-3xl overflow-hidden shadow reveal" data-anim="fade-up">
+          <div class="h-56 bg-zinc-900 flex items-center justify-center text-white/60 text-xs font-mono card-media">IT TROUBLESHOOTING</div>
+          <div class="p-6">
+            <h3 class="font-semibold text-xl">System Optimization for Small Businesses</h3>
+            <p class="mt-3 text-zinc-600 text-sm">Diagnosed &amp; optimized 20+ client systems. Average performance increase: 70%.</p>
+            <div class="flex gap-2 mt-6">
+              <span class="text-xs bg-zinc-100 px-3 py-1 rounded-full">Diagnostics</span>
+              <span class="text-xs bg-zinc-100 px-3 py-1 rounded-full">Windows/Linux</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="card bg-white rounded-3xl overflow-hidden shadow reveal" data-anim="fade-up">
+          <div class="h-56 bg-gradient-to-br from-purple-900 to-blue-900 flex items-center justify-center text-white/60 text-xs font-mono card-media">MUSIC + TECH</div>
+          <div class="p-6">
+            <h3 class="font-semibold text-xl">Pattern Recognition Lab</h3>
+            <p class="mt-3 text-zinc-600 text-sm">Applied music production workflow analysis to cybersecurity anomaly detection.</p>
+            <div class="flex gap-2 mt-6">
+              <span class="text-xs bg-zinc-100 px-3 py-1 rounded-full">Audio Engineering</span>
+              <span class="text-xs bg-zinc-100 px-3 py-1 rounded-full">Systems Thinking</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="card bg-white rounded-3xl overflow-hidden shadow reveal" data-anim="fade-up">
+          <div class="h-56 bg-zinc-900 flex items-center justify-center text-white/60 text-xs font-mono card-media">betPawa SUPPORT</div>
+          <div class="p-6">
+            <h3 class="font-semibold text-xl">Platform Issue Resolution Framework</h3>
+            <p class="mt-3 text-zinc-600 text-sm">Built internal escalation &amp; documentation process used by 15+ agents.</p>
+            <div class="flex gap-2 mt-6">
+              <span class="text-xs bg-zinc-100 px-3 py-1 rounded-full">pawaDesk</span>
+              <span class="text-xs bg-zinc-100 px-3 py-1 rounded-full">RNG Analysis</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LABS -->
+  <section id="labs" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <span class="uppercase text-blue-600 text-sm font-semibold tracking-widest">HANDS-ON</span>
+      <h2 class="heading-font text-3xl md:text-5xl font-semibold mt-2">Cybersecurity Labs &amp; Exercises</h2>
+
+      <div class="mt-8 grid md:grid-cols-2 gap-8">
+        <div class="border border-zinc-200 rounded-3xl p-6 hover:border-blue-300 t-smooth reveal" data-anim="fade-up">
+          <div class="flex justify-between">
+            <div>
+              <div class="text-emerald-500 text-sm font-medium">TryHackMe • Completed</div>
+              <h3 class="text-2xl font-semibold mt-2">Web Application Security Basics</h3>
+            </div>
+            <i class="fas fa-lock text-4xl text-zinc-300"></i>
+          </div>
+          <p class="mt-4 text-zinc-600">OWASP Top 10, Burp Suite, SQLi &amp; XSS identification</p>
+          <div class="mt-6 pt-6 border-t text-xs font-mono text-zinc-500">Tools: Burp Suite • OWASP ZAP • Nmap</div>
+        </div>
+
+        <div class="border border-zinc-200 rounded-3xl p-6 hover:border-blue-300 t-smooth reveal" data-anim="fade-up">
+          <div class="flex justify-between">
+            <div>
+              <div class="text-emerald-500 text-sm font-medium">Hack The Box • In Progress</div>
+              <h3 class="text-2xl font-semibold mt-2">Network Scanning &amp; Enumeration</h3>
+            </div>
+            <i class="fas fa-network-wired text-4xl text-zinc-300"></i>
+          </div>
+          <p class="mt-4 text-zinc-600">Nmap advanced scanning, service enumeration, Metasploit basics</p>
+          <div class="mt-6 pt-6 border-t text-xs font-mono text-zinc-500">Tools: Nmap • Wireshark • Metasploit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHTS -->
+  <section id="insights" class="py-20 bg-zinc-900 text-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex justify-between items-baseline mb-8">
+        <div>
+          <span class="text-emerald-400 uppercase text-sm font-medium">THOUGHT LEADERSHIP</span>
+          <h2 class="heading-font text-3xl md:text-5xl font-semibold text-white">Latest Insights</h2>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <article class="group reveal" data-anim="fade-up">
+          <div class="h-px w-12 bg-emerald-400 mb-4"></div>
+          <h3 class="text-2xl font-semibold group-hover:text-emerald-400 t-fast">How Music Production Taught Me Cybersecurity Pattern Recognition</h3>
+          <p class="mt-3 text-zinc-400 text-sm leading-relaxed">The same ear that hears a wrong note now hears anomalies in network logs.</p>
+          <div class="mt-6 text-xs text-zinc-500">4 min read • March 2026</div>
+        </article>
+
+        <article class="group reveal" data-anim="fade-up">
+          <div class="h-px w-12 bg-emerald-400 mb-4"></div>
+          <h3 class="text-2xl font-semibold group-hover:text-emerald-400 t-fast">5 Lessons from betPawa Customer Support Every Security Analyst Needs</h3>
+          <p class="mt-3 text-zinc-400 text-sm leading-relaxed">Real users expose the gaps theory never shows.</p>
+          <div class="mt-6 text-xs text-zinc-500">6 min read • February 2026</div>
+        </article>
+
+        <article class="group reveal" data-anim="fade-up">
+          <div class="h-px w-12 bg-emerald-400 mb-4"></div>
+          <h3 class="text-2xl font-semibold group-hover:text-emerald-400 t-fast">Why Small Businesses in Malawi Are Prime Targets (and How to Fix It)</h3>
+          <p class="mt-3 text-zinc-400 text-sm leading-relaxed">Practical, low-budget security playbook.</p>
+          <div class="mt-6 text-xs text-zinc-500">3 min read • January 2026</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume" class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="flex justify-between items-center mb-8">
+        <h2 class="heading-font text-3xl md:text-5xl font-semibold">Resume</h2>
+        <button onclick="alert('In a real site this would trigger a PDF download. CV is ready with all KPIs, certifications & achievements.');" class="flex items-center gap-3 bg-zinc-900 text-white px-6 py-3 rounded-3xl text-sm font-semibold hover:bg-black t-fast focus-ring">
+          <i class="fas fa-download"></i> DOWNLOAD FULL CV (PDF)
+        </button>
+      </div>
+
+      <div class="bg-zinc-50 border border-zinc-200 rounded-3xl p-8 text-sm reveal" data-anim="fade-up">
+        <div class="grid grid-cols-2 gap-y-6">
+          <div>
+            <div class="font-medium text-blue-600">CURRENT ROLE</div>
+            <div class="mt-1 font-semibold">Customer Support Agent – betPawa</div>
+            <div class="text-xs text-zinc-500">2025 – Present | Lilongwe, Malawi</div>
+          </div>
+          <div class="text-right">
+            <div class="text-emerald-500 font-medium">75%+ FCR • 6× Excellence Certificates</div>
+          </div>
+
+          <div class="col-span-2 h-px bg-zinc-200 my-3"></div>
+
+          <div class="text-zinc-600">• Multi-channel support (chat, call, pawaDesk)<br>• Sportsbook, Casino &amp; RNG troubleshooting<br>• Responsible Gambling &amp; identity verification</div>
+          <div class="text-zinc-600">• IT Consultant &amp; Freelancer (2020–Present)<br>• Credit Officer – Yellow Solar (2024–2025)<br>• Social Media Manager – Thwani / Native Cinemas (2020–2023)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 bg-zinc-900 text-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="heading-font text-3xl md:text-5xl font-semibold">Let's Build Something Secure</h2>
+      <p class="mt-4 text-zinc-400 max-w-md mx-auto">Whether you're a recruiter, startup founder, or fellow tech enthusiast in Malawi — I'm always open to conversations about cybersecurity, digital systems, or IT consulting.</p>
+
+      <div class="mt-10 grid md:grid-cols-2 gap-8">
+        <div class="space-y-6 text-left">
+          <div>
+            <div class="text-xs tracking-widest text-zinc-500 mb-1">EMAIL</div>
+            <a href="mailto:atupelemkagula@gmail.com" class="text-2xl hover:text-blue-400 t-fast focus-ring">atupelemkagula@gmail.com</a>
+          </div>
+          <div>
+            <div class="text-xs tracking-widest text-zinc-500 mb-1">PHONE</div>
+            <a href="tel:+265881762894" class="text-2xl hover:text-blue-400 t-fast focus-ring">+265 881 762 894</a>
+          </div>
+          <div>
+            <div class="text-xs tracking-widest text-zinc-500 mb-1">LINKEDIN</div>
+            <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer" class="text-2xl hover:text-blue-400 t-fast focus-ring">linkedin.com/in/atupele-mkagula</a>
+          </div>
+        </div>
+
+        <!-- Simple form -->
+        <form class="space-y-4" onsubmit="event.preventDefault(); alert('Message sent! (demo)');" aria-label="Contact form">
+          <input type="text" placeholder="Your name" class="w-full bg-white/10 border border-white/20 rounded-2xl px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-blue-400" required>
+          <input type="email" placeholder="Your email" class="w-full bg-white/10 border border-white/20 rounded-2xl px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-blue-400" required>
+          <textarea placeholder="How can I help you?" rows="4" class="w-full bg-white/10 border border-white/20 rounded-2xl px-4 py-3 text-white placeholder:text-white/40 focus:outline-none focus:border-blue-400" required></textarea>
+          <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 py-3 rounded-3xl font-semibold text-lg t-fast focus-ring">SEND MESSAGE</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white/60 py-8 text-xs">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div>© 2026 Atupele Nathan Mkagula • Blantyre / Lilongwe, Malawi</div>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-white transition-colors" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="#" class="hover:text-white transition-colors" aria-label="X/Twitter"><i class="fab fa-x-twitter"></i></a>
+        <a href="#" class="hover:text-white transition-colors" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+      </div>
+      <div class="text-[10px] font-mono">Built as a single-file HTML/CSS demo • Ready for Webflow or GitHub Pages</div>
+    </div>
+  </footer>
+
+  <!-- Scripts: IntersectionObserver reveals, parallax, smooth nav -->
+  <script>
+    (function () {
+      // Smooth internal link scrolling (native where supported)
+      document.documentElement.style.scrollBehavior = 'smooth';
+
+      // IntersectionObserver-based reveal with stagger
+      const reveals = Array.from(document.querySelectorAll('.reveal'));
+      if ('IntersectionObserver' in window && reveals.length) {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              // apply delay based on position among siblings to create subtle stagger
+              const el = entry.target;
+              const parent = el.parentElement;
+              let delay = 0;
+              if (parent) {
+                // count current index among parent's children that also have 'reveal'
+                const siblings = Array.from(parent.children).filter(c => c.classList && c.classList.contains('reveal'));
+                const index = siblings.indexOf(el);
+                delay = Math.min(index * 80, 360); // cap
+              }
+              el.style.animationDelay = delay + 'ms';
+              el.classList.add('in-view');
+              obs.unobserve(el);
+            }
+          });
+        }, { threshold: 0.12 });
+
+        reveals.forEach(r => observer.observe(r));
+      } else {
+        // fallback: reveal all
+        reveals.forEach(r => r.classList.add('in-view'));
+      }
+
+      // Simple parallax on profile image for extra polish (lightweight)
+      const profileWrap = document.querySelector('.profile-wrap');
+      const profileImg = document.querySelector('.profile-img');
+      if (profileWrap && profileImg && 'requestAnimationFrame' in window) {
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              const rect = profileWrap.getBoundingClientRect();
+              // when in viewport, translate by small fraction of distance from center
+              const viewportCenter = window.innerHeight / 2;
+              const distance = rect.top + rect.height / 2 - viewportCenter;
+              const move = Math.max(Math.min(distance * -0.03, 16), -16); // clamp
+              profileImg.style.transform = `translateY(${move}px)`;
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+
+      // Improve keyboard accessibility: show focus-ring when keyboard used
+      (function () {
+        function handleFirstTab(e) {
+          if (e.key === 'Tab') {
+            document.body.classList.add('user-is-tabbing');
+            window.removeEventListener('keydown', handleFirstTab);
+          }
+        }
+        window.addEventListener('keydown', handleFirstTab);
+      })();
+
+      // small console message
+      console.log('%c✅ Portfolio (refactor) loaded — animations initialized.', 'color: #1e90ff; font-weight: 600;');
+    })();
+  </script>
+</body>
+</html>
