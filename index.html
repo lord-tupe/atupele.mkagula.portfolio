@@ -5,174 +5,421 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atupele Nathan Mkagula | Cybersecurity & Digital Systems</title>
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --accent: #1e90ff;
             --accent-2: #32cd32;
             --muted: #94a3b8;
-            --duration-fast: 280ms;
-            --duration-medium: 600ms;
-            --duration-long: 900ms;
+            --duration-fast: 220ms;
+            --duration-medium: 520ms;
+            --duration-long: 800ms;
             --easing: cubic-bezier(.2,.9,.3,1);
             --card-ease: cubic-bezier(.16,.84,.32,1);
+            --spring: cubic-bezier(.34,1.56,.64,1);
         }
+
+        *, *::before, *::after { box-sizing: border-box; }
         
-        body { font-family: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: "Open Sans", system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            cursor: none;
+        }
+
+        /* ── Custom cursor ── */
+        #cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 12px; height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%,-50%);
+            transition: width 220ms var(--spring), height 220ms var(--spring), background 220ms, opacity 220ms;
+            mix-blend-mode: exclusion;
+        }
+        #cursor-ring {
+            position: fixed;
+            top: 0; left: 0;
+            width: 36px; height: 36px;
+            border: 1.5px solid rgba(30,144,255,0.55);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%,-50%);
+            transition: width 380ms var(--easing), height 380ms var(--easing), border-color 380ms, transform 380ms var(--easing);
+        }
+        body.cursor-hover #cursor { width: 20px; height: 20px; background: #32cd32; }
+        body.cursor-hover #cursor-ring { width: 54px; height: 54px; border-color: rgba(50,205,50,0.4); }
+
         .heading-font { font-family: "Montserrat", system-ui, sans-serif; }
-        
         .hero-bg { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); }
         .t-smooth { transition: all var(--duration-medium) var(--easing); }
         .t-fast { transition: all var(--duration-fast) var(--easing); }
-        
+
+        /* ── Nav ── */
+        #main-nav {
+            transition: background 400ms, box-shadow 400ms, padding 400ms;
+        }
+        #main-nav.scrolled {
+            background: rgba(255,255,255,0.92) !important;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 4px 32px rgba(0,0,0,0.07);
+        }
+
+        /* ── Logo button ── */
+        #logo-btn {
+            cursor: none;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 6px 10px 6px 6px;
+            border-radius: 20px;
+            transition: transform 340ms var(--spring), box-shadow 340ms var(--spring);
+            border: none;
+            background: transparent;
+        }
+        #logo-btn:hover {
+            transform: scale(1.045);
+            box-shadow: 0 0 0 6px rgba(30,144,255,0.10);
+        }
+        #logo-btn:active { transform: scale(0.97); }
+        #logo-avatar {
+            transition: transform 340ms var(--spring), box-shadow 340ms;
+        }
+        #logo-btn:hover #logo-avatar {
+            transform: rotate(-6deg) scale(1.08);
+            box-shadow: 0 6px 20px rgba(30,144,255,0.25);
+        }
+        #logo-text {
+            transition: color 220ms;
+        }
+        #logo-btn:hover #logo-text { color: #1e90ff; }
+
+        /* Ripple on logo */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(30,144,255,0.18);
+            transform: scale(0);
+            animation: ripple-anim 600ms var(--easing) forwards;
+            pointer-events: none;
+        }
+        @keyframes ripple-anim {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        /* ── Nav links ── */
+        .nav-link {
+            position: relative;
+            padding-bottom: 2px;
+            cursor: none;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            border-radius: 999px;
+            transition: width 280ms var(--spring);
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        /* ── Floating animations ── */
         @keyframes float-slow {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-            100% { transform: translateY(0); }
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
-        .float-slow { animation: float-slow 6s ease-in-out infinite; }
-        
+        .float-slow { animation: float-slow 7s ease-in-out infinite; }
+
+        /* ── Reveal ── */
         @keyframes fade-up {
-            from { opacity: 0; transform: translateY(18px) scale(.995); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from { opacity: 0; transform: translateY(22px) scale(.99); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
         }
-        
-        .reveal { opacity: 0; transform: translateY(12px); will-change: transform, opacity; }
+        .reveal { opacity: 0; transform: translateY(14px); will-change: transform, opacity; }
         .reveal.in-view { animation: fade-up var(--duration-medium) var(--easing) both; }
-        
+
+        /* ── Cards ── */
         .card {
-            transition: transform 420ms var(--card-ease), box-shadow 420ms var(--card-ease);
+            transition: transform 400ms var(--card-ease), box-shadow 400ms var(--card-ease);
             will-change: transform, box-shadow;
         }
-        .card:focus-within, .card:hover {
-            transform: translateY(-12px) scale(1.01);
-            box-shadow: 0 30px 60px -16px rgba(2,6,23,0.35), 0 8px 18px rgba(2,6,23,0.08);
+        .card:hover {
+            transform: translateY(-10px) scale(1.012);
+            box-shadow: 0 28px 56px -14px rgba(2,6,23,0.28), 0 6px 16px rgba(2,6,23,0.07);
         }
-        .card .card-media { transition: transform var(--duration-long) var(--easing); }
-        
-        .skill-pill { transition: transform var(--duration-fast) var(--easing), background-color var(--duration-fast), color var(--duration-fast); }
-        .skill-pill:focus, .skill-pill:hover { transform: translateY(-3px) scale(1.03); }
-        
-        .terminal { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace; background: #070707; color: #00ff9f; }
-        
+        .card:active { transform: translateY(-4px) scale(1.005); }
+
+        /* ── Skill pills ── */
+        .skill-pill {
+            transition: transform var(--duration-fast) var(--spring),
+                        background-color var(--duration-fast),
+                        color var(--duration-fast),
+                        box-shadow var(--duration-fast);
+            cursor: none;
+        }
+        .skill-pill:hover {
+            transform: translateY(-4px) scale(1.06);
+            box-shadow: 0 8px 20px rgba(30,144,255,0.15);
+        }
+
+        /* ── Profile ── */
+        .profile-img {
+            filter: grayscale(.3) contrast(.95) saturate(.95);
+            transition: filter var(--duration-long) var(--easing), transform var(--duration-long) var(--easing);
+        }
+        .profile-wrap:hover .profile-img {
+            filter: grayscale(0) contrast(1.02) saturate(1.05);
+            transform: translateY(-8px) rotate(-0.5deg) scale(1.03);
+        }
+
+        .badge-float {
+            transition: transform var(--duration-medium) var(--spring), opacity var(--duration-medium), box-shadow 300ms;
+        }
+        .badge-float:hover {
+            transform: translateY(-8px) rotate(-2deg) scale(1.05);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        /* ── Terminal ── */
+        .terminal {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+            background: #070707;
+            color: #00ff9f;
+        }
+
+        /* ── Gradient underline ── */
+        .gradient-underline {
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            height: 3px; border-radius: 999px; width: 64px;
+        }
+
+        /* ── Focus ── */
         :focus { outline: none; }
-        .focus-ring:focus-visible { box-shadow: 0 0 0 4px rgba(30,144,255,0.12); border-radius: 12px; }
-        
-        .profile-img { filter: grayscale(.35) contrast(.95) saturate(.95); transition: filter var(--duration-long) var(--easing), transform var(--duration-long) var(--easing); }
-        .profile-wrap:hover .profile-img, .profile-wrap:focus-within .profile-img { filter: grayscale(0) contrast(1.02) saturate(1); transform: translateY(-6px) rotate(-0.3deg) scale(1.02); }
-        
-        .badge-float { transition: transform var(--duration-medium) var(--easing), opacity var(--duration-medium); transform-origin: center; }
-        .badge-float:hover { transform: translateY(-6px) rotate(-1deg) scale(1.03); }
-        
-        .scroll-prompt { opacity: .9; transform-origin: center; }
-        
-        @media (prefers-reduced-motion: reduce) {
-            .float-slow, .reveal.in-view, .profile-wrap .profile-img, .card, .skill-pill, .badge-float, .nav-link { animation: none !important; transition: none !important; transform: none !important; }
+        .focus-ring:focus-visible { box-shadow: 0 0 0 4px rgba(30,144,255,0.15); border-radius: 12px; }
+
+        /* ── Section transition ── */
+        section, header, footer {
+            transition: background 600ms;
         }
-        
-        .gradient-underline { background: linear-gradient(90deg, var(--accent), var(--accent-2)); height: 3px; border-radius: 999px; width: 64px; }
+
+        /* ── Stat counter ── */
+        .stat-num {
+            display: inline-block;
+            transition: transform 300ms var(--spring);
+        }
+        .stat-num:hover { transform: scale(1.12); }
+
+        /* ── Scroll-to-top button ── */
+        #scroll-top {
+            position: fixed;
+            bottom: 32px; right: 32px;
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: none;
+            z-index: 200;
+            opacity: 0; pointer-events: none;
+            transform: translateY(16px) scale(0.85);
+            transition: opacity 300ms, transform 350ms var(--spring), box-shadow 300ms;
+            box-shadow: 0 6px 24px rgba(30,144,255,0.3);
+        }
+        #scroll-top.visible {
+            opacity: 1; pointer-events: auto;
+            transform: translateY(0) scale(1);
+        }
+        #scroll-top:hover {
+            box-shadow: 0 10px 36px rgba(30,144,255,0.45);
+            transform: translateY(-3px) scale(1.07);
+        }
+        #scroll-top:active { transform: scale(0.95); }
+
+        /* ── Mobile menu ── */
+        #mobile-menu {
+            transform: translateY(-10px);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 320ms var(--spring), opacity 320ms;
+        }
+        #mobile-menu.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        #hamburger span {
+            display: block; height: 2px;
+            background: currentColor;
+            border-radius: 999px;
+            transition: transform 300ms var(--spring), opacity 250ms, width 300ms;
+        }
+
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+                transform: none !important;
+            }
+            body { cursor: auto; }
+            #cursor, #cursor-ring { display: none; }
+        }
+
+        /* CTA button glow */
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+            transition: transform 280ms var(--spring), box-shadow 280ms;
+        }
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 500ms var(--easing);
+        }
+        .btn-glow:hover::before { transform: translateX(100%); }
+        .btn-glow:hover {
+            transform: scale(1.04) translateY(-1px);
+            box-shadow: 0 8px 28px rgba(30,144,255,0.35);
+        }
+        .btn-glow:active { transform: scale(0.97); }
     </style>
 </head>
 
 <body class="bg-zinc-50 text-zinc-800 leading-relaxed">
 
+    <!-- Custom cursor -->
+    <div id="cursor"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- Scroll to top -->
+    <button id="scroll-top" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-chevron-up text-sm"></i>
+    </button>
+
     <!-- NAV -->
-    <nav class="bg-white shadow sticky top-0 z-50" role="navigation" aria-label="Primary">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
-            <div class="flex items-center gap-3">
-                <div class="w-9 h-9 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-2xl flex items-center justify-center text-white font-bold text-2xl">AM</div>
-                <span class="heading-font text-2xl font-semibold tracking-tight">Atupele Mkagula</span>
-            </div>
+    <nav id="main-nav" class="bg-white shadow sticky top-0 z-50" role="navigation" aria-label="Primary">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6">
+
+            <!-- Clickable Logo -->
+            <button id="logo-btn" onclick="scrollToTop(event)" aria-label="Back to top">
+                <div id="logo-avatar" class="w-10 h-10 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg select-none">AM</div>
+                <span id="logo-text" class="heading-font text-xl font-semibold tracking-tight text-zinc-900">Atupele Mkagula</span>
+            </button>
             
+            <!-- Desktop links -->
             <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#about" class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">About</a>
+                <a href="#about"      class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">About</a>
                 <a href="#experience" class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Experience</a>
-                <a href="#skills" class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Skills</a>
-                <a href="#education" class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Education</a>
-                <a href="#contact" class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Contact</a>
+                <a href="#skills"     class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Skills</a>
+                <a href="#education"  class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Education</a>
+                <a href="#contact"    class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Contact</a>
             </div>
             
-            <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer"
-                class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-2xl flex items-center gap-2 focus-ring t-fast">
-                <i class="fab fa-linkedin" aria-hidden="true"></i>
-                <span class="sr-only">LinkedIn</span>
-                LinkedIn
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer"
+                    class="btn-glow px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-2xl hidden md:flex items-center gap-2 focus-ring">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    LinkedIn
+                </a>
+
+                <!-- Hamburger -->
+                <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded-xl" aria-label="Toggle menu" aria-expanded="false">
+                    <span class="w-5"></span>
+                    <span class="w-5"></span>
+                    <span class="w-3"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden bg-white border-t border-zinc-100 px-6 pb-4 space-y-1">
+            <a href="#about"      class="block py-3 text-zinc-700 font-medium border-b border-zinc-50 hover:text-blue-600 t-fast">About</a>
+            <a href="#experience" class="block py-3 text-zinc-700 font-medium border-b border-zinc-50 hover:text-blue-600 t-fast">Experience</a>
+            <a href="#skills"     class="block py-3 text-zinc-700 font-medium border-b border-zinc-50 hover:text-blue-600 t-fast">Skills</a>
+            <a href="#education"  class="block py-3 text-zinc-700 font-medium border-b border-zinc-50 hover:text-blue-600 t-fast">Education</a>
+            <a href="#contact"    class="block py-3 text-zinc-700 font-medium hover:text-blue-600 t-fast">Contact</a>
         </div>
     </nav>
 
     <!-- HERO -->
     <header class="hero-bg text-white min-h-screen flex items-center relative overflow-hidden">
-        <!-- subtle dot-grid -->
         <div class="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] bg-[length:40px_40px] opacity-20 pointer-events-none"></div>
         
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
             <div class="space-y-8">
-                <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl px-6 py-3 rounded-3xl text-sm font-medium reveal" data-anim="fade-up">
-                    <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse" aria-hidden="true"></div>
+                <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl px-6 py-3 rounded-3xl text-sm font-medium reveal" data-delay="0">
+                    <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
                     Currently at betPawa • Open to Cybersecurity Roles
                 </div>
                 
-                <h1 class="heading-font text-5xl sm:text-6xl md:text-7xl font-bold leading-tight reveal" data-anim="fade-up">
+                <h1 class="heading-font text-5xl sm:text-6xl md:text-7xl font-bold leading-tight reveal" data-delay="100">
                     Atupele Nathan<br />Mkagula
                 </h1>
                 
-                <p class="text-2xl sm:text-3xl font-light text-blue-100 max-w-lg reveal" data-anim="fade-up">
+                <p class="text-2xl sm:text-3xl font-light text-blue-100 max-w-lg reveal" data-delay="200">
                     Cybersecurity Enthusiast • IT Consultant • Digital Systems Specialist
                 </p>
                 
-                <p class="text-lg text-zinc-300 max-w-md reveal" data-anim="fade-up">
+                <p class="text-lg text-zinc-300 max-w-md reveal" data-delay="300">
                     Customer Support Agent at betPawa | Music Producer turned Systems Thinker | Building secure, resilient digital platforms in Malawi.
                 </p>
                 
-                <div class="flex flex-wrap gap-4 reveal" data-anim="fade-up">
-                    <a href="#experience" class="px-8 py-4 bg-white text-zinc-900 font-semibold rounded-3xl flex items-center gap-3 hover:scale-105 t-smooth focus-ring">
+                <div class="flex flex-wrap gap-4 reveal" data-delay="400">
+                    <a href="#experience" class="btn-glow px-8 py-4 bg-white text-zinc-900 font-semibold rounded-3xl flex items-center gap-3 focus-ring">
                         View My Work <i class="fas fa-arrow-down"></i>
                     </a>
-                    <a href="#contact" class="px-8 py-4 border-2 border-white/70 hover:border-white font-semibold rounded-3xl flex items-center gap-3 t-smooth focus-ring">
+                    <a href="#contact" class="btn-glow px-8 py-4 border-2 border-white/70 hover:border-white font-semibold rounded-3xl flex items-center gap-3 t-smooth focus-ring hover:bg-white/10">
                         Let's Talk
                     </a>
                 </div>
                 
-                <div class="flex gap-8 text-sm pt-8 border-t border-white/20 reveal" data-anim="fade-up">
+                <div class="flex gap-8 text-sm pt-8 border-t border-white/20 reveal" data-delay="500">
                     <div>
-                        <div class="text-emerald-400 font-mono text-3xl font-bold">75%</div>
-                        <div class="text-zinc-400 text-xs tracking-widest">AVG FCR @ betPawa</div>
+                        <div class="stat-num text-emerald-400 font-mono text-3xl font-bold">75%</div>
+                        <div class="text-zinc-400 text-xs tracking-widest mt-1">AVG FCR @ betPawa</div>
                     </div>
                     <div>
-                        <div class="text-emerald-400 font-mono text-3xl font-bold">6×</div>
-                        <div class="text-zinc-400 text-xs tracking-widest">Excellence Certificates</div>
+                        <div class="stat-num text-emerald-400 font-mono text-3xl font-bold">6×</div>
+                        <div class="text-zinc-400 text-xs tracking-widest mt-1">Excellence Certificates</div>
                     </div>
                 </div>
             </div>
             
-            <!-- Profile block -->
+            <!-- Profile -->
             <div class="relative flex justify-center items-start">
-                <div class="w-80 h-80 rounded-3xl overflow-hidden border-8 border-white/30 shadow-2xl bg-zinc-900 profile-wrap reveal" data-anim="fade-up" tabindex="0" aria-label="Profile image">
+                <div class="w-80 h-80 rounded-3xl overflow-hidden border-8 border-white/30 shadow-2xl bg-zinc-900 profile-wrap reveal float-slow" data-delay="200" tabindex="0" aria-label="Profile image">
                     <img class="w-full h-full object-cover profile-img" alt="Atupele Mkagula portrait" src="images/headshot.jpg">
                 </div>
                 
-                <!-- Floating badges -->
                 <div class="absolute -top-4 -right-6 bg-white text-zinc-900 text-xs font-bold px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2 badge-float">
-                    <i class="fas fa-shield-alt text-emerald-500" aria-hidden="true"></i>
+                    <i class="fas fa-shield-alt text-emerald-500"></i>
                     Cybersecurity Path
                 </div>
-                
                 <div class="absolute -bottom-8 left-12 bg-white text-zinc-900 text-xs font-bold px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2 badge-float">
-                    <i class="fas fa-music text-purple-500" aria-hidden="true"></i>
+                    <i class="fas fa-music text-purple-500"></i>
                     Music Producer
                 </div>
             </div>
         </div>
         
-        <!-- Scroll prompt -->
-        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center text-xs tracking-widest text-white/70 scroll-prompt">
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center text-xs tracking-widest text-white/70">
             <div class="mb-2">SCROLL TO EXPLORE</div>
-            <i class="fas fa-chevron-down animate-bounce" aria-hidden="true"></i>
+            <i class="fas fa-chevron-down animate-bounce"></i>
         </div>
     </header>
 
@@ -182,15 +429,13 @@
             <div class="grid md:grid-cols-12 gap-16 items-center">
                 <div class="md:col-span-7">
                     <span class="uppercase text-blue-600 text-sm font-semibold tracking-widest">WHO I AM</span>
-                    <h2 class="heading-font text-4xl md:text-5xl font-semibold mt-3 leading-tight reveal" data-anim="fade-up">
+                    <h2 class="heading-font text-4xl md:text-5xl font-semibold mt-3 leading-tight reveal">
                         Technology professional who sees both the code <span class="text-emerald-500">and</span> the customer
                     </h2>
-                    
-                    <div class="mt-8 space-y-6 text-lg text-zinc-600 reveal" data-anim="fade-up">
+                    <div class="mt-8 space-y-6 text-lg text-zinc-600 reveal">
                         <p>I currently support thousands of users daily as a <strong>Customer Support Agent at betPawa</strong>, resolving technical issues across Sportsbook, Casino, and Virtual Sports platforms while maintaining industry-leading FCR and CSAT metrics.</p>
                         <p>Since 2020 I've run my own IT consulting practice — diagnosing systems, training students, and securing small business infrastructure. My Certificate in Music Production taught me pattern recognition, systems thinking, and creative problem-solving — skills I now apply directly to cybersecurity and digital infrastructure.</p>
                     </div>
-                    
                     <div class="mt-8 flex flex-wrap gap-3">
                         <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Cybersecurity</button>
                         <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">IT Infrastructure</button>
@@ -201,7 +446,7 @@
                     </div>
                 </div>
                 
-                <aside class="md:col-span-5 bg-zinc-900 text-white p-8 rounded-3xl reveal" data-anim="fade-up" aria-labelledby="whoami">
+                <aside class="md:col-span-5 bg-zinc-900 text-white p-8 rounded-3xl reveal">
                     <div class="terminal p-4 rounded-2xl text-sm leading-relaxed font-mono">
                         <span class="text-emerald-400">$ whoami</span><br>
                         Atupele Nathan Mkagula<br><br>
@@ -224,10 +469,8 @@
                 <span class="uppercase text-emerald-600 text-sm font-semibold tracking-widest">PROFESSIONAL JOURNEY</span>
                 <h2 class="heading-font text-3xl md:text-5xl font-semibold">Work Experience</h2>
             </div>
-            
             <div class="space-y-8">
-                <!-- Experience 1 -->
-                <div class="card bg-white p-8 rounded-3xl reveal" data-anim="fade-up">
+                <div class="card bg-white p-8 rounded-3xl reveal">
                     <div class="flex justify-between items-start mb-4">
                         <div>
                             <h3 class="heading-font text-2xl font-semibold text-zinc-900">Customer Support Agent</h3>
@@ -243,9 +486,7 @@
                         <li><i class="fas fa-check text-emerald-500 mr-2"></i>Implemented Responsible Gambling protocols and conducted identity verification to prevent fraud.</li>
                     </ul>
                 </div>
-                
-                <!-- Experience 2 -->
-                <div class="card bg-white p-8 rounded-3xl reveal" data-anim="fade-up">
+                <div class="card bg-white p-8 rounded-3xl reveal">
                     <div class="flex justify-between items-start mb-4">
                         <div>
                             <h3 class="heading-font text-2xl font-semibold text-zinc-900">Credit Officer</h3>
@@ -261,9 +502,7 @@
                         <li><i class="fas fa-check text-emerald-500 mr-2"></i>Ensured customer feedback responses within 9-hour service level agreements.</li>
                     </ul>
                 </div>
-                
-                <!-- Experience 3 -->
-                <div class="card bg-white p-8 rounded-3xl reveal" data-anim="fade-up">
+                <div class="card bg-white p-8 rounded-3xl reveal">
                     <div class="flex justify-between items-start mb-4">
                         <div>
                             <h3 class="heading-font text-2xl font-semibold text-zinc-900">IT Consultant & Freelancer</h3>
@@ -290,47 +529,38 @@
                 <span class="uppercase text-blue-600 text-sm font-semibold tracking-widest">EXPERTISE</span>
                 <h2 class="heading-font text-3xl md:text-5xl font-semibold">Core Skills</h2>
             </div>
-            
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Skill Category 1 -->
-                <div class="card bg-zinc-50 p-8 rounded-3xl reveal" data-anim="fade-up">
+                <div class="card bg-zinc-50 p-8 rounded-3xl reveal">
                     <h3 class="heading-font text-xl font-semibold text-zinc-900 mb-6 flex items-center gap-3">
-                        <i class="fas fa-headset text-blue-600 text-2xl"></i>
-                        Customer Experience
+                        <i class="fas fa-headset text-blue-600 text-2xl"></i>Customer Experience
                     </h3>
-                    <div class="space-y-3">
-                        <span class="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">Support Operations</span>
-                        <span class="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">Multi-Channel Support</span>
-                        <span class="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">FCR & CSAT</span>
-                        <span class="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">Complaint Resolution</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-pill inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">Support Operations</span>
+                        <span class="skill-pill inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">Multi-Channel Support</span>
+                        <span class="skill-pill inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">FCR & CSAT</span>
+                        <span class="skill-pill inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">Complaint Resolution</span>
                     </div>
                 </div>
-                
-                <!-- Skill Category 2 -->
-                <div class="card bg-zinc-50 p-8 rounded-3xl reveal" data-anim="fade-up">
+                <div class="card bg-zinc-50 p-8 rounded-3xl reveal">
                     <h3 class="heading-font text-xl font-semibold text-zinc-900 mb-6 flex items-center gap-3">
-                        <i class="fas fa-laptop-code text-emerald-600 text-2xl"></i>
-                        Technical Skills
+                        <i class="fas fa-laptop-code text-emerald-600 text-2xl"></i>Technical Skills
                     </h3>
-                    <div class="space-y-3">
-                        <span class="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">Sportsbook Support</span>
-                        <span class="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">Casino & RNG Support</span>
-                        <span class="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">IT Diagnostics</span>
-                        <span class="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">System Support</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-pill inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">Sportsbook Support</span>
+                        <span class="skill-pill inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">Casino & RNG Support</span>
+                        <span class="skill-pill inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">IT Diagnostics</span>
+                        <span class="skill-pill inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">System Support</span>
                     </div>
                 </div>
-                
-                <!-- Skill Category 3 -->
-                <div class="card bg-zinc-50 p-8 rounded-3xl reveal" data-anim="fade-up">
+                <div class="card bg-zinc-50 p-8 rounded-3xl reveal">
                     <h3 class="heading-font text-xl font-semibold text-zinc-900 mb-6 flex items-center gap-3">
-                        <i class="fas fa-shield-alt text-purple-600 text-2xl"></i>
-                        Risk & Compliance
+                        <i class="fas fa-shield-alt text-purple-600 text-2xl"></i>Risk & Compliance
                     </h3>
-                    <div class="space-y-3">
-                        <span class="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Responsible Gambling</span>
-                        <span class="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Identity Verification</span>
-                        <span class="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Credit Risk Assessment</span>
-                        <span class="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Portfolio Management</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-pill inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Responsible Gambling</span>
+                        <span class="skill-pill inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Identity Verification</span>
+                        <span class="skill-pill inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Credit Risk Assessment</span>
+                        <span class="skill-pill inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Portfolio Management</span>
                     </div>
                 </div>
             </div>
@@ -344,10 +574,8 @@
                 <span class="uppercase text-emerald-600 text-sm font-semibold tracking-widest">LEARNING JOURNEY</span>
                 <h2 class="heading-font text-3xl md:text-5xl font-semibold">Education</h2>
             </div>
-            
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Education 1 -->
-                <div class="card bg-white p-8 rounded-3xl reveal" data-anim="fade-up">
+                <div class="card bg-white p-8 rounded-3xl reveal">
                     <div class="flex items-start gap-4 mb-4">
                         <i class="fas fa-graduation-cap text-blue-600 text-3xl mt-1"></i>
                         <div>
@@ -358,9 +586,7 @@
                     <p class="text-zinc-600 text-sm mb-2"><strong>Certificate in Music Production</strong></p>
                     <p class="text-zinc-500 text-xs">Digital Marketing & Arts Entrepreneurship | 2022</p>
                 </div>
-                
-                <!-- Education 2 -->
-                <div class="card bg-white p-8 rounded-3xl reveal" data-anim="fade-up">
+                <div class="card bg-white p-8 rounded-3xl reveal">
                     <div class="flex items-start gap-4 mb-4">
                         <i class="fas fa-graduation-cap text-emerald-600 text-3xl mt-1"></i>
                         <div>
@@ -371,9 +597,7 @@
                     <p class="text-zinc-600 text-sm mb-2"><strong>Level 4 Diploma in Computing</strong></p>
                     <p class="text-zinc-500 text-xs">2019 – 2020</p>
                 </div>
-                
-                <!-- Education 3 -->
-                <div class="card bg-white p-8 rounded-3xl reveal" data-anim="fade-up">
+                <div class="card bg-white p-8 rounded-3xl reveal">
                     <div class="flex items-start gap-4 mb-4">
                         <i class="fas fa-graduation-cap text-purple-600 text-3xl mt-1"></i>
                         <div>
@@ -395,9 +619,8 @@
                 <span class="uppercase text-blue-600 text-sm font-semibold tracking-widest">RECOGNITION</span>
                 <h2 class="heading-font text-3xl md:text-5xl font-semibold">Key Achievements</h2>
             </div>
-            
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="card bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl reveal" data-anim="fade-up">
+                <div class="card bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl reveal">
                     <div class="flex items-start gap-4">
                         <i class="fas fa-trophy text-blue-600 text-3xl mt-1"></i>
                         <div>
@@ -406,8 +629,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="card bg-gradient-to-br from-emerald-50 to-emerald-100 p-8 rounded-3xl reveal" data-anim="fade-up">
+                <div class="card bg-gradient-to-br from-emerald-50 to-emerald-100 p-8 rounded-3xl reveal">
                     <div class="flex items-start gap-4">
                         <i class="fas fa-star text-emerald-600 text-3xl mt-1"></i>
                         <div>
@@ -416,8 +638,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="card bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-3xl reveal" data-anim="fade-up">
+                <div class="card bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-3xl reveal">
                     <div class="flex items-start gap-4">
                         <i class="fas fa-certificate text-purple-600 text-3xl mt-1"></i>
                         <div>
@@ -426,8 +647,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="card bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-3xl reveal" data-anim="fade-up">
+                <div class="card bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-3xl reveal">
                     <div class="flex items-start gap-4">
                         <i class="fas fa-cogs text-orange-600 text-3xl mt-1"></i>
                         <div>
@@ -445,7 +665,6 @@
         <div class="max-w-7xl mx-auto px-6 text-center">
             <span class="uppercase text-blue-600 text-sm font-semibold tracking-widest">GET IN TOUCH</span>
             <h2 class="heading-font text-4xl md:text-5xl font-semibold mt-3 mb-8">Let's Connect</h2>
-            
             <div class="flex flex-wrap justify-center gap-6 mb-12">
                 <a href="tel:+265881762894" class="card bg-white px-8 py-4 rounded-3xl flex items-center gap-3 hover:bg-blue-50 t-smooth focus-ring">
                     <i class="fas fa-phone text-blue-600 text-xl"></i>
@@ -460,15 +679,14 @@
                     <span class="font-medium">about.me/atupele.mkagula</span>
                 </a>
             </div>
-            
             <div class="flex justify-center gap-6">
-                <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-50 t-smooth focus-ring">
+                <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 bg-white rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-50 t-smooth focus-ring">
                     <i class="fab fa-linkedin text-2xl"></i>
                 </a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-zinc-900 hover:bg-zinc-100 t-smooth focus-ring">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 bg-white rounded-full flex items-center justify-center text-zinc-900 hover:bg-zinc-100 t-smooth focus-ring">
                     <i class="fab fa-github text-2xl"></i>
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-white rounded-full flex items-center justify-center text-blue-400 hover:bg-blue-50 t-smooth focus-ring">
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 bg-white rounded-full flex items-center justify-center text-blue-400 hover:bg-blue-50 t-smooth focus-ring">
                     <i class="fab fa-twitter text-2xl"></i>
                 </a>
             </div>
@@ -478,28 +696,151 @@
     <!-- FOOTER -->
     <footer class="bg-zinc-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-6 text-center">
+            <!-- Clickable footer logo -->
+            <button onclick="scrollToTop(event)" class="inline-flex items-center gap-3 mb-6 group" aria-label="Back to top">
+                <div class="w-9 h-9 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg
+                    transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110">AM</div>
+                <span class="heading-font text-lg font-semibold text-white/80 group-hover:text-white transition-colors">Atupele Mkagula</span>
+            </button>
             <p class="text-zinc-400 mb-2">&copy; 2026 Atupele Nathan Mkagula. All rights reserved.</p>
             <p class="text-zinc-500 text-sm">References available upon request.</p>
         </div>
     </footer>
 
     <script>
-        // Intersection Observer for reveal animations
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('in-view');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        revealElements.forEach(el => observer.observe(el));
+    // ── Custom cursor ──────────────────────────────────
+    const cursor = document.getElementById('cursor');
+    const ring   = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        cursor.style.left = mx + 'px';
+        cursor.style.top  = my + 'px';
+    });
+
+    // Lag ring slightly
+    function animRing() {
+        rx += (mx - rx) * 0.14;
+        ry += (my - ry) * 0.14;
+        ring.style.left = rx + 'px';
+        ring.style.top  = ry + 'px';
+        requestAnimationFrame(animRing);
+    }
+    animRing();
+
+    // Hover state on interactive elements
+    document.querySelectorAll('a, button, .card, .skill-pill, .badge-float').forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+
+    // ── Logo ripple + scroll to top ────────────────────
+    function scrollToTop(e) {
+        // Ripple
+        const btn = e.currentTarget;
+        const rect = btn.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top  - size / 2;
+        const ripple = document.createElement('span');
+        ripple.className = 'ripple';
+        ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px`;
+        btn.style.position = 'relative';
+        btn.style.overflow = 'hidden';
+        btn.appendChild(ripple);
+        ripple.addEventListener('animationend', () => ripple.remove());
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── Scroll-to-top FAB ──────────────────────────────
+    const fab = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+        fab.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    // ── Sticky nav style on scroll ─────────────────────
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // ── Active nav link highlight ──────────────────────
+    const sections = document.querySelectorAll('section[id], header');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const ioNav = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(l => l.classList.remove('active'));
+                const id = entry.target.id;
+                const active = document.querySelector(`.nav-link[href="#${id}"]`);
+                if (active) active.classList.add('active');
+            }
+        });
+    }, { threshold: 0.4 });
+    sections.forEach(s => ioNav.observe(s));
+
+    // ── Reveal on scroll ───────────────────────────────
+    const reveals = document.querySelectorAll('.reveal');
+    const ioReveal = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = entry.target.dataset.delay || 0;
+                entry.target.style.animationDelay = delay + 'ms';
+                entry.target.classList.add('in-view');
+                ioReveal.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => ioReveal.observe(el));
+
+    // ── Hamburger menu ─────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    let menuOpen = false;
+
+    hamburger.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle('open', menuOpen);
+        hamburger.setAttribute('aria-expanded', menuOpen);
+        const spans = hamburger.querySelectorAll('span');
+        if (menuOpen) {
+            spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
+            spans[2].style.width = '20px';
+        } else {
+            spans[0].style.transform = '';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = '';
+            spans[2].style.width = '12px';
+        }
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            menuOpen = false;
+            mobileMenu.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            const spans = hamburger.querySelectorAll('span');
+            spans[0].style.transform = '';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = '';
+            spans[2].style.width = '12px';
+        });
+    });
+
+    // ── Smooth anchor scroll (override default jump) ───
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
     </script>
 </body>
 </html>
-
-
-
-
