@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- viewport already set – essential for responsiveness -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atupele Nathan Mkagula | Cybersecurity & Digital Systems</title>
     
@@ -10,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
+        /* ===== original variables & base styles (preserved) ===== */
         :root {
             --accent: #1e90ff;
             --accent-2: #32cd32;
@@ -266,6 +268,61 @@
             transition: transform 300ms var(--spring), opacity 250ms, width 300ms;
         }
 
+        /* ===== ADDITIONAL RESPONSIVE TWEAKS (mobile-first) ===== */
+        /* make profile image scale gracefully on small devices */
+        @media (max-width: 640px) {
+            .profile-wrap {
+                width: 70%;
+                max-width: 260px;
+                height: auto;
+                aspect-ratio: 1/1;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            /* adjust badge positions slightly so they don't overflow screen */
+            .badge-float:first-of-type {
+                top: -0.75rem;
+                right: 0.25rem;
+            }
+            .badge-float:last-of-type {
+                bottom: -1.5rem;
+                left: 1rem;
+            }
+            /* make stat numbers a bit smaller on very narrow screens */
+            .stat-num.text-3xl {
+                font-size: 1.75rem;
+            }
+            /* contact section icons wrap gracefully */
+            #contact .flex-wrap {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-bg h1 {
+                font-size: 2.8rem; /* fine-tune for tiny screens */
+            }
+            .badge-float {
+                padding: 0.5rem 1rem;
+                font-size: 0.7rem;
+            }
+        }
+
+        /* ensure tablets (between 641px and 768px) also look balanced */
+        @media (min-width: 641px) and (max-width: 768px) {
+            .profile-wrap {
+                width: 18rem;
+                height: 18rem;
+            }
+        }
+
+        /* touch devices: disable custom cursor to avoid weirdness */
+        @media (hover: none) and (pointer: coarse) {
+            body { cursor: auto; }
+            #cursor, #cursor-ring { display: none; }
+            .nav-link, #logo-btn, .skill-pill, .card, .btn-glow { cursor: pointer; }
+        }
+
         /* ── Reduced motion ── */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -277,7 +334,7 @@
             #cursor, #cursor-ring { display: none; }
         }
 
-        /* CTA button glow */
+        /* CTA button glow (unchanged) */
         .btn-glow {
             position: relative;
             overflow: hidden;
@@ -331,12 +388,7 @@
             </div>
             
             <div class="flex items-center gap-3">
-                <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer"
-                    class="btn-glow px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-2xl hidden md:flex items-center gap-2 focus-ring">
-                    <i class="fab fa-linkedin" aria-hidden="true"></i>
-                    LinkedIn
-                </a>
-
+                <!-- *** TOP LINKEDIN BUTTON REMOVED per request *** -->
                 <!-- Hamburger -->
                 <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded-xl" aria-label="Toggle menu" aria-expanded="false">
                     <span class="w-5"></span>
@@ -403,6 +455,7 @@
             <!-- Profile -->
             <div class="relative flex justify-center items-start">
                 <div class="w-80 h-80 rounded-3xl overflow-hidden border-8 border-white/30 shadow-2xl bg-zinc-900 profile-wrap reveal float-slow" data-delay="200" tabindex="0" aria-label="Profile image">
+                    <!-- image source placeholder (original assets/headshot.jpg) -->
                     <img src="assets/headshot.jpg" alt="Atupele Mkagula portrait" class="profile-img">
                 </div>
                 
