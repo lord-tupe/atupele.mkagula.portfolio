@@ -7,10 +7,13 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- SmartSoft Gaming fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <!-- Your original fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* ===== original variables & base styles (preserved) ===== */
+        /* ===== your original variables & base styles ===== */
         :root {
             --accent: #1e90ff;
             --accent-2: #32cd32;
@@ -21,29 +24,58 @@
             --easing: cubic-bezier(.2,.9,.3,1);
             --card-ease: cubic-bezier(.16,.84,.32,1);
             --spring: cubic-bezier(.34,1.56,.64,1);
+            /* SmartSoft Gaming colors */
+            --brand-orange: #ff4500;
+            --brand-gold: #ffd700;
+            --brand-dark: #050505;
         }
 
-        *, *::before, *::after { box-sizing: border-box; }
-        
-        html { 
-            scroll-behavior: smooth; 
-            /* ADDED: prevent sticky nav from hiding section headings */
-            scroll-padding-top: 80px;
+        /* Light mode (default) */
+        body {
+            --bg-primary: #fafafa;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f4f4f5;
+            --text-primary: #18181b;
+            --text-secondary: #3f3f46;
+            --text-muted: #71717a;
+            --border-light: #e4e4e7;
+            --card-bg: #ffffff;
+            --nav-bg: rgba(255,255,255,0.92);
+            --hero-start: #0f172a;
+            --hero-end: #1e3a8a;
+        }
+
+        /* Dark mode overrides */
+        body.dark-mode {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --text-primary: #ededed;
+            --text-secondary: #a1a1aa;
+            --text-muted: #6b7280;
+            --border-light: #27272a;
+            --card-bg: #1c1c1e;
+            --nav-bg: rgba(0,0,0,0.92);
+            --hero-start: #020617;
+            --hero-end: #0f172a;
         }
 
         body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.2s ease;
             font-family: "Open Sans", system-ui, sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             cursor: none;
         }
 
-        /* ── Custom cursor ── */
+        /* Custom cursor */
         #cursor {
             position: fixed;
             top: 0; left: 0;
             width: 12px; height: 12px;
-            background: var(--accent);
+            background: var(--brand-orange);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
@@ -55,32 +87,33 @@
             position: fixed;
             top: 0; left: 0;
             width: 36px; height: 36px;
-            border: 1.5px solid rgba(30,144,255,0.55);
+            border: 1.5px solid rgba(255,69,0,0.55);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transform: translate(-50%,-50%);
             transition: width 380ms var(--easing), height 380ms var(--easing), border-color 380ms, transform 380ms var(--easing);
         }
-        body.cursor-hover #cursor { width: 20px; height: 20px; background: #32cd32; }
-        body.cursor-hover #cursor-ring { width: 54px; height: 54px; border-color: rgba(50,205,50,0.4); }
+        body.cursor-hover #cursor { width: 20px; height: 20px; background: var(--brand-gold); }
+        body.cursor-hover #cursor-ring { width: 54px; height: 54px; border-color: rgba(255,215,0,0.4); }
 
-        .heading-font { font-family: "Montserrat", system-ui, sans-serif; }
-        .hero-bg { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); }
+        .heading-font { font-family: 'Space Grotesk', 'Montserrat', system-ui, sans-serif; }
+        .hero-bg { background: linear-gradient(135deg, var(--hero-start) 0%, var(--hero-end) 100%); }
         .t-smooth { transition: all var(--duration-medium) var(--easing); }
         .t-fast { transition: all var(--duration-fast) var(--easing); }
 
-        /* ── Nav ── */
+        /* Nav */
         #main-nav {
             transition: background 400ms, box-shadow 400ms, padding 400ms;
+            background: var(--nav-bg) !important;
+            backdrop-filter: blur(16px);
         }
         #main-nav.scrolled {
-            background: rgba(255,255,255,0.92) !important;
-            backdrop-filter: blur(16px);
-            box-shadow: 0 4px 32px rgba(0,0,0,0.07);
+            background: var(--nav-bg) !important;
+            box-shadow: 0 4px 32px rgba(0,0,0,0.1);
         }
 
-        /* ── Logo button ── */
+        /* Logo button */
         #logo-btn {
             cursor: none;
             position: relative;
@@ -95,7 +128,7 @@
         }
         #logo-btn:hover {
             transform: scale(1.045);
-            box-shadow: 0 0 0 6px rgba(30,144,255,0.10);
+            box-shadow: 0 0 0 6px rgba(255,69,0,0.10);
         }
         #logo-btn:active { transform: scale(0.97); }
         #logo-avatar {
@@ -103,18 +136,19 @@
         }
         #logo-btn:hover #logo-avatar {
             transform: rotate(-6deg) scale(1.08);
-            box-shadow: 0 6px 20px rgba(30,144,255,0.25);
+            box-shadow: 0 6px 20px rgba(255,69,0,0.25);
         }
         #logo-text {
             transition: color 220ms;
+            color: var(--text-primary);
         }
-        #logo-btn:hover #logo-text { color: #1e90ff; }
+        #logo-btn:hover #logo-text { color: var(--brand-orange); }
 
         /* Ripple on logo */
         .ripple {
             position: absolute;
             border-radius: 50%;
-            background: rgba(30,144,255,0.18);
+            background: rgba(255,69,0,0.18);
             transform: scale(0);
             animation: ripple-anim 600ms var(--easing) forwards;
             pointer-events: none;
@@ -123,31 +157,41 @@
             to { transform: scale(4); opacity: 0; }
         }
 
-        /* ── Nav links ── */
+        /* Nav links */
         .nav-link {
             position: relative;
             padding-bottom: 2px;
             cursor: none;
+            color: var(--text-secondary);
         }
         .nav-link::after {
             content: '';
             position: absolute;
             bottom: -2px; left: 0;
             width: 0; height: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            background: linear-gradient(90deg, var(--brand-orange), var(--accent-2));
             border-radius: 999px;
             transition: width 280ms var(--spring);
         }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link:hover { color: var(--brand-orange); }
 
-        /* ── Floating animations ── */
+        /* Floating animations */
         @keyframes float-slow {
             0%,100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
         .float-slow { animation: float-slow 7s ease-in-out infinite; }
 
-        /* ── Reveal ── */
+        /* SmartSoft float */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        /* Reveal */
         @keyframes fade-up {
             from { opacity: 0; transform: translateY(22px) scale(.99); }
             to   { opacity: 1; transform: translateY(0) scale(1); }
@@ -155,19 +199,24 @@
         .reveal { opacity: 0; transform: translateY(14px); will-change: transform, opacity; }
         .reveal.in-view { animation: fade-up var(--duration-medium) var(--easing) both; }
 
-        /* ── Cards ── */
+        /* Cards */
         .card {
-            transition: transform 400ms var(--card-ease), box-shadow 400ms var(--card-ease);
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-light);
+            transition: transform 400ms var(--card-ease), box-shadow 400ms var(--card-ease), border-color 400ms, background-color 0.3s;
             will-change: transform, box-shadow;
         }
         .card:hover {
             transform: translateY(-10px) scale(1.012);
-            box-shadow: 0 28px 56px -14px rgba(2,6,23,0.28), 0 6px 16px rgba(2,6,23,0.07);
+            box-shadow: 0 28px 56px -14px rgba(255,69,0,0.15), 0 6px 16px rgba(2,6,23,0.07);
+            border-color: var(--brand-orange);
         }
         .card:active { transform: translateY(-4px) scale(1.005); }
 
-        /* ── Skill pills ── */
+        /* Skill pills */
         .skill-pill {
+            background-color: var(--bg-tertiary);
+            color: var(--text-secondary);
             transition: transform var(--duration-fast) var(--spring),
                         background-color var(--duration-fast),
                         color var(--duration-fast),
@@ -176,10 +225,12 @@
         }
         .skill-pill:hover {
             transform: translateY(-4px) scale(1.06);
-            box-shadow: 0 8px 20px rgba(30,144,255,0.15);
+            box-shadow: 0 8px 20px rgba(255,69,0,0.15);
+            background-color: var(--brand-orange);
+            color: white;
         }
 
-        /* ── Profile ── */
+        /* Profile */
         .profile-img {
             filter: grayscale(.3) contrast(.95) saturate(.95);
             transition: filter var(--duration-long) var(--easing), transform var(--duration-long) var(--easing);
@@ -190,48 +241,51 @@
         }
 
         .badge-float {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            border-left: 4px solid var(--brand-orange);
             transition: transform var(--duration-medium) var(--spring), opacity var(--duration-medium), box-shadow 300ms;
         }
         .badge-float:hover {
             transform: translateY(-8px) rotate(-2deg) scale(1.05);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+            box-shadow: 0 12px 32px rgba(255,69,0,0.2);
         }
 
-        /* ── Terminal ── */
+        /* Terminal */
         .terminal {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
             background: #070707;
             color: #00ff9f;
         }
 
-        /* ── Gradient underline ── */
+        /* Gradient underline */
         .gradient-underline {
-            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            background: linear-gradient(90deg, var(--brand-orange), var(--accent-2));
             height: 3px; border-radius: 999px; width: 64px;
         }
 
-        /* ── Focus ── */
+        /* Focus */
         :focus { outline: none; }
-        .focus-ring:focus-visible { box-shadow: 0 0 0 4px rgba(30,144,255,0.15); border-radius: 12px; }
+        .focus-ring:focus-visible { box-shadow: 0 0 0 4px rgba(255,69,0,0.15); border-radius: 12px; }
 
-        /* ── Section transition ── */
+        /* Section transition */
         section, header, footer {
             transition: background 600ms;
         }
 
-        /* ── Stat counter ── */
+        /* Stat counter */
         .stat-num {
             display: inline-block;
             transition: transform 300ms var(--spring);
         }
-        .stat-num:hover { transform: scale(1.12); }
+        .stat-num:hover { transform: scale(1.12); color: var(--brand-orange); }
 
-        /* ── Scroll-to-top button ── */
+        /* Scroll-to-top button */
         #scroll-top {
             position: fixed;
             bottom: 32px; right: 32px;
             width: 48px; height: 48px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            background: linear-gradient(135deg, var(--brand-orange), #ff8c00);
             color: white;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
@@ -240,20 +294,21 @@
             opacity: 0; pointer-events: none;
             transform: translateY(16px) scale(0.85);
             transition: opacity 300ms, transform 350ms var(--spring), box-shadow 300ms;
-            box-shadow: 0 6px 24px rgba(30,144,255,0.3);
+            box-shadow: 0 6px 24px rgba(255,69,0,0.3);
         }
         #scroll-top.visible {
             opacity: 1; pointer-events: auto;
             transform: translateY(0) scale(1);
         }
         #scroll-top:hover {
-            box-shadow: 0 10px 36px rgba(30,144,255,0.45);
+            box-shadow: 0 10px 36px rgba(255,69,0,0.45);
             transform: translateY(-3px) scale(1.07);
         }
         #scroll-top:active { transform: scale(0.95); }
 
-        /* ── Mobile menu ── */
+        /* Mobile menu */
         #mobile-menu {
+            background-color: var(--bg-secondary);
             transform: translateY(-10px);
             opacity: 0;
             pointer-events: none;
@@ -264,6 +319,13 @@
             opacity: 1;
             pointer-events: auto;
         }
+        #mobile-menu a {
+            color: var(--text-secondary);
+            border-bottom-color: var(--border-light);
+        }
+        #mobile-menu a:hover {
+            color: var(--brand-orange);
+        }
         #hamburger span {
             display: block; height: 2px;
             background: currentColor;
@@ -271,12 +333,25 @@
             transition: transform 300ms var(--spring), opacity 250ms, width 300ms;
         }
 
-        /* ===== ADDITIONAL RESPONSIVE TWEAKS ===== */
+        /* Dark mode toggle button */
+        #dark-mode-toggle {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            cursor: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        #dark-mode-toggle:hover {
+            color: var(--brand-orange);
+            transform: rotate(15deg);
+        }
+
+        /* Responsive */
         @media (max-width: 640px) {
-            /* adjust scroll padding for smaller header */
-            html {
-                scroll-padding-top: 70px;
-            }
+            html { scroll-padding-top: 70px; }
             .profile-wrap {
                 width: 70%;
                 max-width: 260px;
@@ -293,33 +368,23 @@
                 bottom: -1.5rem;
                 left: 1rem;
             }
-            .stat-num.text-3xl {
-                font-size: 1.75rem;
-            }
+            .stat-num.text-3xl { font-size: 1.75rem; }
         }
 
         @media (max-width: 480px) {
-            .hero-bg h1 {
-                font-size: 2.8rem;
-            }
-            .badge-float {
-                padding: 0.5rem 1rem;
-                font-size: 0.7rem;
-            }
+            .hero-bg h1 { font-size: 2.8rem; }
+            .badge-float { padding: 0.5rem 1rem; font-size: 0.7rem; }
         }
 
         @media (min-width: 641px) and (max-width: 768px) {
-            .profile-wrap {
-                width: 18rem;
-                height: 18rem;
-            }
+            .profile-wrap { width: 18rem; height: 18rem; }
         }
 
         /* touch devices: disable custom cursor */
         @media (hover: none) and (pointer: coarse) {
             body { cursor: auto; }
             #cursor, #cursor-ring { display: none; }
-            .nav-link, #logo-btn, .skill-pill, .card, .btn-glow { cursor: pointer; }
+            .nav-link, #logo-btn, .skill-pill, .card, .btn-glow, #dark-mode-toggle { cursor: pointer; }
         }
 
         /* reduced motion */
@@ -333,11 +398,14 @@
             #cursor, #cursor-ring { display: none; }
         }
 
-        /* CTA button glow (unchanged) */
+        /* CTA button glow */
         .btn-glow {
             position: relative;
             overflow: hidden;
             transition: transform 280ms var(--spring), box-shadow 280ms;
+            background: linear-gradient(135deg, var(--brand-orange), #ff8c00);
+            color: white;
+            border: none;
         }
         .btn-glow::before {
             content: '';
@@ -350,14 +418,23 @@
         .btn-glow:hover::before { transform: translateX(100%); }
         .btn-glow:hover {
             transform: scale(1.04) translateY(-1px);
-            box-shadow: 0 8px 28px rgba(30,144,255,0.35);
+            box-shadow: 0 8px 28px rgba(255,69,0,0.35);
         }
         .btn-glow:active { transform: scale(0.97); }
+
+        /* SmartSoft utilities */
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(255,69,0,0.3);
+            color: transparent;
+        }
+        .bg-brand-orange { background-color: var(--brand-orange); }
+        .text-brand-orange { color: var(--brand-orange); }
+        .border-brand-orange { border-color: var(--brand-orange); }
+        .font-display { font-family: 'Space Grotesk', sans-serif; }
     </style>
 </head>
 
-<body class="bg-zinc-50 text-zinc-800 leading-relaxed">
-
+<body>
     <!-- Custom cursor -->
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
@@ -368,27 +445,29 @@
     </button>
 
     <!-- NAV -->
-    <nav id="main-nav" class="bg-white shadow sticky top-0 z-50" role="navigation" aria-label="Primary">
+    <nav id="main-nav" class="sticky top-0 z-50" role="navigation" aria-label="Primary">
         <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6">
 
             <!-- Clickable Logo -->
             <button id="logo-btn" onclick="scrollToTop(event)" aria-label="Back to top">
-                <div id="logo-avatar" class="w-10 h-10 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg select-none">AM</div>
-                <span id="logo-text" class="heading-font text-xl font-semibold tracking-tight text-zinc-900">Atupele Mkagula</span>
+                <div id="logo-avatar" class="w-10 h-10 bg-gradient-to-br from-brand-orange to-orange-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg select-none">AM</div>
+                <span id="logo-text" class="heading-font text-xl font-semibold tracking-tight">Atupele Mkagula</span>
             </button>
             
-            <!-- Desktop links -->
+            <!-- Desktop links (Gaming link removed) -->
             <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#about"      class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">About</a>
-                <a href="#experience" class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Experience</a>
-                <a href="#skills"     class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Skills</a>
-                <a href="#education"  class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Education</a>
-                <a href="#contact"    class="nav-link t-smooth text-zinc-600 hover:text-blue-600 focus-ring">Contact</a>
+                <a href="#about"      class="nav-link t-smooth focus-ring">About</a>
+                <a href="#experience" class="nav-link t-smooth focus-ring">Experience</a>
+                <a href="#skills"     class="nav-link t-smooth focus-ring">Skills</a>
+                <a href="#education"  class="nav-link t-smooth focus-ring">Education</a>
+                <a href="#contact"    class="nav-link t-smooth focus-ring">Contact</a>
+                <!-- Dark mode toggle -->
+                <button id="dark-mode-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
             
             <div class="flex items-center gap-3">
-                <!-- *** TOP LINKEDIN BUTTON REMOVED per request *** -->
-                <!-- Hamburger -->
                 <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded-xl" aria-label="Toggle menu" aria-expanded="false">
                     <span class="w-5"></span>
                     <span class="w-5"></span>
@@ -397,29 +476,38 @@
             </div>
         </div>
 
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="md:hidden bg-white border-t border-zinc-100 px-6 pb-4 space-y-1">
-            <a href="#about"      class="block py-3 text-zinc-700 font-medium border-b border-zinc-50 hover:text-blue-600 t-fast">About</a>
-            <a href="#experience" class="block py-3 text-zinc-700 font-medium border-b border-zinc-50 hover:text-blue-600 t-fast">Experience</a>
-            <a href="#skills"     class="block py-3 text-zinc-700 font-medium border-b border-zinc-50 hover:text-blue-600 t-fast">Skills</a>
-            <a href="#education"  class="block py-3 text-zinc-700 font-medium border-b border-zinc-50 hover:text-blue-600 t-fast">Education</a>
-            <a href="#contact"    class="block py-3 text-zinc-700 font-medium hover:text-blue-600 t-fast">Contact</a>
+        <!-- Mobile menu (Gaming link removed) -->
+        <div id="mobile-menu" class="md:hidden px-6 pb-4 space-y-1">
+            <a href="#about"      class="block py-3 font-medium border-b t-fast">About</a>
+            <a href="#experience" class="block py-3 font-medium border-b t-fast">Experience</a>
+            <a href="#skills"     class="block py-3 font-medium border-b t-fast">Skills</a>
+            <a href="#education"  class="block py-3 font-medium border-b t-fast">Education</a>
+            <a href="#contact"    class="block py-3 font-medium t-fast">Contact</a>
+            <!-- Dark mode toggle in mobile -->
+            <div class="pt-4 flex justify-center">
+                <button id="dark-mode-toggle-mobile" class="flex items-center gap-2 text-sm font-medium">
+                    <i class="fas fa-moon"></i> <span>Dark Mode</span>
+                </button>
+            </div>
         </div>
     </nav>
 
     <!-- HERO -->
     <header class="hero-bg text-white min-h-screen flex items-center relative overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] bg-[length:40px_40px] opacity-20 pointer-events-none"></div>
+        <!-- Orange glow overlay -->
+        <div class="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px]"></div>
         
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
             <div class="space-y-8">
                 <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl px-6 py-3 rounded-3xl text-sm font-medium reveal" data-delay="0">
-                    <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
-                    Hello!
+                    <div class="w-3 h-3 bg-brand-orange rounded-full animate-pulse"></div>
+                    Hello! I'm
                 </div>
                 
                 <h1 class="heading-font text-5xl sm:text-6xl md:text-7xl font-bold leading-tight reveal" data-delay="100">
-                    Atupele Nathan<br />Mkagula
+                    Atupele Nathan<br /><span class="text-white drop-shadow-[0_0_8px_rgba(255,69,0,0.5)]">Mkagula</span>
                 </h1>
                 
                 <p class="text-2xl sm:text-3xl font-light text-blue-100 max-w-lg reveal" data-delay="200">
@@ -431,21 +519,21 @@
                 </p>
                 
                 <div class="flex flex-wrap gap-4 reveal" data-delay="400">
-                    <a href="#experience" class="btn-glow px-8 py-4 bg-white text-zinc-900 font-semibold rounded-3xl flex items-center gap-3 focus-ring">
+                    <a href="#experience" class="btn-glow px-8 py-4 rounded-3xl flex items-center gap-3 focus-ring">
                         View My Work <i class="fas fa-arrow-down"></i>
                     </a>
-                    <a href="#contact" class="btn-glow px-8 py-4 border-2 border-white/70 hover:border-white font-semibold rounded-3xl flex items-center gap-3 t-smooth focus-ring hover:bg-white/10">
+                    <a href="#contact" class="px-8 py-4 border-2 border-white/70 hover:border-white font-semibold rounded-3xl flex items-center gap-3 t-smooth focus-ring hover:bg-white/10">
                         Let's Talk
                     </a>
                 </div>
                 
                 <div class="flex gap-8 text-sm pt-8 border-t border-white/20 reveal" data-delay="500">
                     <div>
-                        <div class="stat-num text-emerald-400 font-mono text-3xl font-bold">75%</div>
+                        <div class="stat-num text-brand-orange font-mono text-3xl font-bold">75%</div>
                         <div class="text-zinc-400 text-xs tracking-widest mt-1">AVG FCR @ betPawa</div>
                     </div>
                     <div>
-                        <div class="stat-num text-emerald-400 font-mono text-3xl font-bold">6×</div>
+                        <div class="stat-num text-brand-orange font-mono text-3xl font-bold">6×</div>
                         <div class="text-zinc-400 text-xs tracking-widest mt-1">Excellence Certificates</div>
                     </div>
                 </div>
@@ -453,16 +541,16 @@
             
             <!-- Profile -->
             <div class="relative flex justify-center items-start">
-                <div class="w-80 h-80 rounded-3xl overflow-hidden border-8 border-white/30 shadow-2xl bg-zinc-900 profile-wrap reveal float-slow" data-delay="200" tabindex="0" aria-label="Profile image">
+                <div class="w-80 h-80 rounded-3xl overflow-hidden border-8 border-orange-500/30 shadow-2xl bg-zinc-900 profile-wrap reveal animate-float" data-delay="200" tabindex="0" aria-label="Profile image">
                     <img src="assets/headshot.jpg" alt="Atupele Mkagula portrait" class="profile-img">
                 </div>
                 
-                <div class="absolute -top-4 -right-6 bg-white text-zinc-900 text-xs font-bold px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2 badge-float">
-                    <i class="fas fa-shield-alt text-emerald-500"></i>
+                <div class="absolute -top-4 -right-6 badge-float text-xs font-bold px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2">
+                    <i class="fas fa-shield-alt text-brand-orange"></i>
                     Cybersecurity Practitioner
                 </div>
-                <div class="absolute -bottom-8 left-12 bg-white text-zinc-900 text-xs font-bold px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2 badge-float">
-                    <i class="fas fa-music text-purple-500"></i>
+                <div class="absolute -bottom-8 left-12 badge-float text-xs font-bold px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2">
+                    <i class="fas fa-music text-brand-orange"></i>
                     Music Producer
                 </div>
             </div>
@@ -475,37 +563,37 @@
     </header>
 
     <!-- ABOUT -->
-    <section id="about" class="py-20 bg-white">
+    <section id="about" class="py-20" style="background-color: var(--bg-secondary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-12 gap-16 items-center">
                 <div class="md:col-span-7">
-                    <span class="uppercase text-blue-600 text-sm font-semibold tracking-widest">WHO I AM</span>
+                    <span class="uppercase text-brand-orange text-sm font-semibold tracking-widest">WHO I AM</span>
                     <h2 class="heading-font text-4xl md:text-5xl font-semibold mt-3 leading-tight reveal">
-                        Technology professional who sees both the code <span class="text-emerald-500">and</span> the customer
+                        Technology professional who sees both the code <span class="text-brand-orange">and</span> the customer
                     </h2>
-                    <div class="mt-8 space-y-6 text-lg text-zinc-600 reveal">
+                    <div class="mt-8 space-y-6 text-lg" style="color: var(--text-secondary); reveal">
                         <p>I currently support thousands of users daily as a <strong>Customer Support Agent at betPawa</strong>, resolving technical issues across Sportsbook, Casino, and Virtual Sports platforms while maintaining industry-leading FCR and CSAT metrics.</p>
                         <p>Since 2020 I've run my own IT consulting practice — diagnosing systems, training students, and securing small business infrastructure. My Certificate in Music Production taught me pattern recognition, systems thinking, and creative problem-solving — skills I now apply directly to cybersecurity and digital infrastructure.</p>
                     </div>
                     <div class="mt-8 flex flex-wrap gap-3">
-                        <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Cybersecurity</button>
-                        <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">IT Infrastructure</button>
-                        <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Digital Risk</button>
-                        <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Systems Thinking</button>
-                        <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Music Production</button>
-                        <button class="skill-pill bg-zinc-100 text-zinc-700 px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Customer Experience</button>
+                        <button class="skill-pill px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Cybersecurity</button>
+                        <button class="skill-pill px-5 py-2 rounded-3xl text-sm font-medium focus-ring">IT Infrastructure</button>
+                        <button class="skill-pill px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Digital Risk</button>
+                        <button class="skill-pill px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Systems Thinking</button>
+                        <button class="skill-pill px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Music Production</button>
+                        <button class="skill-pill px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Customer Experience</button>
                     </div>
                 </div>
                 
                 <aside class="md:col-span-5 bg-zinc-900 text-white p-8 rounded-3xl reveal">
                     <div class="terminal p-4 rounded-2xl text-sm leading-relaxed font-mono">
-                        <span class="text-emerald-400">$ whoami</span><br>
+                        <span class="text-brand-orange">$ whoami</span><br>
                         Atupele Nathan Mkagula<br><br>
-                        <span class="text-emerald-400">$ current_role</span><br>
+                        <span class="text-brand-orange">$ current_role</span><br>
                         Customer Support Agent @ betPawa (2025–Present)<br><br>
-                        <span class="text-emerald-400">$ focus</span><br>
+                        <span class="text-brand-orange">$ focus</span><br>
                         Cybersecurity • Backend Security • Digital Infrastructure<br><br>
-                        <span class="text-emerald-400">$ background</span><br>
+                        <span class="text-brand-orange">$ background</span><br>
                         Music Producer → IT Consultant → Digital Systems Specialist
                     </div>
                 </aside>
@@ -514,104 +602,192 @@
     </section>
 
     <!-- EXPERIENCE -->
-    <section id="experience" class="py-20 bg-zinc-100">
+    <section id="experience" class="py-20" style="background-color: var(--bg-tertiary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-12">
-                <span class="uppercase text-emerald-600 text-sm font-semibold tracking-widest">PROFESSIONAL JOURNEY</span>
+                <span class="uppercase text-brand-orange text-sm font-semibold tracking-widest">PROFESSIONAL JOURNEY</span>
                 <h2 class="heading-font text-3xl md:text-5xl font-semibold">Work Experience</h2>
             </div>
             <div class="space-y-8">
-                <div class="card bg-white p-8 rounded-3xl reveal">
+                <div class="card p-8 rounded-3xl reveal">
                     <div class="flex justify-between items-start mb-4">
                         <div>
-                            <h3 class="heading-font text-2xl font-semibold text-zinc-900">Customer Support Agent</h3>
-                            <p class="text-blue-600 font-semibold">betPawa</p>
+                            <h3 class="heading-font text-2xl font-semibold" style="color: var(--text-primary);">Customer Support Agent</h3>
+                            <p class="text-brand-orange font-semibold">betPawa</p>
                         </div>
-                        <span class="text-sm text-zinc-500 font-medium">2025 – Present</span>
+                        <span class="text-sm" style="color: var(--text-muted);">2025 – Present</span>
                     </div>
-                    <p class="text-zinc-600 mb-4">Deliver high-quality multi-channel customer support across sportsbook and casino platforms while consistently achieving performance KPIs.</p>
-                    <ul class="space-y-2 text-zinc-600 text-sm">
-                        <li><i class="fas fa-check text-emerald-500 mr-2"></i>Consistently achieved and exceeded FCR targets of 75% for account access and OTP-related issues.</li>
-                        <li><i class="fas fa-check text-emerald-500 mr-2"></i>Managed high-volume call and chat support using pawaDesk ticket management system.</li>
-                        <li><i class="fas fa-check text-emerald-500 mr-2"></i>Troubleshot technical issues across sportsbook markets including Asian Handicap, Over/Under, Cashout systems.</li>
-                        <li><i class="fas fa-check text-emerald-500 mr-2"></i>Implemented Responsible Gambling protocols and conducted identity verification to prevent fraud.</li>
+                    <p class="mb-4" style="color: var(--text-secondary);">Deliver high-quality multi-channel customer support across sportsbook and casino platforms while consistently achieving performance KPIs.</p>
+                    <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Consistently achieved and exceeded FCR targets of 75% for account access and OTP-related issues.</li>
+                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Managed high-volume call and chat support using pawaDesk ticket management system.</li>
+                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Troubleshot technical issues across sportsbook markets including Asian Handicap, Over/Under, Cashout systems.</li>
+                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Implemented Responsible Gambling protocols and conducted identity verification to prevent fraud.</li>
                     </ul>
                 </div>
-                <div class="card bg-white p-8 rounded-3xl reveal">
+                <!-- Additional experience cards -->
+                <div class="card p-8 rounded-3xl reveal">
                     <div class="flex justify-between items-start mb-4">
                         <div>
-                            <h3 class="heading-font text-2xl font-semibold text-zinc-900">Credit Officer</h3>
-                            <p class="text-blue-600 font-semibold">Yellow Solar Africa</p>
+                            <h3 class="heading-font text-2xl font-semibold" style="color: var(--text-primary);">Credit Officer</h3>
+                            <p class="text-brand-orange font-semibold">Yellow Solar Africa</p>
                         </div>
-                        <span class="text-sm text-zinc-500 font-medium">2024 – 2025</span>
+                        <span class="text-sm" style="color: var(--text-muted);">2024 – 2025</span>
                     </div>
-                    <p class="text-zinc-600 mb-4">Managed customer credit portfolios and ensured strong repayment performance while maintaining excellent client relationships.</p>
-                    <ul class="space-y-2 text-zinc-600 text-sm">
-                        <li><i class="fas fa-check text-emerald-500 mr-2"></i>Managed a portfolio of customer contracts, ensuring timely repayments and minimizing credit risk.</li>
-                        <li><i class="fas fa-check text-emerald-500 mr-2"></i>Conducted credit analysis and risk assessments to identify potential repayment challenges.</li>
-                        <li><i class="fas fa-check text-emerald-500 mr-2"></i>Provided financial counselling and developed sustainable repayment solutions.</li>
-                        <li><i class="fas fa-check text-emerald-500 mr-2"></i>Ensured customer feedback responses within 9-hour service level agreements.</li>
+                    <p class="mb-4" style="color: var(--text-secondary);">Managed customer credit portfolios and ensured strong repayment performance while maintaining excellent client relationships.</p>
+                    <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Managed a portfolio of customer contracts, ensuring timely repayments and minimizing credit risk.</li>
+                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Conducted credit analysis and risk assessments to identify potential repayment challenges.</li>
+                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Provided financial counselling and developed sustainable repayment solutions.</li>
+                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Ensured customer feedback responses within 9-hour service level agreements.</li>
                     </ul>
                 </div>
-                <div class="card bg-white p-8 rounded-3xl reveal">
+                <div class="card p-8 rounded-3xl reveal">
                     <div class="flex justify-between items-start mb-4">
                         <div>
-                            <h3 class="heading-font text-2xl font-semibold text-zinc-900">IT Consultant & Freelancer</h3>
-                            <p class="text-blue-600 font-semibold">Self-Employed</p>
+                            <h3 class="heading-font text-2xl font-semibold" style="color: var(--text-primary);">IT Consultant & Freelancer</h3>
+                            <p class="text-brand-orange font-semibold">Self-Employed</p>
                         </div>
-                        <span class="text-sm text-zinc-500 font-medium">2020 – Present</span>
+                        <span class="text-sm" style="color: var(--text-muted);">2020 – Present</span>
                     </div>
-                    <p class="text-zinc-600 mb-4">Provide technical services and IT support to individuals and small businesses.</p>
-                    <ul class="space-y-2 text-zinc-600 text-sm">
-                        <li><i class="fas fa-check text-emerald-500 mr-2"></i>Performed computer diagnostics, system troubleshooting, and data administration.</li>
-                        <li><i class="fas fa-check text-emerald-500 mr-2"></i>Assisted businesses in optimizing IT infrastructure and digital workflows.</li>
-                        <li><i class="fas fa-check text-emerald-500 mr-2"></i>Delivered computer training and digital literacy coaching to students and clients.</li>
-                        <li><i class="fas fa-check text-emerald-500 mr-2"></i>Provided basic computer security and system maintenance services.</li>
+                    <p class="mb-4" style="color: var(--text-secondary);">Provide technical services and IT support to individuals and small businesses.</p>
+                    <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
+                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Performed computer diagnostics, system troubleshooting, and data administration.</li>
+                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Assisted businesses in optimizing IT infrastructure and digital workflows.</li>
+                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Delivered computer training and digital literacy coaching to students and clients.</li>
+                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Provided basic computer security and system maintenance services.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ===== GAMING SECTIONS MOVED HERE (after Experience) ===== -->
+    <!-- Gaming Industry Impact -->
+    <section id="gaming-portfolio" class="py-40 bg-brand-orange relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                <div>
+                    <span class="text-black font-black uppercase tracking-[0.4em] text-sm mb-6 block">Gaming Industry Impact</span>
+                    <h2 class="text-8xl md:text-[10rem] font-display font-black tracking-tighter uppercase leading-[0.8] mb-12">betPawa <br><span class="text-stroke">Support</span></h2>
+                    <p class="text-2xl md:text-3xl font-medium mb-16 text-black/80 leading-tight">Driving player satisfaction and platform reliability for Malawi's fastest-growing sportsbook and casino.</p>
+                    <button class="px-16 py-8 bg-black text-white font-black uppercase tracking-tighter text-2xl rounded-sm shadow-2xl hover:scale-105 transition-transform">Explore My Work</button>
+                </div>
+                <div class="relative">
+                    <div class="aspect-square bg-black rounded-[3rem] overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-700">
+                        <img src="https://picsum.photos/seed/betpawa/1000/1000" alt="betPawa platform" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platforms & Products -->
+    <section class="py-32 px-6 max-w-7xl mx-auto" style="background-color: var(--bg-secondary);">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div>
+                <span class="text-brand-orange font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Portfolio</span>
+                <h2 class="text-6xl md:text-7xl font-display font-bold tracking-tighter uppercase" style="color: var(--text-primary);">Platforms I <span class="text-brand-orange">Support</span></h2>
+            </div>
+            <div class="flex flex-wrap gap-2 bg-white/5 p-1.5 rounded-xl border border-white/10">
+                <button class="px-8 py-3 rounded-lg text-xs font-black uppercase tracking-widest bg-brand-orange text-white">All</button>
+                <button class="px-8 py-3 rounded-lg text-xs font-black uppercase tracking-widest" style="color: var(--text-secondary);">Sportsbook</button>
+                <button class="px-8 py-3 rounded-lg text-xs font-black uppercase tracking-widest" style="color: var(--text-secondary);">Casino</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div class="group relative bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 hover:border-brand-orange/40 transition-all duration-500 hover:-translate-y-4">
+                <div class="aspect-[4/5] overflow-hidden relative">
+                    <img src="https://picsum.photos/seed/sportsbook/800/1000" alt="Sportsbook" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/40 to-transparent">
+                        <span class="text-[10px] font-black text-brand-orange uppercase tracking-[0.3em] mb-2 block">Sportsbook</span>
+                        <h3 class="text-3xl font-display font-bold tracking-tighter uppercase text-white">Betting Markets</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="group relative bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 hover:border-brand-orange/40 transition-all duration-500 hover:-translate-y-4">
+                <div class="aspect-[4/5] overflow-hidden relative">
+                    <img src="https://picsum.photos/seed/casino/800/1000" alt="Casino" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/40 to-transparent">
+                        <span class="text-[10px] font-black text-brand-orange uppercase tracking-[0.3em] mb-2 block">Casino</span>
+                        <h3 class="text-3xl font-display font-bold tracking-tighter uppercase text-white">Slots & RNG</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="group relative bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 hover:border-brand-orange/40 transition-all duration-500 hover:-translate-y-4">
+                <div class="aspect-[4/5] overflow-hidden relative">
+                    <img src="https://picsum.photos/seed/virtual/800/1000" alt="Virtual Sports" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/40 to-transparent">
+                        <span class="text-[10px] font-black text-brand-orange uppercase tracking-[0.3em] mb-2 block">Virtual Sports</span>
+                        <h3 class="text-3xl font-display font-bold tracking-tighter uppercase text-white">Instant Games</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center mt-16">
+            <button class="px-12 py-5 border-2 border-brand-orange text-brand-orange font-black uppercase tracking-tighter text-lg rounded-sm hover:bg-brand-orange hover:text-white transition-all">View All Products</button>
+        </div>
+    </section>
+
+    <!-- Trusted Partners -->
+    <section class="py-24 border-y border-white/5" style="background-color: var(--bg-tertiary);">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-orange font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Trusted by</span>
+                <h2 class="text-5xl md:text-6xl font-display font-bold tracking-tighter uppercase mb-6" style="color: var(--text-primary);">Global <span class="text-brand-orange">Partners</span></h2>
+                <p style="color: var(--text-secondary);">Collaborating with leading gaming platforms and tech providers.</p>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60">
+                <div class="h-12 w-32" style="background-color: var(--border-light); border-radius: 0.5rem;"></div>
+                <div class="h-12 w-32" style="background-color: var(--border-light); border-radius: 0.5rem;"></div>
+                <div class="h-12 w-32" style="background-color: var(--border-light); border-radius: 0.5rem;"></div>
+                <div class="h-12 w-32" style="background-color: var(--border-light); border-radius: 0.5rem;"></div>
+                <div class="h-12 w-32" style="background-color: var(--border-light); border-radius: 0.5rem;"></div>
+            </div>
+        </div>
+    </section>
+    <!-- ===== END GAMING SECTIONS ===== -->
+
     <!-- SKILLS -->
-    <section id="skills" class="py-20 bg-white">
+    <section id="skills" class="py-20" style="background-color: var(--bg-secondary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-12">
-                <span class="uppercase text-blue-600 text-sm font-semibold tracking-widest">EXPERTISE</span>
+                <span class="uppercase text-brand-orange text-sm font-semibold tracking-widest">EXPERTISE</span>
                 <h2 class="heading-font text-3xl md:text-5xl font-semibold">Core Skills</h2>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="card bg-zinc-50 p-8 rounded-3xl reveal">
-                    <h3 class="heading-font text-xl font-semibold text-zinc-900 mb-6 flex items-center gap-3">
-                        <i class="fas fa-headset text-blue-600 text-2xl"></i>Customer Experience
+                <div class="card p-8 rounded-3xl reveal">
+                    <h3 class="heading-font text-xl font-semibold mb-6 flex items-center gap-3" style="color: var(--text-primary);">
+                        <i class="fas fa-headset text-brand-orange text-2xl"></i>Customer Experience
                     </h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">Support Operations</span>
-                        <span class="skill-pill inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">Multi-Channel Support</span>
-                        <span class="skill-pill inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">FCR & CSAT</span>
-                        <span class="skill-pill inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium">Complaint Resolution</span>
+                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Support Operations</span>
+                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Multi-Channel Support</span>
+                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">FCR & CSAT</span>
+                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Complaint Resolution</span>
                     </div>
                 </div>
-                <div class="card bg-zinc-50 p-8 rounded-3xl reveal">
-                    <h3 class="heading-font text-xl font-semibold text-zinc-900 mb-6 flex items-center gap-3">
-                        <i class="fas fa-laptop-code text-emerald-600 text-2xl"></i>Technical Skills
+                <div class="card p-8 rounded-3xl reveal">
+                    <h3 class="heading-font text-xl font-semibold mb-6 flex items-center gap-3" style="color: var(--text-primary);">
+                        <i class="fas fa-laptop-code text-brand-orange text-2xl"></i>Technical Skills
                     </h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">Sportsbook Support</span>
-                        <span class="skill-pill inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">Casino & RNG Support</span>
-                        <span class="skill-pill inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">IT Diagnostics</span>
-                        <span class="skill-pill inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium">System Support</span>
+                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Sportsbook Support</span>
+                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Casino & RNG Support</span>
+                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">IT Diagnostics</span>
+                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">System Support</span>
                     </div>
                 </div>
-                <div class="card bg-zinc-50 p-8 rounded-3xl reveal">
-                    <h3 class="heading-font text-xl font-semibold text-zinc-900 mb-6 flex items-center gap-3">
-                        <i class="fas fa-shield-alt text-purple-600 text-2xl"></i>Risk & Compliance
+                <div class="card p-8 rounded-3xl reveal">
+                    <h3 class="heading-font text-xl font-semibold mb-6 flex items-center gap-3" style="color: var(--text-primary);">
+                        <i class="fas fa-shield-alt text-brand-orange text-2xl"></i>Risk & Compliance
                     </h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Responsible Gambling</span>
-                        <span class="skill-pill inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Identity Verification</span>
-                        <span class="skill-pill inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Credit Risk Assessment</span>
-                        <span class="skill-pill inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium">Portfolio Management</span>
+                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Responsible Gambling</span>
+                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Identity Verification</span>
+                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Credit Risk Assessment</span>
+                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Portfolio Management</span>
                     </div>
                 </div>
             </div>
@@ -619,91 +795,91 @@
     </section>
 
     <!-- EDUCATION -->
-    <section id="education" class="py-20 bg-zinc-100">
+    <section id="education" class="py-20" style="background-color: var(--bg-tertiary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-12">
-                <span class="uppercase text-emerald-600 text-sm font-semibold tracking-widest">LEARNING JOURNEY</span>
+                <span class="uppercase text-brand-orange text-sm font-semibold tracking-widest">LEARNING JOURNEY</span>
                 <h2 class="heading-font text-3xl md:text-5xl font-semibold">Education</h2>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="card bg-white p-8 rounded-3xl reveal">
+                <div class="card p-8 rounded-3xl reveal">
                     <div class="flex items-start gap-4 mb-4">
-                        <i class="fas fa-graduation-cap text-blue-600 text-3xl mt-1"></i>
+                        <i class="fas fa-graduation-cap text-brand-orange text-3xl mt-1"></i>
                         <div>
-                            <h3 class="heading-font text-lg font-semibold text-zinc-900">University of Malawi</h3>
-                            <p class="text-sm text-zinc-600">Chancellor College</p>
+                            <h3 class="heading-font text-lg font-semibold" style="color: var(--text-primary);">University of Malawi</h3>
+                            <p class="text-sm" style="color: var(--text-secondary);">Chancellor College</p>
                         </div>
                     </div>
-                    <p class="text-zinc-600 text-sm mb-2"><strong>Certificate in Music Production</strong></p>
-                    <p class="text-zinc-500 text-xs">Digital Marketing & Arts Entrepreneurship | 2022</p>
+                    <p class="text-sm mb-2" style="color: var(--text-secondary);"><strong>Certificate in Music Production</strong></p>
+                    <p class="text-xs" style="color: var(--text-muted);">Digital Marketing & Arts Entrepreneurship | 2022</p>
                 </div>
-                <div class="card bg-white p-8 rounded-3xl reveal">
+                <div class="card p-8 rounded-3xl reveal">
                     <div class="flex items-start gap-4 mb-4">
-                        <i class="fas fa-graduation-cap text-emerald-600 text-3xl mt-1"></i>
+                        <i class="fas fa-graduation-cap text-brand-orange text-3xl mt-1"></i>
                         <div>
-                            <h3 class="heading-font text-lg font-semibold text-zinc-900">NACIT</h3>
-                            <p class="text-sm text-zinc-600">National College of Information Technology</p>
+                            <h3 class="heading-font text-lg font-semibold" style="color: var(--text-primary);">NACIT</h3>
+                            <p class="text-sm" style="color: var(--text-secondary);">National College of Information Technology</p>
                         </div>
                     </div>
-                    <p class="text-zinc-600 text-sm mb-2"><strong>Level 4 Diploma in Computing</strong></p>
-                    <p class="text-zinc-500 text-xs">2019 – 2020</p>
+                    <p class="text-sm mb-2" style="color: var(--text-secondary);"><strong>Level 4 Diploma in Computing</strong></p>
+                    <p class="text-xs" style="color: var(--text-muted);">2019 – 2020</p>
                 </div>
-                <div class="card bg-white p-8 rounded-3xl reveal">
+                <div class="card p-8 rounded-3xl reveal">
                     <div class="flex items-start gap-4 mb-4">
-                        <i class="fas fa-graduation-cap text-purple-600 text-3xl mt-1"></i>
+                        <i class="fas fa-graduation-cap text-brand-orange text-3xl mt-1"></i>
                         <div>
-                            <h3 class="heading-font text-lg font-semibold text-zinc-900">Chinsapo Secondary School</h3>
-                            <p class="text-sm text-zinc-600">Malawi</p>
+                            <h3 class="heading-font text-lg font-semibold" style="color: var(--text-primary);">Chinsapo Secondary School</h3>
+                            <p class="text-sm" style="color: var(--text-secondary);">Malawi</p>
                         </div>
                     </div>
-                    <p class="text-zinc-600 text-sm mb-2"><strong>School Certificate of Education</strong></p>
-                    <p class="text-zinc-500 text-xs">2017</p>
+                    <p class="text-sm mb-2" style="color: var(--text-secondary);"><strong>School Certificate of Education</strong></p>
+                    <p class="text-xs" style="color: var(--text-muted);">2017</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ACHIEVEMENTS -->
-    <section id="achievements" class="py-20 bg-white">
+    <section id="achievements" class="py-20" style="background-color: var(--bg-secondary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-12">
-                <span class="uppercase text-blue-600 text-sm font-semibold tracking-widest">RECOGNITION</span>
+                <span class="uppercase text-brand-orange text-sm font-semibold tracking-widest">RECOGNITION</span>
                 <h2 class="heading-font text-3xl md:text-5xl font-semibold">Key Achievements</h2>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="card bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-3xl reveal">
+                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(255,69,0,0.1), rgba(50,205,50,0.05));">
                     <div class="flex items-start gap-4">
-                        <i class="fas fa-trophy text-blue-600 text-3xl mt-1"></i>
+                        <i class="fas fa-trophy text-brand-orange text-3xl mt-1"></i>
                         <div>
-                            <h3 class="heading-font text-lg font-semibold text-zinc-900 mb-2">FCR Excellence</h3>
-                            <p class="text-zinc-700">Consistently exceeded FCR targets (75%) for account access and OTP issues at betPawa.</p>
+                            <h3 class="heading-font text-lg font-semibold mb-2" style="color: var(--text-primary);">FCR Excellence</h3>
+                            <p style="color: var(--text-secondary);">Consistently exceeded FCR targets (75%) for account access and OTP issues at betPawa.</p>
                         </div>
                     </div>
                 </div>
-                <div class="card bg-gradient-to-br from-emerald-50 to-emerald-100 p-8 rounded-3xl reveal">
+                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(255,69,0,0.1), rgba(50,205,50,0.05));">
                     <div class="flex items-start gap-4">
-                        <i class="fas fa-star text-emerald-600 text-3xl mt-1"></i>
+                        <i class="fas fa-star text-brand-orange text-3xl mt-1"></i>
                         <div>
-                            <h3 class="heading-font text-lg font-semibold text-zinc-900 mb-2">Quality Metrics</h3>
-                            <p class="text-zinc-700">Maintained strong CSAT and quality scoring metrics across customer support operations.</p>
+                            <h3 class="heading-font text-lg font-semibold mb-2" style="color: var(--text-primary);">Quality Metrics</h3>
+                            <p style="color: var(--text-secondary);">Maintained strong CSAT and quality scoring metrics across customer support operations.</p>
                         </div>
                     </div>
                 </div>
-                <div class="card bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-3xl reveal">
+                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(255,69,0,0.1), rgba(50,205,50,0.05));">
                     <div class="flex items-start gap-4">
-                        <i class="fas fa-certificate text-purple-600 text-3xl mt-1"></i>
+                        <i class="fas fa-certificate text-brand-orange text-3xl mt-1"></i>
                         <div>
-                            <h3 class="heading-font text-lg font-semibold text-zinc-900 mb-2">Pawatech Training</h3>
-                            <p class="text-zinc-700">Successfully completed global Pawatech training program with distinction and 6 Excellence Certificates.</p>
+                            <h3 class="heading-font text-lg font-semibold mb-2" style="color: var(--text-primary);">pawaTech Training</h3>
+                            <p style="color: var(--text-secondary);">Successfully completed global pawaTech training program with distinction and 6 Excellence Certificates.</p>
                         </div>
                     </div>
                 </div>
-                <div class="card bg-gradient-to-br from-orange-50 to-orange-100 p-8 rounded-3xl reveal">
+                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(255,69,0,0.1), rgba(50,205,50,0.05));">
                     <div class="flex items-start gap-4">
-                        <i class="fas fa-cogs text-orange-600 text-3xl mt-1"></i>
+                        <i class="fas fa-cogs text-brand-orange text-3xl mt-1"></i>
                         <div>
-                            <h3 class="heading-font text-lg font-semibold text-zinc-900 mb-2">Team Coordination</h3>
-                            <p class="text-zinc-700">Effectively coordinated with Risk and Technical teams to resolve complex escalations.</p>
+                            <h3 class="heading-font text-lg font-semibold mb-2" style="color: var(--text-primary);">Team Coordination</h3>
+                            <p style="color: var(--text-secondary);">Effectively coordinated with Risk and Technical teams to resolve complex escalations.</p>
                         </div>
                     </div>
                 </div>
@@ -712,32 +888,33 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="py-20 bg-zinc-100">
+    <section id="contact" class="py-20" style="background-color: var(--bg-secondary);">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <span class="uppercase text-blue-600 text-sm font-semibold tracking-widest">GET IN TOUCH</span>
+            <span class="uppercase text-brand-orange text-sm font-semibold tracking-widest">GET IN TOUCH</span>
             <h2 class="heading-font text-4xl md:text-5xl font-semibold mt-3 mb-8">Let's Connect</h2>
             <div class="flex flex-wrap justify-center gap-6 mb-12">
-                <a href="tel:+265881762894" class="card bg-white px-8 py-4 rounded-3xl flex items-center gap-3 hover:bg-blue-50 t-smooth focus-ring">
-                    <i class="fas fa-phone text-blue-600 text-xl"></i>
-                    <span class="font-medium">+265 881 762 894</span>
+                <a href="tel:+265881762894" class="card px-8 py-4 rounded-3xl flex items-center gap-3 t-smooth focus-ring">
+                    <i class="fas fa-phone text-brand-orange text-xl"></i>
+                    <span class="font-medium" style="color: var(--text-primary);">+265 881 762 894</span>
                 </a>
-                <a href="mailto:atupelemkagula@gmail.com" class="card bg-white px-8 py-4 rounded-3xl flex items-center gap-3 hover:bg-blue-50 t-smooth focus-ring">
-                    <i class="fas fa-envelope text-blue-600 text-xl"></i>
-                    <span class="font-medium">atupelemkagula@gmail.com</span>
+                <a href="mailto:atupelemkagula@gmail.com" class="card px-8 py-4 rounded-3xl flex items-center gap-3 t-smooth focus-ring">
+                    <i class="fas fa-envelope text-brand-orange text-xl"></i>
+                    <span class="font-medium" style="color: var(--text-primary);">atupelemkagula@gmail.com</span>
                 </a>
-                <a href="https://about.me/atupele.mkagula" target="_blank" rel="noopener noreferrer" class="card bg-white px-8 py-4 rounded-3xl flex items-center gap-3 hover:bg-blue-50 t-smooth focus-ring">
-                    <i class="fas fa-globe text-blue-600 text-xl"></i>
-                    <span class="font-medium">about.me/atupele.mkagula</span>
+                <a href="https://about.me/atupele.mkagula" target="_blank" rel="noopener noreferrer" class="card px-8 py-4 rounded-3xl flex items-center gap-3 t-smooth focus-ring">
+                    <i class="fas fa-globe text-brand-orange text-xl"></i>
+                    <span class="font-medium" style="color: var(--text-primary);">about.me/atupele.mkagula</span>
                 </a>
             </div>
             <div class="flex justify-center gap-6">
-                <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 bg-white rounded-full flex items-center justify-center text-blue-600 hover:bg-blue-50 t-smooth focus-ring">
+                <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 rounded-full flex items-center justify-center text-brand-orange t-smooth focus-ring">
                     <i class="fab fa-linkedin text-2xl"></i>
                 </a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 bg-white rounded-full flex items-center justify-center text-zinc-900 hover:bg-zinc-100 t-smooth focus-ring">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 rounded-full flex items-center justify-center t-smooth focus-ring" style="color: var(--text-primary);">
                     <i class="fab fa-github text-2xl"></i>
                 </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 bg-white rounded-full flex items-center justify-center text-blue-400 hover:bg-blue-50 t-smooth focus-ring">
+                <!-- Twitter/X link updated to @lord_tupe -->
+                <a href="https://x.com/lord_tupe" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 rounded-full flex items-center justify-center text-blue-400 t-smooth focus-ring">
                     <i class="fab fa-twitter text-2xl"></i>
                 </a>
             </div>
@@ -745,16 +922,15 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-zinc-900 text-white py-12">
+    <footer class="py-12" style="background-color: var(--bg-tertiary); color: var(--text-primary);">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <!-- Clickable footer logo -->
             <button onclick="scrollToTop(event)" class="inline-flex items-center gap-3 mb-6 group" aria-label="Back to top">
-                <div class="w-9 h-9 bg-gradient-to-br from-blue-600 to-emerald-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg
+                <div class="w-9 h-9 bg-gradient-to-br from-brand-orange to-orange-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg
                     transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110">AM</div>
-                <span class="heading-font text-lg font-semibold text-white/80 group-hover:text-white transition-colors">Atupele Mkagula</span>
+                <span class="heading-font text-lg font-semibold transition-colors group-hover:text-brand-orange" style="color: var(--text-secondary);">Atupele Mkagula</span>
             </button>
-            <p class="text-zinc-400 mb-2">&copy; 2026 Atupele Nathan Mkagula. All rights reserved.</p>
-            <p class="text-zinc-500 text-sm">References available upon request.</p>
+            <p class="mb-2" style="color: var(--text-muted);">&copy; 2026 Atupele Nathan Mkagula. All rights reserved.</p>
+            <p class="text-sm" style="color: var(--text-muted);">References available upon request.</p>
         </div>
     </footer>
 
@@ -770,7 +946,6 @@
         cursor.style.top  = my + 'px';
     });
 
-    // Lag ring slightly
     function animRing() {
         rx += (mx - rx) * 0.14;
         ry += (my - ry) * 0.14;
@@ -780,7 +955,6 @@
     }
     animRing();
 
-    // Hover state on interactive elements
     document.querySelectorAll('a, button, .card, .skill-pill, .badge-float').forEach(el => {
         el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
         el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
@@ -788,7 +962,6 @@
 
     // ── Logo ripple + scroll to top ────────────────────
     function scrollToTop(e) {
-        // Ripple
         const btn = e.currentTarget;
         const rect = btn.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
@@ -868,7 +1041,6 @@
         }
     });
 
-    // Close mobile menu on link click
     mobileMenu.querySelectorAll('a').forEach(a => {
         a.addEventListener('click', () => {
             menuOpen = false;
@@ -882,7 +1054,7 @@
         });
     });
 
-    // ── Smooth anchor scroll (override default jump) ───
+    // ── Smooth anchor scroll ───────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
             const target = document.querySelector(a.getAttribute('href'));
@@ -892,6 +1064,62 @@
             }
         });
     });
+
+    // ── Dark Mode Toggle ───────────────────────────────
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const darkModeToggleMobile = document.getElementById('dark-mode-toggle-mobile');
+    const sunMoonIcon = darkModeToggle?.querySelector('i');
+    const sunMoonIconMobile = darkModeToggleMobile?.querySelector('i');
+
+    function setDarkMode(enabled) {
+        if (enabled) {
+            document.body.classList.add('dark-mode');
+            if (sunMoonIcon) {
+                sunMoonIcon.classList.remove('fa-moon');
+                sunMoonIcon.classList.add('fa-sun');
+            }
+            if (sunMoonIconMobile) {
+                sunMoonIconMobile.classList.remove('fa-moon');
+                sunMoonIconMobile.classList.add('fa-sun');
+            }
+            if (darkModeToggleMobile) {
+                darkModeToggleMobile.querySelector('span').textContent = 'Light Mode';
+            }
+        } else {
+            document.body.classList.remove('dark-mode');
+            if (sunMoonIcon) {
+                sunMoonIcon.classList.remove('fa-sun');
+                sunMoonIcon.classList.add('fa-moon');
+            }
+            if (sunMoonIconMobile) {
+                sunMoonIconMobile.classList.remove('fa-sun');
+                sunMoonIconMobile.classList.add('fa-moon');
+            }
+            if (darkModeToggleMobile) {
+                darkModeToggleMobile.querySelector('span').textContent = 'Dark Mode';
+            }
+        }
+        localStorage.setItem('darkMode', enabled ? 'enabled' : 'disabled');
+    }
+
+    // Check localStorage
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode === 'enabled') {
+        setDarkMode(true);
+    }
+
+    // Toggle function
+    function toggleDarkMode() {
+        const isDark = document.body.classList.contains('dark-mode');
+        setDarkMode(!isDark);
+    }
+
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+    }
+    if (darkModeToggleMobile) {
+        darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+    }
     </script>
 </body>
 </html>
