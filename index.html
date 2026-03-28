@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Atupele Nathan Mkagula | Cybersecurity & Digital Systems</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* ===== your original variables & base styles ===== */
+        /* ===== updated variables & base styles ===== */
         :root {
             --accent: #1e90ff;
             --accent-2: #32cd32;
@@ -24,10 +24,12 @@
             --easing: cubic-bezier(.2,.9,.3,1);
             --card-ease: cubic-bezier(.16,.84,.32,1);
             --spring: cubic-bezier(.34,1.56,.64,1);
-            /* SmartSoft Gaming colors */
-            --brand-orange: #ff4500;
-            --brand-gold: #ffd700;
+            /* Blue color scheme */
+            --brand-blue: #1e90ff;
+            --brand-light: #87cefa;
             --brand-dark: #050505;
+            /* Dynamic viewport variable */
+            --vh: 1vh; /* fallback */
         }
 
         /* Light mode (default) */
@@ -75,7 +77,7 @@
             position: fixed;
             top: 0; left: 0;
             width: 12px; height: 12px;
-            background: var(--brand-orange);
+            background: var(--brand-blue);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
@@ -87,15 +89,15 @@
             position: fixed;
             top: 0; left: 0;
             width: 36px; height: 36px;
-            border: 1.5px solid rgba(255,69,0,0.55);
+            border: 1.5px solid rgba(30,144,255,0.55);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transform: translate(-50%,-50%);
             transition: width 380ms var(--easing), height 380ms var(--easing), border-color 380ms, transform 380ms var(--easing);
         }
-        body.cursor-hover #cursor { width: 20px; height: 20px; background: var(--brand-gold); }
-        body.cursor-hover #cursor-ring { width: 54px; height: 54px; border-color: rgba(255,215,0,0.4); }
+        body.cursor-hover #cursor { width: 20px; height: 20px; background: var(--brand-light); }
+        body.cursor-hover #cursor-ring { width: 54px; height: 54px; border-color: rgba(135,206,250,0.4); }
 
         .heading-font { font-family: 'Space Grotesk', 'Montserrat', system-ui, sans-serif; }
         .hero-bg { background: linear-gradient(135deg, var(--hero-start) 0%, var(--hero-end) 100%); }
@@ -128,7 +130,7 @@
         }
         #logo-btn:hover {
             transform: scale(1.045);
-            box-shadow: 0 0 0 6px rgba(255,69,0,0.10);
+            box-shadow: 0 0 0 6px rgba(30,144,255,0.10);
         }
         #logo-btn:active { transform: scale(0.97); }
         #logo-avatar {
@@ -136,19 +138,19 @@
         }
         #logo-btn:hover #logo-avatar {
             transform: rotate(-6deg) scale(1.08);
-            box-shadow: 0 6px 20px rgba(255,69,0,0.25);
+            box-shadow: 0 6px 20px rgba(30,144,255,0.25);
         }
         #logo-text {
             transition: color 220ms;
             color: var(--text-primary);
         }
-        #logo-btn:hover #logo-text { color: var(--brand-orange); }
+        #logo-btn:hover #logo-text { color: var(--brand-blue); }
 
         /* Ripple on logo */
         .ripple {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255,69,0,0.18);
+            background: rgba(30,144,255,0.18);
             transform: scale(0);
             animation: ripple-anim 600ms var(--easing) forwards;
             pointer-events: none;
@@ -169,12 +171,12 @@
             position: absolute;
             bottom: -2px; left: 0;
             width: 0; height: 2px;
-            background: linear-gradient(90deg, var(--brand-orange), var(--accent-2));
+            background: linear-gradient(90deg, var(--brand-blue), var(--accent-2));
             border-radius: 999px;
             transition: width 280ms var(--spring);
         }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .nav-link:hover { color: var(--brand-orange); }
+        .nav-link:hover { color: var(--brand-blue); }
 
         /* Floating animations */
         @keyframes float-slow {
@@ -208,8 +210,8 @@
         }
         .card:hover {
             transform: translateY(-10px) scale(1.012);
-            box-shadow: 0 28px 56px -14px rgba(255,69,0,0.15), 0 6px 16px rgba(2,6,23,0.07);
-            border-color: var(--brand-orange);
+            box-shadow: 0 28px 56px -14px rgba(30,144,255,0.15), 0 6px 16px rgba(2,6,23,0.07);
+            border-color: var(--brand-blue);
         }
         .card:active { transform: translateY(-4px) scale(1.005); }
 
@@ -225,8 +227,8 @@
         }
         .skill-pill:hover {
             transform: translateY(-4px) scale(1.06);
-            box-shadow: 0 8px 20px rgba(255,69,0,0.15);
-            background-color: var(--brand-orange);
+            box-shadow: 0 8px 20px rgba(30,144,255,0.15);
+            background-color: var(--brand-blue);
             color: white;
         }
 
@@ -243,12 +245,12 @@
         .badge-float {
             background-color: var(--bg-secondary);
             color: var(--text-primary);
-            border-left: 4px solid var(--brand-orange);
+            border-left: 4px solid var(--brand-blue);
             transition: transform var(--duration-medium) var(--spring), opacity var(--duration-medium), box-shadow 300ms;
         }
         .badge-float:hover {
             transform: translateY(-8px) rotate(-2deg) scale(1.05);
-            box-shadow: 0 12px 32px rgba(255,69,0,0.2);
+            box-shadow: 0 12px 32px rgba(30,144,255,0.2);
         }
 
         /* Terminal */
@@ -260,13 +262,13 @@
 
         /* Gradient underline */
         .gradient-underline {
-            background: linear-gradient(90deg, var(--brand-orange), var(--accent-2));
+            background: linear-gradient(90deg, var(--brand-blue), var(--accent-2));
             height: 3px; border-radius: 999px; width: 64px;
         }
 
         /* Focus */
         :focus { outline: none; }
-        .focus-ring:focus-visible { box-shadow: 0 0 0 4px rgba(255,69,0,0.15); border-radius: 12px; }
+        .focus-ring:focus-visible { box-shadow: 0 0 0 4px rgba(30,144,255,0.15); border-radius: 12px; }
 
         /* Section transition */
         section, header, footer {
@@ -278,14 +280,14 @@
             display: inline-block;
             transition: transform 300ms var(--spring);
         }
-        .stat-num:hover { transform: scale(1.12); color: var(--brand-orange); }
+        .stat-num:hover { transform: scale(1.12); color: var(--brand-blue); }
 
         /* Scroll-to-top button */
         #scroll-top {
             position: fixed;
             bottom: 32px; right: 32px;
             width: 48px; height: 48px;
-            background: linear-gradient(135deg, var(--brand-orange), #ff8c00);
+            background: linear-gradient(135deg, var(--brand-blue), #3b82f6);
             color: white;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
@@ -294,14 +296,14 @@
             opacity: 0; pointer-events: none;
             transform: translateY(16px) scale(0.85);
             transition: opacity 300ms, transform 350ms var(--spring), box-shadow 300ms;
-            box-shadow: 0 6px 24px rgba(255,69,0,0.3);
+            box-shadow: 0 6px 24px rgba(30,144,255,0.3);
         }
         #scroll-top.visible {
             opacity: 1; pointer-events: auto;
             transform: translateY(0) scale(1);
         }
         #scroll-top:hover {
-            box-shadow: 0 10px 36px rgba(255,69,0,0.45);
+            box-shadow: 0 10px 36px rgba(30,144,255,0.45);
             transform: translateY(-3px) scale(1.07);
         }
         #scroll-top:active { transform: scale(0.95); }
@@ -324,7 +326,7 @@
             border-bottom-color: var(--border-light);
         }
         #mobile-menu a:hover {
-            color: var(--brand-orange);
+            color: var(--brand-blue);
         }
         #hamburger span {
             display: block; height: 2px;
@@ -345,7 +347,7 @@
             transition: background 0.2s, color 0.2s, transform 0.2s;
         }
         #dark-mode-toggle:hover {
-            color: var(--brand-orange);
+            color: var(--brand-blue);
             transform: rotate(15deg);
         }
 
@@ -403,7 +405,7 @@
             position: relative;
             overflow: hidden;
             transition: transform 280ms var(--spring), box-shadow 280ms;
-            background: linear-gradient(135deg, var(--brand-orange), #ff8c00);
+            background: linear-gradient(135deg, var(--brand-blue), #3b82f6);
             color: white;
             border: none;
         }
@@ -418,19 +420,25 @@
         .btn-glow:hover::before { transform: translateX(100%); }
         .btn-glow:hover {
             transform: scale(1.04) translateY(-1px);
-            box-shadow: 0 8px 28px rgba(255,69,0,0.35);
+            box-shadow: 0 8px 28px rgba(30,144,255,0.35);
         }
         .btn-glow:active { transform: scale(0.97); }
 
         /* SmartSoft utilities */
         .text-stroke {
-            -webkit-text-stroke: 1px rgba(255,69,0,0.3);
+            -webkit-text-stroke: 1px rgba(30,144,255,0.3);
             color: transparent;
         }
-        .bg-brand-orange { background-color: var(--brand-orange); }
-        .text-brand-orange { color: var(--brand-orange); }
-        .border-brand-orange { border-color: var(--brand-orange); }
+        .bg-brand-blue { background-color: var(--brand-blue); }
+        .text-brand-blue { color: var(--brand-blue); }
+        .border-brand-blue { border-color: var(--brand-blue); }
         .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+        /* Dynamic viewport fix */
+        .hero-fix {
+            min-height: 100vh;
+            min-height: calc(var(--vh, 1vh) * 100);
+        }
     </style>
 </head>
 
@@ -450,16 +458,17 @@
 
             <!-- Clickable Logo -->
             <button id="logo-btn" onclick="scrollToTop(event)" aria-label="Back to top">
-                <div id="logo-avatar" class="w-10 h-10 bg-gradient-to-br from-brand-orange to-orange-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg select-none">AM</div>
+                <div id="logo-avatar" class="w-10 h-10 bg-gradient-to-br from-brand-blue to-blue-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg select-none">AM</div>
                 <span id="logo-text" class="heading-font text-xl font-semibold tracking-tight">Atupele Mkagula</span>
             </button>
             
-            <!-- Desktop links (Gaming link removed) -->
+            <!-- Desktop links (added Projects) -->
             <div class="hidden md:flex items-center gap-8 text-sm font-medium">
                 <a href="#about"      class="nav-link t-smooth focus-ring">About</a>
                 <a href="#experience" class="nav-link t-smooth focus-ring">Experience</a>
                 <a href="#skills"     class="nav-link t-smooth focus-ring">Skills</a>
                 <a href="#education"  class="nav-link t-smooth focus-ring">Education</a>
+                <a href="#projects"   class="nav-link t-smooth focus-ring">Projects</a>
                 <a href="#contact"    class="nav-link t-smooth focus-ring">Contact</a>
                 <!-- Dark mode toggle -->
                 <button id="dark-mode-toggle" aria-label="Toggle dark mode">
@@ -476,12 +485,13 @@
             </div>
         </div>
 
-        <!-- Mobile menu (Gaming link removed) -->
+        <!-- Mobile menu (added Projects) -->
         <div id="mobile-menu" class="md:hidden px-6 pb-4 space-y-1">
             <a href="#about"      class="block py-3 font-medium border-b t-fast">About</a>
             <a href="#experience" class="block py-3 font-medium border-b t-fast">Experience</a>
             <a href="#skills"     class="block py-3 font-medium border-b t-fast">Skills</a>
             <a href="#education"  class="block py-3 font-medium border-b t-fast">Education</a>
+            <a href="#projects"   class="block py-3 font-medium border-b t-fast">Projects</a>
             <a href="#contact"    class="block py-3 font-medium t-fast">Contact</a>
             <!-- Dark mode toggle in mobile -->
             <div class="pt-4 flex justify-center">
@@ -492,22 +502,22 @@
         </div>
     </nav>
 
-    <!-- HERO -->
-    <header class="hero-bg text-white min-h-screen flex items-center relative overflow-hidden">
+    <!-- HERO (with dynamic viewport fix) -->
+    <header class="hero-bg text-white hero-fix flex items-center relative overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] bg-[length:40px_40px] opacity-20 pointer-events-none"></div>
-        <!-- Orange glow overlay -->
-        <div class="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[120px]"></div>
-        <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-orange-500/5 rounded-full blur-[120px]"></div>
+        <!-- Blue glow overlay -->
+        <div class="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]"></div>
         
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
             <div class="space-y-8">
                 <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl px-6 py-3 rounded-3xl text-sm font-medium reveal" data-delay="0">
-                    <div class="w-3 h-3 bg-brand-orange rounded-full animate-pulse"></div>
+                    <div class="w-3 h-3 bg-brand-blue rounded-full animate-pulse"></div>
                     Hello! I'm
                 </div>
                 
                 <h1 class="heading-font text-5xl sm:text-6xl md:text-7xl font-bold leading-tight reveal" data-delay="100">
-                    Atupele Nathan<br /><span class="text-white drop-shadow-[0_0_8px_rgba(255,69,0,0.5)]">Mkagula</span>
+                    Atupele Nathan<br /><span class="text-white drop-shadow-[0_0_8px_rgba(30,144,255,0.5)]">Mkagula</span>
                 </h1>
                 
                 <p class="text-2xl sm:text-3xl font-light text-blue-100 max-w-lg reveal" data-delay="200">
@@ -529,11 +539,11 @@
                 
                 <div class="flex gap-8 text-sm pt-8 border-t border-white/20 reveal" data-delay="500">
                     <div>
-                        <div class="stat-num text-brand-orange font-mono text-3xl font-bold">75%</div>
+                        <div class="stat-num text-brand-blue font-mono text-3xl font-bold">75%</div>
                         <div class="text-zinc-400 text-xs tracking-widest mt-1">AVG FCR @ betPawa</div>
                     </div>
                     <div>
-                        <div class="stat-num text-brand-orange font-mono text-3xl font-bold">6×</div>
+                        <div class="stat-num text-brand-blue font-mono text-3xl font-bold">6×</div>
                         <div class="text-zinc-400 text-xs tracking-widest mt-1">Excellence Certificates</div>
                     </div>
                 </div>
@@ -541,16 +551,16 @@
             
             <!-- Profile -->
             <div class="relative flex justify-center items-start">
-                <div class="w-80 h-80 rounded-3xl overflow-hidden border-8 border-orange-500/30 shadow-2xl bg-zinc-900 profile-wrap reveal animate-float" data-delay="200" tabindex="0" aria-label="Profile image">
+                <div class="w-80 h-80 rounded-3xl overflow-hidden border-8 border-blue-500/30 shadow-2xl bg-zinc-900 profile-wrap reveal animate-float" data-delay="200" tabindex="0" aria-label="Profile image">
                     <img src="assets/headshot.jpg" alt="Atupele Mkagula portrait" class="profile-img">
                 </div>
                 
                 <div class="absolute -top-4 -right-6 badge-float text-xs font-bold px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2">
-                    <i class="fas fa-shield-alt text-brand-orange"></i>
+                    <i class="fas fa-shield-alt text-brand-blue"></i>
                     Cybersecurity Practitioner
                 </div>
                 <div class="absolute -bottom-8 left-12 badge-float text-xs font-bold px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2">
-                    <i class="fas fa-music text-brand-orange"></i>
+                    <i class="fas fa-music text-brand-blue"></i>
                     Music Producer
                 </div>
             </div>
@@ -567,11 +577,11 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-12 gap-16 items-center">
                 <div class="md:col-span-7">
-                    <span class="uppercase text-brand-orange text-sm font-semibold tracking-widest">WHO I AM</span>
+                    <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">WHO I AM</span>
                     <h2 class="heading-font text-4xl md:text-5xl font-semibold mt-3 leading-tight reveal">
-                        Technology professional who sees both the code <span class="text-brand-orange">and</span> the customer
+                        Technology professional who sees both the code <span class="text-brand-blue">and</span> the customer
                     </h2>
-                    <div class="mt-8 space-y-6 text-lg" style="color: var(--text-secondary); reveal">
+                    <div class="mt-8 space-y-6 text-lg" style="color: var(--text-secondary);">
                         <p>I currently support thousands of users daily as a <strong>Customer Support Agent at betPawa</strong>, resolving technical issues across Sportsbook, Casino, and Virtual Sports platforms while maintaining industry-leading FCR and CSAT metrics.</p>
                         <p>Since 2020 I've run my own IT consulting practice — diagnosing systems, training students, and securing small business infrastructure. My Certificate in Music Production taught me pattern recognition, systems thinking, and creative problem-solving — skills I now apply directly to cybersecurity and digital infrastructure.</p>
                     </div>
@@ -587,13 +597,13 @@
                 
                 <aside class="md:col-span-5 bg-zinc-900 text-white p-8 rounded-3xl reveal">
                     <div class="terminal p-4 rounded-2xl text-sm leading-relaxed font-mono">
-                        <span class="text-brand-orange">$ whoami</span><br>
+                        <span class="text-brand-blue">$ whoami</span><br>
                         Atupele Nathan Mkagula<br><br>
-                        <span class="text-brand-orange">$ current_role</span><br>
+                        <span class="text-brand-blue">$ current_role</span><br>
                         Customer Support Agent @ betPawa (2025–Present)<br><br>
-                        <span class="text-brand-orange">$ focus</span><br>
+                        <span class="text-brand-blue">$ focus</span><br>
                         Cybersecurity • Backend Security • Digital Infrastructure<br><br>
-                        <span class="text-brand-orange">$ background</span><br>
+                        <span class="text-brand-blue">$ background</span><br>
                         Music Producer → IT Consultant → Digital Systems Specialist
                     </div>
                 </aside>
@@ -605,7 +615,7 @@
     <section id="experience" class="py-20" style="background-color: var(--bg-tertiary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-12">
-                <span class="uppercase text-brand-orange text-sm font-semibold tracking-widest">PROFESSIONAL JOURNEY</span>
+                <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">PROFESSIONAL JOURNEY</span>
                 <h2 class="heading-font text-3xl md:text-5xl font-semibold">Work Experience</h2>
             </div>
             <div class="space-y-8">
@@ -613,16 +623,16 @@
                     <div class="flex justify-between items-start mb-4">
                         <div>
                             <h3 class="heading-font text-2xl font-semibold" style="color: var(--text-primary);">Customer Support Agent</h3>
-                            <p class="text-brand-orange font-semibold">betPawa</p>
+                            <p class="text-brand-blue font-semibold">betPawa</p>
                         </div>
                         <span class="text-sm" style="color: var(--text-muted);">2025 – Present</span>
                     </div>
                     <p class="mb-4" style="color: var(--text-secondary);">Deliver high-quality multi-channel customer support across sportsbook and casino platforms while consistently achieving performance KPIs.</p>
                     <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
-                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Consistently achieved and exceeded FCR targets of 75% for account access and OTP-related issues.</li>
-                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Managed high-volume call and chat support using pawaDesk ticket management system.</li>
-                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Troubleshot technical issues across sportsbook markets including Asian Handicap, Over/Under, Cashout systems.</li>
-                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Implemented Responsible Gambling protocols and conducted identity verification to prevent fraud.</li>
+                        <li><i class="fas fa-check text-brand-blue mr-2"></i>Consistently achieved and exceeded FCR targets of 75% for account access and OTP-related issues.</li>
+                        <li><i class="fas fa-check text-brand-blue mr-2"></i>Managed high-volume call and chat support using pawaDesk ticket management system.</li>
+                        <li><i class="fas fa-check text-brand-blue mr-2"></i>Troubleshot technical issues across sportsbook markets including Asian Handicap, Over/Under, Cashout systems.</li>
+                        <li><i class="fas fa-check text-brand-blue mr-2"></i>Implemented Responsible Gambling protocols and conducted identity verification to prevent fraud.</li>
                     </ul>
                 </div>
                 <!-- Additional experience cards -->
@@ -630,41 +640,41 @@
                     <div class="flex justify-between items-start mb-4">
                         <div>
                             <h3 class="heading-font text-2xl font-semibold" style="color: var(--text-primary);">Credit Officer</h3>
-                            <p class="text-brand-orange font-semibold">Yellow Solar Africa</p>
+                            <p class="text-brand-blue font-semibold">Yellow Solar Africa</p>
                         </div>
                         <span class="text-sm" style="color: var(--text-muted);">2024 – 2025</span>
                     </div>
                     <p class="mb-4" style="color: var(--text-secondary);">Managed customer credit portfolios and ensured strong repayment performance while maintaining excellent client relationships.</p>
                     <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
-                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Managed a portfolio of customer contracts, ensuring timely repayments and minimizing credit risk.</li>
-                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Conducted credit analysis and risk assessments to identify potential repayment challenges.</li>
-                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Provided financial counselling and developed sustainable repayment solutions.</li>
-                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Ensured customer feedback responses within 9-hour service level agreements.</li>
+                        <li><i class="fas fa-check text-brand-blue mr-2"></i>Managed a portfolio of customer contracts, ensuring timely repayments and minimizing credit risk.</li>
+                        <li><i class="fas fa-check text-brand-blue mr-2"></i>Conducted credit analysis and risk assessments to identify potential repayment challenges.</li>
+                        <li><i class="fas fa-check text-brand-blue mr-2"></i>Provided financial counselling and developed sustainable repayment solutions.</li>
+                        <li><i class="fas fa-check text-brand-blue mr-2"></i>Ensured customer feedback responses within 9-hour service level agreements.</li>
                     </ul>
                 </div>
                 <div class="card p-8 rounded-3xl reveal">
                     <div class="flex justify-between items-start mb-4">
                         <div>
                             <h3 class="heading-font text-2xl font-semibold" style="color: var(--text-primary);">IT Consultant & Freelancer</h3>
-                            <p class="text-brand-orange font-semibold">Self-Employed</p>
+                            <p class="text-brand-blue font-semibold">Self-Employed</p>
                         </div>
                         <span class="text-sm" style="color: var(--text-muted);">2020 – Present</span>
                     </div>
                     <p class="mb-4" style="color: var(--text-secondary);">Provide technical services and IT support to individuals and small businesses.</p>
                     <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
-                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Performed computer diagnostics, system troubleshooting, and data administration.</li>
-                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Assisted businesses in optimizing IT infrastructure and digital workflows.</li>
-                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Delivered computer training and digital literacy coaching to students and clients.</li>
-                        <li><i class="fas fa-check text-brand-orange mr-2"></i>Provided basic computer security and system maintenance services.</li>
+                        <li><i class="fas fa-check text-brand-blue mr-2"></i>Performed computer diagnostics, system troubleshooting, and data administration.</li>
+                        <li><i class="fas fa-check text-brand-blue mr-2"></i>Assisted businesses in optimizing IT infrastructure and digital workflows.</li>
+                        <li><i class="fas fa-check text-brand-blue mr-2"></i>Delivered computer training and digital literacy coaching to students and clients.</li>
+                        <li><i class="fas fa-check text-brand-blue mr-2"></i>Provided basic computer security and system maintenance services.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== GAMING SECTIONS MOVED HERE (after Experience) ===== -->
+    <!-- ===== GAMING SECTIONS (updated to blue) ===== -->
     <!-- Gaming Industry Impact -->
-    <section id="gaming-portfolio" class="py-40 bg-brand-orange relative overflow-hidden">
+    <section id="gaming-portfolio" class="py-40 bg-brand-blue relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
                 <div>
@@ -686,47 +696,47 @@
     <section class="py-32 px-6 max-w-7xl mx-auto" style="background-color: var(--bg-secondary);">
         <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
             <div>
-                <span class="text-brand-orange font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Portfolio</span>
-                <h2 class="text-6xl md:text-7xl font-display font-bold tracking-tighter uppercase" style="color: var(--text-primary);">Platforms I <span class="text-brand-orange">Support</span></h2>
+                <span class="text-brand-blue font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Portfolio</span>
+                <h2 class="text-6xl md:text-7xl font-display font-bold tracking-tighter uppercase" style="color: var(--text-primary);">Platforms I <span class="text-brand-blue">Support</span></h2>
             </div>
             <div class="flex flex-wrap gap-2 bg-white/5 p-1.5 rounded-xl border border-white/10">
-                <button class="px-8 py-3 rounded-lg text-xs font-black uppercase tracking-widest bg-brand-orange text-white">All</button>
+                <button class="px-8 py-3 rounded-lg text-xs font-black uppercase tracking-widest bg-brand-blue text-white">All</button>
                 <button class="px-8 py-3 rounded-lg text-xs font-black uppercase tracking-widest" style="color: var(--text-secondary);">Sportsbook</button>
                 <button class="px-8 py-3 rounded-lg text-xs font-black uppercase tracking-widest" style="color: var(--text-secondary);">Casino</button>
             </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div class="group relative bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 hover:border-brand-orange/40 transition-all duration-500 hover:-translate-y-4">
+            <div class="group relative bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 hover:border-brand-blue/40 transition-all duration-500 hover:-translate-y-4">
                 <div class="aspect-[4/5] overflow-hidden relative">
                     <img src="https://picsum.photos/seed/sportsbook/800/1000" alt="Sportsbook" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/40 to-transparent">
-                        <span class="text-[10px] font-black text-brand-orange uppercase tracking-[0.3em] mb-2 block">Sportsbook</span>
+                        <span class="text-[10px] font-black text-brand-blue uppercase tracking-[0.3em] mb-2 block">Sportsbook</span>
                         <h3 class="text-3xl font-display font-bold tracking-tighter uppercase text-white">Betting Markets</h3>
                     </div>
                 </div>
             </div>
-            <div class="group relative bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 hover:border-brand-orange/40 transition-all duration-500 hover:-translate-y-4">
+            <div class="group relative bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 hover:border-brand-blue/40 transition-all duration-500 hover:-translate-y-4">
                 <div class="aspect-[4/5] overflow-hidden relative">
                     <img src="https://picsum.photos/seed/casino/800/1000" alt="Casino" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/40 to-transparent">
-                        <span class="text-[10px] font-black text-brand-orange uppercase tracking-[0.3em] mb-2 block">Casino</span>
+                        <span class="text-[10px] font-black text-brand-blue uppercase tracking-[0.3em] mb-2 block">Casino</span>
                         <h3 class="text-3xl font-display font-bold tracking-tighter uppercase text-white">Slots & RNG</h3>
                     </div>
                 </div>
             </div>
-            <div class="group relative bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 hover:border-brand-orange/40 transition-all duration-500 hover:-translate-y-4">
+            <div class="group relative bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 hover:border-brand-blue/40 transition-all duration-500 hover:-translate-y-4">
                 <div class="aspect-[4/5] overflow-hidden relative">
                     <img src="https://picsum.photos/seed/virtual/800/1000" alt="Virtual Sports" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/40 to-transparent">
-                        <span class="text-[10px] font-black text-brand-orange uppercase tracking-[0.3em] mb-2 block">Virtual Sports</span>
+                        <span class="text-[10px] font-black text-brand-blue uppercase tracking-[0.3em] mb-2 block">Virtual Sports</span>
                         <h3 class="text-3xl font-display font-bold tracking-tighter uppercase text-white">Instant Games</h3>
                     </div>
                 </div>
             </div>
         </div>
         <div class="flex justify-center mt-16">
-            <button class="px-12 py-5 border-2 border-brand-orange text-brand-orange font-black uppercase tracking-tighter text-lg rounded-sm hover:bg-brand-orange hover:text-white transition-all">View All Products</button>
+            <button class="px-12 py-5 border-2 border-brand-blue text-brand-blue font-black uppercase tracking-tighter text-lg rounded-sm hover:bg-brand-blue hover:text-white transition-all">View All Products</button>
         </div>
     </section>
 
@@ -734,8 +744,8 @@
     <section class="py-24 border-y border-white/5" style="background-color: var(--bg-tertiary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-brand-orange font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Trusted by</span>
-                <h2 class="text-5xl md:text-6xl font-display font-bold tracking-tighter uppercase mb-6" style="color: var(--text-primary);">Global <span class="text-brand-orange">Partners</span></h2>
+                <span class="text-brand-blue font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Trusted by</span>
+                <h2 class="text-5xl md:text-6xl font-display font-bold tracking-tighter uppercase mb-6" style="color: var(--text-primary);">Global <span class="text-brand-blue">Partners</span></h2>
                 <p style="color: var(--text-secondary);">Collaborating with leading gaming platforms and tech providers.</p>
             </div>
             <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60">
@@ -753,13 +763,13 @@
     <section id="skills" class="py-20" style="background-color: var(--bg-secondary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-12">
-                <span class="uppercase text-brand-orange text-sm font-semibold tracking-widest">EXPERTISE</span>
+                <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">EXPERTISE</span>
                 <h2 class="heading-font text-3xl md:text-5xl font-semibold">Core Skills</h2>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="card p-8 rounded-3xl reveal">
                     <h3 class="heading-font text-xl font-semibold mb-6 flex items-center gap-3" style="color: var(--text-primary);">
-                        <i class="fas fa-headset text-brand-orange text-2xl"></i>Customer Experience
+                        <i class="fas fa-headset text-brand-blue text-2xl"></i>Customer Experience
                     </h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Support Operations</span>
@@ -770,7 +780,7 @@
                 </div>
                 <div class="card p-8 rounded-3xl reveal">
                     <h3 class="heading-font text-xl font-semibold mb-6 flex items-center gap-3" style="color: var(--text-primary);">
-                        <i class="fas fa-laptop-code text-brand-orange text-2xl"></i>Technical Skills
+                        <i class="fas fa-laptop-code text-brand-blue text-2xl"></i>Technical Skills
                     </h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Sportsbook Support</span>
@@ -781,7 +791,7 @@
                 </div>
                 <div class="card p-8 rounded-3xl reveal">
                     <h3 class="heading-font text-xl font-semibold mb-6 flex items-center gap-3" style="color: var(--text-primary);">
-                        <i class="fas fa-shield-alt text-brand-orange text-2xl"></i>Risk & Compliance
+                        <i class="fas fa-shield-alt text-brand-blue text-2xl"></i>Risk & Compliance
                     </h3>
                     <div class="flex flex-wrap gap-2">
                         <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Responsible Gambling</span>
@@ -798,13 +808,13 @@
     <section id="education" class="py-20" style="background-color: var(--bg-tertiary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-12">
-                <span class="uppercase text-brand-orange text-sm font-semibold tracking-widest">LEARNING JOURNEY</span>
+                <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">LEARNING JOURNEY</span>
                 <h2 class="heading-font text-3xl md:text-5xl font-semibold">Education</h2>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="card p-8 rounded-3xl reveal">
                     <div class="flex items-start gap-4 mb-4">
-                        <i class="fas fa-graduation-cap text-brand-orange text-3xl mt-1"></i>
+                        <i class="fas fa-graduation-cap text-brand-blue text-3xl mt-1"></i>
                         <div>
                             <h3 class="heading-font text-lg font-semibold" style="color: var(--text-primary);">University of Malawi</h3>
                             <p class="text-sm" style="color: var(--text-secondary);">Chancellor College</p>
@@ -815,7 +825,7 @@
                 </div>
                 <div class="card p-8 rounded-3xl reveal">
                     <div class="flex items-start gap-4 mb-4">
-                        <i class="fas fa-graduation-cap text-brand-orange text-3xl mt-1"></i>
+                        <i class="fas fa-graduation-cap text-brand-blue text-3xl mt-1"></i>
                         <div>
                             <h3 class="heading-font text-lg font-semibold" style="color: var(--text-primary);">NACIT</h3>
                             <p class="text-sm" style="color: var(--text-secondary);">National College of Information Technology</p>
@@ -826,7 +836,7 @@
                 </div>
                 <div class="card p-8 rounded-3xl reveal">
                     <div class="flex items-start gap-4 mb-4">
-                        <i class="fas fa-graduation-cap text-brand-orange text-3xl mt-1"></i>
+                        <i class="fas fa-graduation-cap text-brand-blue text-3xl mt-1"></i>
                         <div>
                             <h3 class="heading-font text-lg font-semibold" style="color: var(--text-primary);">Chinsapo Secondary School</h3>
                             <p class="text-sm" style="color: var(--text-secondary);">Malawi</p>
@@ -839,44 +849,127 @@
         </div>
     </section>
 
-    <!-- ACHIEVEMENTS -->
-    <section id="achievements" class="py-20" style="background-color: var(--bg-secondary);">
+    <!-- NEW PROJECTS SECTION (Cybersecurity Labs) -->
+    <section id="projects" class="py-20" style="background-color: var(--bg-secondary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-12">
-                <span class="uppercase text-brand-orange text-sm font-semibold tracking-widest">RECOGNITION</span>
+                <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">CYBERSECURITY LABS</span>
+                <h2 class="heading-font text-3xl md:text-5xl font-semibold">Hands‑On Projects</h2>
+                <p class="mt-4 text-lg" style="color: var(--text-secondary);">Practical cybersecurity projects demonstrating threat detection, secure development, and awareness.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="card p-6 rounded-3xl reveal">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="heading-font text-xl font-semibold" style="color: var(--text-primary);">Network Traffic Analyzer</h3>
+                        <i class="fas fa-chart-line text-brand-blue text-2xl"></i>
+                    </div>
+                    <p class="mb-4" style="color: var(--text-secondary);">Python tool using Scapy to capture and analyze network packets, detect suspicious patterns, and visualize traffic flows.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Python</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Scapy</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Network Security</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fab fa-github"></i> Code</a>
+                        <a href="#" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fas fa-external-link-alt"></i> Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card p-6 rounded-3xl reveal">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="heading-font text-xl font-semibold" style="color: var(--text-primary);">Password Strength Checker</h3>
+                        <i class="fas fa-key text-brand-blue text-2xl"></i>
+                    </div>
+                    <p class="mb-4" style="color: var(--text-secondary);">Real‑time password strength meter with entropy estimation, breach simulation, and cracking time prediction.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-pill px-3 py-1 rounded-full text-xs">JavaScript</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-xs">React</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Security</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fab fa-github"></i> Code</a>
+                        <a href="#" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fas fa-external-link-alt"></i> Demo</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="card p-6 rounded-3xl reveal">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="heading-font text-xl font-semibold" style="color: var(--text-primary);">Phishing Awareness Simulator</h3>
+                        <i class="fas fa-fish text-brand-blue text-2xl"></i>
+                    </div>
+                    <p class="mb-4" style="color: var(--text-secondary);">Interactive educational tool that mimics real phishing attempts and teaches users how to identify malicious emails and websites.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-pill px-3 py-1 rounded-full text-xs">HTML/CSS</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-xs">JavaScript</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Security Awareness</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="card p-6 rounded-3xl reveal">
+                    <div class="flex items-start justify-between mb-4">
+                        <h3 class="heading-font text-xl font-semibold" style="color: var(--text-primary);">SIEM Rule Tester</h3>
+                        <i class="fas fa-robot text-brand-blue text-2xl"></i>
+                    </div>
+                    <p class="mb-4" style="color: var(--text-secondary);">Test environment for custom SIEM rules using sample logs and detection logic – validates alerts before deployment.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Python</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-xs">SIEM</span>
+                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Detection Engineering</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="py-20" style="background-color: var(--bg-tertiary);">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-12">
+                <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">RECOGNITION</span>
                 <h2 class="heading-font text-3xl md:text-5xl font-semibold">Key Achievements</h2>
             </div>
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(255,69,0,0.1), rgba(50,205,50,0.05));">
+                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(30,144,255,0.1), rgba(50,205,50,0.05));">
                     <div class="flex items-start gap-4">
-                        <i class="fas fa-trophy text-brand-orange text-3xl mt-1"></i>
+                        <i class="fas fa-trophy text-brand-blue text-3xl mt-1"></i>
                         <div>
                             <h3 class="heading-font text-lg font-semibold mb-2" style="color: var(--text-primary);">FCR Excellence</h3>
                             <p style="color: var(--text-secondary);">Consistently exceeded FCR targets (75%) for account access and OTP issues at betPawa.</p>
                         </div>
                     </div>
                 </div>
-                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(255,69,0,0.1), rgba(50,205,50,0.05));">
+                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(30,144,255,0.1), rgba(50,205,50,0.05));">
                     <div class="flex items-start gap-4">
-                        <i class="fas fa-star text-brand-orange text-3xl mt-1"></i>
+                        <i class="fas fa-star text-brand-blue text-3xl mt-1"></i>
                         <div>
                             <h3 class="heading-font text-lg font-semibold mb-2" style="color: var(--text-primary);">Quality Metrics</h3>
                             <p style="color: var(--text-secondary);">Maintained strong CSAT and quality scoring metrics across customer support operations.</p>
                         </div>
                     </div>
                 </div>
-                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(255,69,0,0.1), rgba(50,205,50,0.05));">
+                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(30,144,255,0.1), rgba(50,205,50,0.05));">
                     <div class="flex items-start gap-4">
-                        <i class="fas fa-certificate text-brand-orange text-3xl mt-1"></i>
+                        <i class="fas fa-certificate text-brand-blue text-3xl mt-1"></i>
                         <div>
                             <h3 class="heading-font text-lg font-semibold mb-2" style="color: var(--text-primary);">pawaTech Training</h3>
                             <p style="color: var(--text-secondary);">Successfully completed global pawaTech training program with distinction and 6 Excellence Certificates.</p>
                         </div>
                     </div>
                 </div>
-                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(255,69,0,0.1), rgba(50,205,50,0.05));">
+                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(30,144,255,0.1), rgba(50,205,50,0.05));">
                     <div class="flex items-start gap-4">
-                        <i class="fas fa-cogs text-brand-orange text-3xl mt-1"></i>
+                        <i class="fas fa-cogs text-brand-blue text-3xl mt-1"></i>
                         <div>
                             <h3 class="heading-font text-lg font-semibold mb-2" style="color: var(--text-primary);">Team Coordination</h3>
                             <p style="color: var(--text-secondary);">Effectively coordinated with Risk and Technical teams to resolve complex escalations.</p>
@@ -890,24 +983,24 @@
     <!-- CONTACT -->
     <section id="contact" class="py-20" style="background-color: var(--bg-secondary);">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <span class="uppercase text-brand-orange text-sm font-semibold tracking-widest">GET IN TOUCH</span>
+            <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">GET IN TOUCH</span>
             <h2 class="heading-font text-4xl md:text-5xl font-semibold mt-3 mb-8">Let's Connect</h2>
             <div class="flex flex-wrap justify-center gap-6 mb-12">
                 <a href="tel:+265881762894" class="card px-8 py-4 rounded-3xl flex items-center gap-3 t-smooth focus-ring">
-                    <i class="fas fa-phone text-brand-orange text-xl"></i>
+                    <i class="fas fa-phone text-brand-blue text-xl"></i>
                     <span class="font-medium" style="color: var(--text-primary);">+265 881 762 894</span>
                 </a>
                 <a href="mailto:atupelemkagula@gmail.com" class="card px-8 py-4 rounded-3xl flex items-center gap-3 t-smooth focus-ring">
-                    <i class="fas fa-envelope text-brand-orange text-xl"></i>
+                    <i class="fas fa-envelope text-brand-blue text-xl"></i>
                     <span class="font-medium" style="color: var(--text-primary);">atupelemkagula@gmail.com</span>
                 </a>
                 <a href="https://about.me/atupele.mkagula" target="_blank" rel="noopener noreferrer" class="card px-8 py-4 rounded-3xl flex items-center gap-3 t-smooth focus-ring">
-                    <i class="fas fa-globe text-brand-orange text-xl"></i>
+                    <i class="fas fa-globe text-brand-blue text-xl"></i>
                     <span class="font-medium" style="color: var(--text-primary);">about.me/atupele.mkagula</span>
                 </a>
             </div>
             <div class="flex justify-center gap-6">
-                <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 rounded-full flex items-center justify-center text-brand-orange t-smooth focus-ring">
+                <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 rounded-full flex items-center justify-center text-brand-blue t-smooth focus-ring">
                     <i class="fab fa-linkedin text-2xl"></i>
                 </a>
                 <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 rounded-full flex items-center justify-center t-smooth focus-ring" style="color: var(--text-primary);">
@@ -925,9 +1018,9 @@
     <footer class="py-12" style="background-color: var(--bg-tertiary); color: var(--text-primary);">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <button onclick="scrollToTop(event)" class="inline-flex items-center gap-3 mb-6 group" aria-label="Back to top">
-                <div class="w-9 h-9 bg-gradient-to-br from-brand-orange to-orange-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg
+                <div class="w-9 h-9 bg-gradient-to-br from-brand-blue to-blue-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg
                     transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110">AM</div>
-                <span class="heading-font text-lg font-semibold transition-colors group-hover:text-brand-orange" style="color: var(--text-secondary);">Atupele Mkagula</span>
+                <span class="heading-font text-lg font-semibold transition-colors group-hover:text-brand-blue" style="color: var(--text-secondary);">Atupele Mkagula</span>
             </button>
             <p class="mb-2" style="color: var(--text-muted);">&copy; 2026 Atupele Nathan Mkagula. All rights reserved.</p>
             <p class="text-sm" style="color: var(--text-muted);">References available upon request.</p>
@@ -935,6 +1028,17 @@
     </footer>
 
     <script>
+    // ── Dynamic viewport height (fixes mobile gap) ──
+    (function setViewportHeight() {
+        const updateVh = () => {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        };
+        updateVh();
+        window.addEventListener('resize', updateVh);
+        window.addEventListener('orientationchange', updateVh);
+    })();
+
     // ── Custom cursor ──────────────────────────────────
     const cursor = document.getElementById('cursor');
     const ring   = document.getElementById('cursor-ring');
@@ -1102,13 +1206,11 @@
         localStorage.setItem('darkMode', enabled ? 'enabled' : 'disabled');
     }
 
-    // Check localStorage
     const savedDarkMode = localStorage.getItem('darkMode');
     if (savedDarkMode === 'enabled') {
         setDarkMode(true);
     }
 
-    // Toggle function
     function toggleDarkMode() {
         const isDark = document.body.classList.contains('dark-mode');
         setDarkMode(!isDark);
