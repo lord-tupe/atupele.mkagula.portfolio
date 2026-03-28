@@ -7,13 +7,10 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- SmartSoft Gaming fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    <!-- Your original fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* ===== updated variables & base styles ===== */
         :root {
             --accent: #1e90ff;
             --accent-2: #32cd32;
@@ -24,12 +21,12 @@
             --easing: cubic-bezier(.2,.9,.3,1);
             --card-ease: cubic-bezier(.16,.84,.32,1);
             --spring: cubic-bezier(.34,1.56,.64,1);
-            /* Blue color scheme */
+            /* Blue color scheme for UI */
             --brand-blue: #1e90ff;
             --brand-light: #87cefa;
+            --brand-gold: #ffd700;   /* gold for cursor */
             --brand-dark: #050505;
-            /* Dynamic viewport variable */
-            --vh: 1vh; /* fallback */
+            --vh: 1vh;
         }
 
         /* Light mode (default) */
@@ -72,12 +69,12 @@
             cursor: none;
         }
 
-        /* Custom cursor */
+        /* Cursor – gold */
         #cursor {
             position: fixed;
             top: 0; left: 0;
             width: 12px; height: 12px;
-            background: var(--brand-blue);
+            background: var(--brand-gold);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
@@ -89,22 +86,21 @@
             position: fixed;
             top: 0; left: 0;
             width: 36px; height: 36px;
-            border: 1.5px solid rgba(30,144,255,0.55);
+            border: 1.5px solid rgba(255,215,0,0.55);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transform: translate(-50%,-50%);
             transition: width 380ms var(--easing), height 380ms var(--easing), border-color 380ms, transform 380ms var(--easing);
         }
-        body.cursor-hover #cursor { width: 20px; height: 20px; background: var(--brand-light); }
-        body.cursor-hover #cursor-ring { width: 54px; height: 54px; border-color: rgba(135,206,250,0.4); }
+        body.cursor-hover #cursor { width: 20px; height: 20px; background: var(--brand-gold); }
+        body.cursor-hover #cursor-ring { width: 54px; height: 54px; border-color: rgba(255,215,0,0.4); }
 
         .heading-font { font-family: 'Space Grotesk', 'Montserrat', system-ui, sans-serif; }
         .hero-bg { background: linear-gradient(135deg, var(--hero-start) 0%, var(--hero-end) 100%); }
         .t-smooth { transition: all var(--duration-medium) var(--easing); }
         .t-fast { transition: all var(--duration-fast) var(--easing); }
 
-        /* Nav */
         #main-nav {
             transition: background 400ms, box-shadow 400ms, padding 400ms;
             background: var(--nav-bg) !important;
@@ -115,7 +111,6 @@
             box-shadow: 0 4px 32px rgba(0,0,0,0.1);
         }
 
-        /* Logo button */
         #logo-btn {
             cursor: none;
             position: relative;
@@ -146,7 +141,6 @@
         }
         #logo-btn:hover #logo-text { color: var(--brand-blue); }
 
-        /* Ripple on logo */
         .ripple {
             position: absolute;
             border-radius: 50%;
@@ -159,7 +153,6 @@
             to { transform: scale(4); opacity: 0; }
         }
 
-        /* Nav links */
         .nav-link {
             position: relative;
             padding-bottom: 2px;
@@ -178,14 +171,12 @@
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
         .nav-link:hover { color: var(--brand-blue); }
 
-        /* Floating animations */
         @keyframes float-slow {
             0%,100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
         .float-slow { animation: float-slow 7s ease-in-out infinite; }
 
-        /* SmartSoft float */
         @keyframes float {
             0% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-10px) rotate(2deg); }
@@ -193,7 +184,6 @@
         }
         .animate-float { animation: float 6s ease-in-out infinite; }
 
-        /* Reveal */
         @keyframes fade-up {
             from { opacity: 0; transform: translateY(22px) scale(.99); }
             to   { opacity: 1; transform: translateY(0) scale(1); }
@@ -201,7 +191,6 @@
         .reveal { opacity: 0; transform: translateY(14px); will-change: transform, opacity; }
         .reveal.in-view { animation: fade-up var(--duration-medium) var(--easing) both; }
 
-        /* Cards */
         .card {
             background-color: var(--card-bg);
             border: 1px solid var(--border-light);
@@ -215,7 +204,6 @@
         }
         .card:active { transform: translateY(-4px) scale(1.005); }
 
-        /* Skill pills */
         .skill-pill {
             background-color: var(--bg-tertiary);
             color: var(--text-secondary);
@@ -232,7 +220,6 @@
             color: white;
         }
 
-        /* Profile */
         .profile-img {
             filter: grayscale(.3) contrast(.95) saturate(.95);
             transition: filter var(--duration-long) var(--easing), transform var(--duration-long) var(--easing);
@@ -253,36 +240,29 @@
             box-shadow: 0 12px 32px rgba(30,144,255,0.2);
         }
 
-        /* Terminal */
         .terminal {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
             background: #070707;
             color: #00ff9f;
         }
 
-        /* Gradient underline */
         .gradient-underline {
             background: linear-gradient(90deg, var(--brand-blue), var(--accent-2));
             height: 3px; border-radius: 999px; width: 64px;
         }
 
-        /* Focus */
-        :focus { outline: none; }
         .focus-ring:focus-visible { box-shadow: 0 0 0 4px rgba(30,144,255,0.15); border-radius: 12px; }
 
-        /* Section transition */
         section, header, footer {
             transition: background 600ms;
         }
 
-        /* Stat counter */
         .stat-num {
             display: inline-block;
             transition: transform 300ms var(--spring);
         }
         .stat-num:hover { transform: scale(1.12); color: var(--brand-blue); }
 
-        /* Scroll-to-top button */
         #scroll-top {
             position: fixed;
             bottom: 32px; right: 32px;
@@ -308,7 +288,6 @@
         }
         #scroll-top:active { transform: scale(0.95); }
 
-        /* Mobile menu */
         #mobile-menu {
             background-color: var(--bg-secondary);
             transform: translateY(-10px);
@@ -335,7 +314,6 @@
             transition: transform 300ms var(--spring), opacity 250ms, width 300ms;
         }
 
-        /* Dark mode toggle button */
         #dark-mode-toggle {
             background: transparent;
             border: none;
@@ -351,7 +329,6 @@
             transform: rotate(15deg);
         }
 
-        /* Responsive */
         @media (max-width: 640px) {
             html { scroll-padding-top: 70px; }
             .profile-wrap {
@@ -382,14 +359,12 @@
             .profile-wrap { width: 18rem; height: 18rem; }
         }
 
-        /* touch devices: disable custom cursor */
         @media (hover: none) and (pointer: coarse) {
             body { cursor: auto; }
             #cursor, #cursor-ring { display: none; }
             .nav-link, #logo-btn, .skill-pill, .card, .btn-glow, #dark-mode-toggle { cursor: pointer; }
         }
 
-        /* reduced motion */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation: none !important;
@@ -400,7 +375,6 @@
             #cursor, #cursor-ring { display: none; }
         }
 
-        /* CTA button glow */
         .btn-glow {
             position: relative;
             overflow: hidden;
@@ -424,7 +398,6 @@
         }
         .btn-glow:active { transform: scale(0.97); }
 
-        /* SmartSoft utilities */
         .text-stroke {
             -webkit-text-stroke: 1px rgba(30,144,255,0.3);
             color: transparent;
@@ -434,7 +407,6 @@
         .border-brand-blue { border-color: var(--brand-blue); }
         .font-display { font-family: 'Space Grotesk', sans-serif; }
 
-        /* Dynamic viewport fix */
         .hero-fix {
             min-height: 100vh;
             min-height: calc(var(--vh, 1vh) * 100);
@@ -443,34 +415,27 @@
 </head>
 
 <body>
-    <!-- Custom cursor -->
     <div id="cursor"></div>
     <div id="cursor-ring"></div>
 
-    <!-- Scroll to top -->
     <button id="scroll-top" aria-label="Scroll to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
         <i class="fas fa-chevron-up text-sm"></i>
     </button>
 
-    <!-- NAV -->
     <nav id="main-nav" class="sticky top-0 z-50" role="navigation" aria-label="Primary">
         <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6">
-
-            <!-- Clickable Logo -->
             <button id="logo-btn" onclick="scrollToTop(event)" aria-label="Back to top">
                 <div id="logo-avatar" class="w-10 h-10 bg-gradient-to-br from-brand-blue to-blue-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg select-none">AM</div>
                 <span id="logo-text" class="heading-font text-xl font-semibold tracking-tight">Atupele Mkagula</span>
             </button>
             
-            <!-- Desktop links (added Projects) -->
             <div class="hidden md:flex items-center gap-8 text-sm font-medium">
                 <a href="#about"      class="nav-link t-smooth focus-ring">About</a>
                 <a href="#experience" class="nav-link t-smooth focus-ring">Experience</a>
                 <a href="#skills"     class="nav-link t-smooth focus-ring">Skills</a>
                 <a href="#education"  class="nav-link t-smooth focus-ring">Education</a>
-                <a href="#projects"   class="nav-link t-smooth focus-ring">Projects</a>
+                <a href="#achievements" class="nav-link t-smooth focus-ring">Achievements</a>
                 <a href="#contact"    class="nav-link t-smooth focus-ring">Contact</a>
-                <!-- Dark mode toggle -->
                 <button id="dark-mode-toggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon"></i>
                 </button>
@@ -485,15 +450,13 @@
             </div>
         </div>
 
-        <!-- Mobile menu (added Projects) -->
         <div id="mobile-menu" class="md:hidden px-6 pb-4 space-y-1">
             <a href="#about"      class="block py-3 font-medium border-b t-fast">About</a>
             <a href="#experience" class="block py-3 font-medium border-b t-fast">Experience</a>
             <a href="#skills"     class="block py-3 font-medium border-b t-fast">Skills</a>
             <a href="#education"  class="block py-3 font-medium border-b t-fast">Education</a>
-            <a href="#projects"   class="block py-3 font-medium border-b t-fast">Projects</a>
+            <a href="#achievements" class="block py-3 font-medium border-b t-fast">Achievements</a>
             <a href="#contact"    class="block py-3 font-medium t-fast">Contact</a>
-            <!-- Dark mode toggle in mobile -->
             <div class="pt-4 flex justify-center">
                 <button id="dark-mode-toggle-mobile" class="flex items-center gap-2 text-sm font-medium">
                     <i class="fas fa-moon"></i> <span>Dark Mode</span>
@@ -502,10 +465,8 @@
         </div>
     </nav>
 
-    <!-- HERO (with dynamic viewport fix) -->
     <header class="hero-bg text-white hero-fix flex items-center relative overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] bg-[length:40px_40px] opacity-20 pointer-events-none"></div>
-        <!-- Blue glow overlay -->
         <div class="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]"></div>
         <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]"></div>
         
@@ -549,7 +510,6 @@
                 </div>
             </div>
             
-            <!-- Profile -->
             <div class="relative flex justify-center items-start">
                 <div class="w-80 h-80 rounded-3xl overflow-hidden border-8 border-blue-500/30 shadow-2xl bg-zinc-900 profile-wrap reveal animate-float" data-delay="200" tabindex="0" aria-label="Profile image">
                     <img src="assets/headshot.jpg" alt="Atupele Mkagula portrait" class="profile-img">
@@ -572,7 +532,6 @@
         </div>
     </header>
 
-    <!-- ABOUT -->
     <section id="about" class="py-20" style="background-color: var(--bg-secondary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid md:grid-cols-12 gap-16 items-center">
@@ -611,7 +570,6 @@
         </div>
     </section>
 
-    <!-- EXPERIENCE -->
     <section id="experience" class="py-20" style="background-color: var(--bg-tertiary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-12">
@@ -635,7 +593,6 @@
                         <li><i class="fas fa-check text-brand-blue mr-2"></i>Implemented Responsible Gambling protocols and conducted identity verification to prevent fraud.</li>
                     </ul>
                 </div>
-                <!-- Additional experience cards -->
                 <div class="card p-8 rounded-3xl reveal">
                     <div class="flex justify-between items-start mb-4">
                         <div>
@@ -672,94 +629,6 @@
         </div>
     </section>
 
-    <!-- ===== GAMING SECTIONS (updated to blue) ===== -->
-    <!-- Gaming Industry Impact -->
-    <section id="gaming-portfolio" class="py-40 bg-brand-blue relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-                <div>
-                    <span class="text-black font-black uppercase tracking-[0.4em] text-sm mb-6 block">Gaming Industry Impact</span>
-                    <h2 class="text-8xl md:text-[10rem] font-display font-black tracking-tighter uppercase leading-[0.8] mb-12">betPawa <br><span class="text-stroke">Support</span></h2>
-                    <p class="text-2xl md:text-3xl font-medium mb-16 text-black/80 leading-tight">Driving player satisfaction and platform reliability for Malawi's fastest-growing sportsbook and casino.</p>
-                    <button class="px-16 py-8 bg-black text-white font-black uppercase tracking-tighter text-2xl rounded-sm shadow-2xl hover:scale-105 transition-transform">Explore My Work</button>
-                </div>
-                <div class="relative">
-                    <div class="aspect-square bg-black rounded-[3rem] overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-700">
-                        <img src="https://picsum.photos/seed/betpawa/1000/1000" alt="betPawa platform" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Platforms & Products -->
-    <section class="py-32 px-6 max-w-7xl mx-auto" style="background-color: var(--bg-secondary);">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <div>
-                <span class="text-brand-blue font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Portfolio</span>
-                <h2 class="text-6xl md:text-7xl font-display font-bold tracking-tighter uppercase" style="color: var(--text-primary);">Platforms I <span class="text-brand-blue">Support</span></h2>
-            </div>
-            <div class="flex flex-wrap gap-2 bg-white/5 p-1.5 rounded-xl border border-white/10">
-                <button class="px-8 py-3 rounded-lg text-xs font-black uppercase tracking-widest bg-brand-blue text-white">All</button>
-                <button class="px-8 py-3 rounded-lg text-xs font-black uppercase tracking-widest" style="color: var(--text-secondary);">Sportsbook</button>
-                <button class="px-8 py-3 rounded-lg text-xs font-black uppercase tracking-widest" style="color: var(--text-secondary);">Casino</button>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div class="group relative bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 hover:border-brand-blue/40 transition-all duration-500 hover:-translate-y-4">
-                <div class="aspect-[4/5] overflow-hidden relative">
-                    <img src="https://picsum.photos/seed/sportsbook/800/1000" alt="Sportsbook" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/40 to-transparent">
-                        <span class="text-[10px] font-black text-brand-blue uppercase tracking-[0.3em] mb-2 block">Sportsbook</span>
-                        <h3 class="text-3xl font-display font-bold tracking-tighter uppercase text-white">Betting Markets</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="group relative bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 hover:border-brand-blue/40 transition-all duration-500 hover:-translate-y-4">
-                <div class="aspect-[4/5] overflow-hidden relative">
-                    <img src="https://picsum.photos/seed/casino/800/1000" alt="Casino" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/40 to-transparent">
-                        <span class="text-[10px] font-black text-brand-blue uppercase tracking-[0.3em] mb-2 block">Casino</span>
-                        <h3 class="text-3xl font-display font-bold tracking-tighter uppercase text-white">Slots & RNG</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="group relative bg-[#0a0a0a] rounded-3xl overflow-hidden border border-white/5 hover:border-brand-blue/40 transition-all duration-500 hover:-translate-y-4">
-                <div class="aspect-[4/5] overflow-hidden relative">
-                    <img src="https://picsum.photos/seed/virtual/800/1000" alt="Virtual Sports" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/40 to-transparent">
-                        <span class="text-[10px] font-black text-brand-blue uppercase tracking-[0.3em] mb-2 block">Virtual Sports</span>
-                        <h3 class="text-3xl font-display font-bold tracking-tighter uppercase text-white">Instant Games</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="flex justify-center mt-16">
-            <button class="px-12 py-5 border-2 border-brand-blue text-brand-blue font-black uppercase tracking-tighter text-lg rounded-sm hover:bg-brand-blue hover:text-white transition-all">View All Products</button>
-        </div>
-    </section>
-
-    <!-- Trusted Partners -->
-    <section class="py-24 border-y border-white/5" style="background-color: var(--bg-tertiary);">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-brand-blue font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Trusted by</span>
-                <h2 class="text-5xl md:text-6xl font-display font-bold tracking-tighter uppercase mb-6" style="color: var(--text-primary);">Global <span class="text-brand-blue">Partners</span></h2>
-                <p style="color: var(--text-secondary);">Collaborating with leading gaming platforms and tech providers.</p>
-            </div>
-            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60">
-                <div class="h-12 w-32" style="background-color: var(--border-light); border-radius: 0.5rem;"></div>
-                <div class="h-12 w-32" style="background-color: var(--border-light); border-radius: 0.5rem;"></div>
-                <div class="h-12 w-32" style="background-color: var(--border-light); border-radius: 0.5rem;"></div>
-                <div class="h-12 w-32" style="background-color: var(--border-light); border-radius: 0.5rem;"></div>
-                <div class="h-12 w-32" style="background-color: var(--border-light); border-radius: 0.5rem;"></div>
-            </div>
-        </div>
-    </section>
-    <!-- ===== END GAMING SECTIONS ===== -->
-
-    <!-- SKILLS -->
     <section id="skills" class="py-20" style="background-color: var(--bg-secondary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-12">
@@ -804,7 +673,6 @@
         </div>
     </section>
 
-    <!-- EDUCATION -->
     <section id="education" class="py-20" style="background-color: var(--bg-tertiary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-12">
@@ -849,91 +717,7 @@
         </div>
     </section>
 
-    <!-- NEW PROJECTS SECTION (Cybersecurity Labs) -->
-    <section id="projects" class="py-20" style="background-color: var(--bg-secondary);">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-12">
-                <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">CYBERSECURITY LABS</span>
-                <h2 class="heading-font text-3xl md:text-5xl font-semibold">Hands‑On Projects</h2>
-                <p class="mt-4 text-lg" style="color: var(--text-secondary);">Practical cybersecurity projects demonstrating threat detection, secure development, and awareness.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Project 1 -->
-                <div class="card p-6 rounded-3xl reveal">
-                    <div class="flex items-start justify-between mb-4">
-                        <h3 class="heading-font text-xl font-semibold" style="color: var(--text-primary);">Network Traffic Analyzer</h3>
-                        <i class="fas fa-chart-line text-brand-blue text-2xl"></i>
-                    </div>
-                    <p class="mb-4" style="color: var(--text-secondary);">Python tool using Scapy to capture and analyze network packets, detect suspicious patterns, and visualize traffic flows.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Python</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Scapy</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Network Security</span>
-                    </div>
-                    <div class="flex gap-4">
-                        <a href="#" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fab fa-github"></i> Code</a>
-                        <a href="#" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fas fa-external-link-alt"></i> Demo</a>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="card p-6 rounded-3xl reveal">
-                    <div class="flex items-start justify-between mb-4">
-                        <h3 class="heading-font text-xl font-semibold" style="color: var(--text-primary);">Password Strength Checker</h3>
-                        <i class="fas fa-key text-brand-blue text-2xl"></i>
-                    </div>
-                    <p class="mb-4" style="color: var(--text-secondary);">Real‑time password strength meter with entropy estimation, breach simulation, and cracking time prediction.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs">JavaScript</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs">React</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Security</span>
-                    </div>
-                    <div class="flex gap-4">
-                        <a href="#" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fab fa-github"></i> Code</a>
-                        <a href="#" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fas fa-external-link-alt"></i> Demo</a>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="card p-6 rounded-3xl reveal">
-                    <div class="flex items-start justify-between mb-4">
-                        <h3 class="heading-font text-xl font-semibold" style="color: var(--text-primary);">Phishing Awareness Simulator</h3>
-                        <i class="fas fa-fish text-brand-blue text-2xl"></i>
-                    </div>
-                    <p class="mb-4" style="color: var(--text-secondary);">Interactive educational tool that mimics real phishing attempts and teaches users how to identify malicious emails and websites.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs">HTML/CSS</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs">JavaScript</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Security Awareness</span>
-                    </div>
-                    <div class="flex gap-4">
-                        <a href="#" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fab fa-github"></i> Code</a>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="card p-6 rounded-3xl reveal">
-                    <div class="flex items-start justify-between mb-4">
-                        <h3 class="heading-font text-xl font-semibold" style="color: var(--text-primary);">SIEM Rule Tester</h3>
-                        <i class="fas fa-robot text-brand-blue text-2xl"></i>
-                    </div>
-                    <p class="mb-4" style="color: var(--text-secondary);">Test environment for custom SIEM rules using sample logs and detection logic – validates alerts before deployment.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Python</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs">SIEM</span>
-                        <span class="skill-pill px-3 py-1 rounded-full text-xs">Detection Engineering</span>
-                    </div>
-                    <div class="flex gap-4">
-                        <a href="#" class="text-brand-blue hover:underline flex items-center gap-1"><i class="fab fa-github"></i> Code</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ACHIEVEMENTS -->
-    <section id="achievements" class="py-20" style="background-color: var(--bg-tertiary);">
+    <section id="achievements" class="py-20" style="background-color: var(--bg-secondary);">
         <div class="max-w-7xl mx-auto px-6">
             <div class="mb-12">
                 <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">RECOGNITION</span>
@@ -980,7 +764,6 @@
         </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact" class="py-20" style="background-color: var(--bg-secondary);">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">GET IN TOUCH</span>
@@ -1006,7 +789,6 @@
                 <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 rounded-full flex items-center justify-center t-smooth focus-ring" style="color: var(--text-primary);">
                     <i class="fab fa-github text-2xl"></i>
                 </a>
-                <!-- Twitter/X link updated to @lord_tupe -->
                 <a href="https://x.com/lord_tupe" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 rounded-full flex items-center justify-center text-blue-400 t-smooth focus-ring">
                     <i class="fab fa-twitter text-2xl"></i>
                 </a>
@@ -1014,7 +796,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="py-12" style="background-color: var(--bg-tertiary); color: var(--text-primary);">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <button onclick="scrollToTop(event)" class="inline-flex items-center gap-3 mb-6 group" aria-label="Back to top">
@@ -1028,7 +809,6 @@
     </footer>
 
     <script>
-    // ── Dynamic viewport height (fixes mobile gap) ──
     (function setViewportHeight() {
         const updateVh = () => {
             const vh = window.innerHeight * 0.01;
@@ -1039,7 +819,6 @@
         window.addEventListener('orientationchange', updateVh);
     })();
 
-    // ── Custom cursor ──────────────────────────────────
     const cursor = document.getElementById('cursor');
     const ring   = document.getElementById('cursor-ring');
     let mx = 0, my = 0, rx = 0, ry = 0;
@@ -1064,7 +843,6 @@
         el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
     });
 
-    // ── Logo ripple + scroll to top ────────────────────
     function scrollToTop(e) {
         const btn = e.currentTarget;
         const rect = btn.getBoundingClientRect();
@@ -1081,19 +859,16 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ── Scroll-to-top FAB ──────────────────────────────
     const fab = document.getElementById('scroll-top');
     window.addEventListener('scroll', () => {
         fab.classList.toggle('visible', window.scrollY > 400);
     }, { passive: true });
 
-    // ── Sticky nav style on scroll ─────────────────────
     const nav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
 
-    // ── Active nav link highlight ──────────────────────
     const sections = document.querySelectorAll('section[id], header');
     const navLinks = document.querySelectorAll('.nav-link');
     const ioNav = new IntersectionObserver(entries => {
@@ -1108,7 +883,6 @@
     }, { threshold: 0.4 });
     sections.forEach(s => ioNav.observe(s));
 
-    // ── Reveal on scroll ───────────────────────────────
     const reveals = document.querySelectorAll('.reveal');
     const ioReveal = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -1122,7 +896,6 @@
     }, { threshold: 0.1 });
     reveals.forEach(el => ioReveal.observe(el));
 
-    // ── Hamburger menu ─────────────────────────────────
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     let menuOpen = false;
@@ -1158,7 +931,6 @@
         });
     });
 
-    // ── Smooth anchor scroll ───────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
             const target = document.querySelector(a.getAttribute('href'));
@@ -1169,7 +941,6 @@
         });
     });
 
-    // ── Dark Mode Toggle ───────────────────────────────
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const darkModeToggleMobile = document.getElementById('dark-mode-toggle-mobile');
     const sunMoonIcon = darkModeToggle?.querySelector('i');
