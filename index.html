@@ -25,7 +25,7 @@
             --card-ease: cubic-bezier(.16,.84,.32,1);
             --spring: cubic-bezier(.34,1.56,.64,1);
             /* SmartSoft Gaming colors */
-            --brand-blue: #1e90ff;
+            --brand-orange: #ff4500;
             --brand-gold: #ffd700;
             --brand-dark: #050505;
         }
@@ -278,14 +278,14 @@
             display: inline-block;
             transition: transform 300ms var(--spring);
         }
-        .stat-num:hover { transform: scale(1.12); color: var(--brand-blue); }
+        .stat-num:hover { transform: scale(1.12); color: var(--brand-orange); }
 
         /* Scroll-to-top button */
         #scroll-top {
             position: fixed;
             bottom: 32px; right: 32px;
             width: 48px; height: 48px;
-            background: linear-gradient(135deg, var(--brand-blue), #1e90ff);
+            background: linear-gradient(135deg, var(--brand-orange), #ff8c00);
             color: white;
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
@@ -493,7 +493,7 @@
     </nav>
 
     <!-- HERO -->
-    <header class="hero-bg text-white min-h-[100dvh] flex items-center relative overflow-hidden">
+    <header class="hero-bg text-white min-h-screen flex items-center relative overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] bg-[length:40px_40px] opacity-20 pointer-events-none"></div>
         <!-- Orange glow overlay -->
         <div class="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[120px]"></div>
