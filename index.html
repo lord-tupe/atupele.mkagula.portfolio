@@ -1,1215 +1,1425 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Atupele Nathan Mkagula | Secure Digital Systems & Front-End Development</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --accent: #1e90ff;
-            --accent-2: #32cd32;
-            --muted: #94a3b8;
-            --duration-fast: 220ms;
-            --duration-medium: 520ms;
-            --duration-long: 800ms;
-            --easing: cubic-bezier(.2,.9,.3,1);
-            --card-ease: cubic-bezier(.16,.84,.32,1);
-            --spring: cubic-bezier(.34,1.56,.64,1);
-            /* Brand Colors */
-            --brand-blue: #1e90ff;
-            --brand-light: #87cefa;
-            --brand-dark: #050505;
-            --vh: 1vh;
-            /* Enhanced Cursor Variables */
-            --cursor-color: #ffffff;
-            --cursor-blend-mode: difference;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Atupele Nathan Mkagula | Secure Digital Systems • Front-End Development • Cybersecurity</title>
+<meta name="description" content="Atupele Nathan Mkagula builds secure digital systems and solves real technology problems. Front-end development, cybersecurity, and IT consulting based in Blantyre, Malawi.">
 
-        /* Light mode (default) */
-        body {
-            --bg-primary: #fafafa;
-            --bg-secondary: #ffffff;
-            --bg-tertiary: #f4f4f5;
-            --text-primary: #18181b;
-            --text-secondary: #3f3f46;
-            --text-muted: #71717a;
-            --border-light: #e4e4e7;
-            --card-bg: #ffffff;
-            --nav-bg: rgba(255,255,255,0.92);
-            --hero-start: #0f172a;
-            --hero-end: #1e3a8a;
-        }
+<!-- Preconnect for performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-        /* Dark mode overrides */
-        body.dark-mode {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #111111;
-            --bg-tertiary: #1a1a1a;
-            --text-primary: #ededed;
-            --text-secondary: #a1a1aa;
-            --text-muted: #6b7280;
-            --border-light: #27272a;
-            --card-bg: #1c1c1e;
-            --nav-bg: rgba(0,0,0,0.92);
-            --hero-start: #020617;
-            --hero-end: #0f172a;
-        }
+<!-- Fonts with font-display: swap -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            transition: background-color 0.3s ease, color 0.2s ease;
-            font-family: "Open Sans", system-ui, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            cursor: none;
-        }
+<!-- Font Awesome for professional icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        /* Enhanced Cursor System */
-        #cursor {
-            position: fixed;
-            top: 0; left: 0;
-            width: 12px; height: 12px;
-            background: var(--cursor-color);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%,-50%);
-            transition: width 220ms var(--spring), height 220ms var(--spring), opacity 220ms, background 220ms;
-            mix-blend-mode: var(--cursor-blend-mode);
-            box-shadow: 0 0 10px color-mix(in srgb, var(--cursor-color) 40%, transparent);
-        }
-        #cursor-ring {
-            position: fixed;
-            top: 0; left: 0;
-            width: 36px; height: 36px;
-            border: 1.5px solid color-mix(in srgb, var(--cursor-color) 55%, transparent);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9998;
-            transform: translate(-50%,-50%);
-            transition: width 380ms var(--easing), height 380ms var(--easing), border-color 380ms, transform 380ms var(--easing);
-        }
-        body.cursor-hover #cursor { width: 20px; height: 20px; background: var(--cursor-color); }
-        body.cursor-hover #cursor-ring { width: 54px; height: 54px; border-color: color-mix(in srgb, var(--cursor-color) 40%, transparent); }
+<style>
+  /* CSS Reset */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .heading-font { font-family: 'Space Grotesk', 'Montserrat', system-ui, sans-serif; }
-        .hero-bg { background: linear-gradient(135deg, var(--hero-start) 0%, var(--hero-end) 100%); }
-        .t-smooth { transition: all var(--duration-medium) var(--easing); }
-        .t-fast { transition: all var(--duration-fast) var(--easing); }
+  :root {
+    /* Dark mode (Default) */
+    --color-bg: #0a0a0f;
+    --color-surface: rgba(255,255,255,0.04);
+    --color-surface-glass: rgba(255,255,255,0.06);
+    --color-border: rgba(255,255,255,0.08);
+    --color-text: #f0f0f0;
+    --color-text-secondary: rgba(240,240,240,0.6);
+    --color-accent: #4fc3f7;
+    --color-accent-warm: #ffab40;
+    --color-accent-purple: #b388ff;
+    --color-accent-green: #69f0ae;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Space Grotesk', 'Inter', sans-serif;
+  }
 
-        #main-nav {
-            transition: background 400ms, box-shadow 400ms, padding 400ms;
-            background: var(--nav-bg) !important;
-            backdrop-filter: blur(16px);
-        }
-        #main-nav.scrolled {
-            background: var(--nav-bg) !important;
-            box-shadow: 0 4px 32px rgba(0,0,0,0.1);
-        }
+  /* Light Mode Overrides */
+  body.light-mode {
+    --color-bg: #f8f9fa;
+    --color-surface: rgba(0,0,0,0.03);
+    --color-surface-glass: rgba(255,255,255,0.75);
+    --color-border: rgba(0,0,0,0.08);
+    --color-text: #18181b;
+    --color-text-secondary: rgba(24,24,27,0.65);
+  }
+  body.light-mode .nav.scrolled { background: rgba(248,249,250,0.85); }
+  body.light-mode .mobile-menu { background: rgba(248,249,250,0.98); }
+  body.light-mode .loader { background: #f8f9fa; }
+  body.light-mode .loader-bar { background: rgba(0,0,0,0.1); }
+  body.light-mode .theme-nav-dot .tooltip { background: rgba(248,249,250,0.95); color: #18181b; border-color: rgba(0,0,0,0.1); }
+  body.light-mode .nav-hamburger span { background: #18181b; }
 
-        #logo-btn {
-            cursor: none;
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 6px 10px 6px 6px;
-            border-radius: 20px;
-            transition: transform 340ms var(--spring), box-shadow 340ms var(--spring);
-            border: none;
-            background: transparent;
-        }
-        #logo-btn:hover {
-            transform: scale(1.045);
-            box-shadow: 0 0 0 6px rgba(30,144,255,0.10);
-        }
-        #logo-btn:active { transform: scale(0.97); }
-        #logo-avatar {
-            transition: transform 340ms var(--spring), box-shadow 340ms;
-        }
-        #logo-btn:hover #logo-avatar {
-            transform: rotate(-6deg) scale(1.08);
-            box-shadow: 0 6px 20px rgba(30,144,255,0.25);
-        }
-        #logo-text {
-            transition: color 220ms;
-            color: var(--text-primary);
-        }
-        #logo-btn:hover #logo-text { color: var(--brand-blue); }
+  html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.15) transparent;
+  }
+  body.light-mode html { scrollbar-color: rgba(0,0,0,0.2) transparent; }
 
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(30,144,255,0.18);
-            transform: scale(0);
-            animation: ripple-anim 600ms var(--easing) forwards;
-            pointer-events: none;
-        }
-        @keyframes ripple-anim {
-            to { transform: scale(4); opacity: 0; }
-        }
+  html::-webkit-scrollbar { width: 6px; }
+  html::-webkit-scrollbar-track { background: transparent; }
+  html::-webkit-scrollbar-thumb { 
+    background: rgba(255,255,255,0.15); 
+    border-radius: 3px;
+  }
+  body.light-mode html::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); }
 
-        .nav-link {
-            position: relative;
-            padding-bottom: 2px;
-            cursor: none;
-            color: var(--text-secondary);
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px; left: 0;
-            width: 0; height: 2px;
-            background: linear-gradient(90deg, var(--brand-blue), var(--accent-2));
-            border-radius: 999px;
-            transition: width 280ms var(--spring);
-        }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
-        .nav-link:hover { color: var(--brand-blue); }
+  body {
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    color: var(--color-text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
 
-        @keyframes float-slow {
-            0%,100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-        .float-slow { animation: float-slow 7s ease-in-out infinite; }
+  /* ── CUSTOM CURSOR ── */
+  #cursor, #cursor-ring {
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    will-change: transform, width, height;
+  }
+  #cursor {
+    width: 8px; height: 8px;
+    background: var(--color-accent);
+    transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+  }
+  #cursor-ring {
+    width: 32px; height: 32px;
+    border: 1.5px solid rgba(79, 195, 247, 0.5);
+    transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+  }
+  body.cursor-hover #cursor {
+    width: 12px; height: 12px;
+    background: var(--color-accent-warm);
+  }
+  body.cursor-hover #cursor-ring {
+    width: 48px; height: 48px;
+    border-color: rgba(255, 171, 64, 0.4);
+  }
+  @media (hover: none) and (pointer: coarse) {
+    #cursor, #cursor-ring { display: none !important; }
+    body { cursor: auto !important; }
+  }
 
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(2deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-        .animate-float { animation: float 6s ease-in-out infinite; }
+  /* ── NAVIGATION ── */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 1rem 2rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav.scrolled {
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--color-border);
+    padding: 0.7rem 2rem;
+  }
+  .nav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-logo .logo-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    display: inline-block;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.3s;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .nav-links a i {
+    font-size: 0.9rem;
+    width: 16px;
+    text-align: center;
+  }
+  .nav-links a:hover { color: var(--color-text); }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--color-accent);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    padding: 0.5rem 1.25rem;
+    background: rgba(79,195,247,0.1);
+    border: 1px solid rgba(79,195,247,0.3);
+    border-radius: 6px;
+    color: var(--color-accent) !important;
+    font-weight: 600 !important;
+    transition: all 0.3s !important;
+  }
+  .nav-cta:hover {
+    background: rgba(79,195,247,0.2) !important;
+    border-color: var(--color-accent) !important;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+  .nav-hamburger span {
+    width: 24px; height: 2px;
+    background: var(--color-text);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .nav-icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    font-size: 1.1rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+  }
+  .nav-icon-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--color-accent);
+    transform: rotate(15deg);
+  }
+  body.light-mode .nav-icon-btn:hover { background: rgba(0,0,0,0.05); }
+  .nav-icon-btn i { pointer-events: none; }
 
-        @keyframes fade-up {
-            from { opacity: 0; transform: translateY(22px) scale(.99); }
-            to   { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        .reveal { opacity: 0; transform: translateY(14px); will-change: transform, opacity; }
-        .reveal.in-view { animation: fade-up var(--duration-medium) var(--easing) both; }
+  /* ── HERO SECTIONS ── */
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero-bg-image {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 30% 50%, rgba(79,195,247,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 30%, rgba(179,136,255,0.08) 0%, transparent 50%),
+      linear-gradient(135deg, #0a0a0f 0%, #0d0d14 50%, #0a0a0f 100%);
+    background-size: cover;
+    background-position: center;
+    transition: transform 8s ease-out;
+  }
+  body.light-mode .hero-bg-image {
+    background: 
+      radial-gradient(ellipse at 30% 50%, rgba(79,195,247,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 30%, rgba(179,136,255,0.1) 0%, transparent 50%),
+      linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
+  }
+  .hero-section:hover .hero-bg-image { transform: scale(1.03); }
+  .hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .hero-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 900px;
+    padding: 2rem;
+  }
+  .hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    max-width: 650px;
+    margin: 0 auto 2.5rem;
+    font-weight: 400;
+  }
+  .hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    padding: 0.85rem 2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+  }
+  .btn-primary.filled {
+    background: var(--color-accent);
+    color: #0a0a0f;
+  }
+  .btn-primary.filled:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(79,195,247,0.3);
+  }
+  .btn-primary.outline {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    backdrop-filter: blur(10px);
+  }
+  .btn-primary.outline:hover {
+    border-color: var(--color-text-secondary);
+    transform: translateY(-2px);
+  }
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .scroll-indicator .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--color-text-secondary), transparent);
+    animation: scroll-pulse 2s ease-in-out infinite;
+  }
+  @keyframes scroll-pulse {
+    0%, 100% { opacity: 1; height: 40px; }
+    50% { opacity: 0.3; height: 20px; }
+  }
 
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-light);
-            transition: transform 400ms var(--card-ease), box-shadow 400ms var(--card-ease), border-color 400ms, background-color 0.3s;
-            will-change: transform, box-shadow;
-        }
-        .card:hover {
-            transform: translateY(-10px) scale(1.012);
-            box-shadow: 0 28px 56px -14px rgba(30,144,255,0.15), 0 6px 16px rgba(2,6,23,0.07);
-            border-color: var(--brand-blue);
-        }
-        .card:active { transform: translateY(-4px) scale(1.005); }
+  /* ── THEME SPECIFIC OVERLAYS ── */
+  .hero-section[data-theme="infrastructure"] .hero-bg-overlay {
+    background: radial-gradient(ellipse at 30% 50%, rgba(0,50,80,0.4) 0%, transparent 60%), radial-gradient(ellipse at 70% 30%, rgba(0,30,60,0.3) 0%, transparent 50%), linear-gradient(to bottom, rgba(10,10,15,0.3), rgba(10,10,15,0.7));
+  }
+  .hero-section[data-theme="malawi"] .hero-bg-overlay {
+    background: radial-gradient(ellipse at 50% 40%, rgba(40,20,0,0.3) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(60,30,0,0.2) 0%, transparent 50%), linear-gradient(to bottom, rgba(10,10,15,0.2), rgba(10,10,15,0.75));
+  }
+  .hero-section[data-theme="creative"] .hero-bg-overlay {
+    background: radial-gradient(ellipse at 40% 50%, rgba(60,0,80,0.3) 0%, transparent 60%), radial-gradient(ellipse at 70% 30%, rgba(0,40,80,0.3) 0%, transparent 50%), linear-gradient(to bottom, rgba(10,10,15,0.2), rgba(10,10,15,0.7));
+  }
+  .hero-section[data-theme="engineering"] .hero-bg-overlay {
+    background: radial-gradient(ellipse at 50% 50%, rgba(0,40,60,0.3) 0%, transparent 60%), radial-gradient(ellipse at 30% 70%, rgba(0,20,40,0.2) 0%, transparent 50%), linear-gradient(to bottom, rgba(10,10,15,0.3), rgba(10,10,15,0.75));
+  }
 
-        .skill-pill {
-            background-color: var(--bg-tertiary);
-            color: var(--text-secondary);
-            transition: transform var(--duration-fast) var(--spring),
-                        background-color var(--duration-fast),
-                        color var(--duration-fast),
-                        box-shadow var(--duration-fast);
-            cursor: none;
-        }
-        .skill-pill:hover {
-            transform: translateY(-4px) scale(1.06);
-            box-shadow: 0 8px 20px rgba(30,144,255,0.15);
-            background-color: var(--brand-blue);
-            color: white;
-        }
+  .theme-label-infra { background: rgba(79,195,247,0.1); border: 1px solid rgba(79,195,247,0.2); color: var(--color-accent); }
+  .theme-label-malawi { background: rgba(255,171,64,0.1); border: 1px solid rgba(255,171,64,0.2); color: var(--color-accent-warm); }
+  .theme-label-creative { background: rgba(179,136,255,0.1); border: 1px solid rgba(179,136,255,0.2); color: var(--color-accent-purple); }
+  .theme-label-engineering { background: rgba(105,240,174,0.1); border: 1px solid rgba(105,240,174,0.2); color: var(--color-accent-green); }
 
-        .profile-img {
-            filter: grayscale(.3) contrast(.95) saturate(.95);
-            transition: filter var(--duration-long) var(--easing), transform var(--duration-long) var(--easing);
-        }
-        .profile-wrap:hover .profile-img {
-            filter: grayscale(0) contrast(1.02) saturate(1.05);
-            transform: translateY(-8px) rotate(-0.5deg) scale(1.03);
-        }
+  .hero-title[data-theme="malawi"] .highlight { color: var(--color-accent-warm); }
+  .hero-title[data-theme="creative"] .highlight { color: var(--color-accent-purple); }
+  .hero-title[data-theme="engineering"] .highlight { color: var(--color-accent-green); }
+  .hero-title[data-theme="infrastructure"] .highlight { color: var(--color-accent); }
 
-        .badge-float {
-            background-color: var(--bg-secondary);
-            color: var(--text-primary);
-            border-left: 4px solid var(--brand-blue);
-            transition: transform var(--duration-medium) var(--spring), opacity var(--duration-medium), box-shadow 300ms;
-        }
-        .badge-float:hover {
-            transform: translateY(-8px) rotate(-2deg) scale(1.05);
-            box-shadow: 0 12px 32px rgba(30,144,255,0.2);
-        }
+  /* ── SECTION STYLES ── */
+  .section { padding: 6rem 2rem; position: relative; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--color-accent);
+    margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--color-accent); }
+  .section-title {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.02em;
+    line-height: 1.15; margin-bottom: 1.5rem;
+  }
+  .section-description {
+    font-size: 1.05rem; color: var(--color-text-secondary);
+    line-height: 1.75; max-width: 700px;
+  }
 
-        .terminal {
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
-            background: #070707;
-            color: #00ff9f;
-        }
+  /* ── GLASSMORPHISM CARD ── */
+  .glass-card {
+    background: var(--color-surface-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .glass-card:hover {
+    border-color: rgba(255,255,255,0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  body.light-mode .glass-card:hover {
+    border-color: rgba(0,0,0,0.15);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+  }
 
-        .gradient-underline {
-            background: linear-gradient(90deg, var(--brand-blue), var(--accent-2));
-            height: 3px; border-radius: 999px; width: 64px;
-        }
+  /* ── ABOUT SECTION ── */
+  .about-section { background: linear-gradient(to bottom, var(--color-bg), #0d0d14, var(--color-bg)); }
+  body.light-mode .about-section { background: linear-gradient(to bottom, var(--color-bg), #eef0f2, var(--color-bg)); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+  .about-portrait {
+    position: relative; aspect-ratio: 4/5; border-radius: 20px;
+    overflow: hidden; background: var(--color-surface); border: 1px solid var(--color-border);
+  }
+  .about-portrait-inner {
+    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at 40% 40%, rgba(79,195,247,0.15), transparent 60%),
+                radial-gradient(circle at 60% 60%, rgba(179,136,255,0.1), transparent 50%),
+                linear-gradient(135deg, #0d0d14, #141420);
+  }
+  body.light-mode .about-portrait-inner {
+    background: radial-gradient(circle at 40% 40%, rgba(79,195,247,0.1), transparent 60%),
+                radial-gradient(circle at 60% 60%, rgba(179,136,255,0.05), transparent 50%),
+                linear-gradient(135deg, #eef0f2, #ffffff);
+  }
+  .about-portrait .initials {
+    font-family: var(--font-display); font-size: 6rem; font-weight: 800;
+    color: rgba(255,255,255,0.06); letter-spacing: -0.05em; user-select: none;
+  }
+  body.light-mode .about-portrait .initials { color: rgba(0,0,0,0.04); }
+  .about-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .stat-item {
+    text-align: center; padding: 1.25rem; background: var(--color-surface);
+    border: 1px solid var(--color-border); border-radius: 12px; transition: all 0.3s;
+  }
+  .stat-item:hover { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); }
+  body.light-mode .stat-item:hover { border-color: rgba(0,0,0,0.15); background: rgba(0,0,0,0.03); }
+  .stat-number {
+    font-family: var(--font-display); font-size: 2rem; font-weight: 700;
+    color: var(--color-accent); line-height: 1; margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.75rem; color: var(--color-text-secondary);
+    text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500;
+  }
+  .about-text p { margin-bottom: 1.25rem; color: var(--color-text-secondary); line-height: 1.8; }
+  .about-text p strong { color: var(--color-text); font-weight: 600; }
 
-        .focus-ring:focus-visible { box-shadow: 0 0 0 4px rgba(30,144,255,0.15); border-radius: 12px; }
+  /* ─ SKILLS SECTION ─ */
+  .skills-section { background: var(--color-bg); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .skill-card { padding: 1.75rem; position: relative; overflow: hidden; }
+  .skill-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--card-accent, var(--color-accent)), transparent);
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .skill-card:hover::before { opacity: 1; }
+  .skill-icon {
+    width: 44px; height: 44px; border-radius: 10px; display: flex;
+    align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.25rem;
+  }
+  .skill-card h3 { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.75rem; }
+  .skill-card p { font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.65; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+  .skill-tag {
+    padding: 0.25rem 0.65rem; border-radius: 100px; font-size: 0.7rem; font-weight: 500;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); color: var(--color-text-secondary);
+  }
+  body.light-mode .skill-tag { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.08); }
 
-        section, header, footer {
-            transition: background 600ms;
-        }
+  /* ─ THOUGHT LEADERSHIP ── */
+  .thought-section { background: var(--color-bg); }
+  .thought-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .thought-card { padding: 2rem; position: relative; cursor: pointer; }
+  .thought-card .thought-date { font-size: 0.72rem; color: var(--color-text-secondary); margin-bottom: 1rem; letter-spacing: 0.05em; }
+  .thought-card h3 {
+    font-family: var(--font-display); font-weight: 600; font-size: 1.15rem;
+    margin-bottom: 0.75rem; line-height: 1.35; transition: color 0.3s;
+  }
+  .thought-card:hover h3 { color: var(--color-accent); }
+  .thought-card p { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.65; }
+  .thought-card .read-more {
+    display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1.25rem;
+    font-size: 0.8rem; font-weight: 600; color: var(--color-accent); transition: gap 0.3s;
+  }
+  .thought-card:hover .read-more { gap: 0.7rem; }
 
-        .stat-num {
-            display: inline-block;
-            transition: transform 300ms var(--spring);
-        }
-        .stat-num:hover { transform: scale(1.12); color: var(--brand-blue); }
+  /* ── CONTACT SECTION ── */
+  .contact-section { background: linear-gradient(to bottom, var(--color-bg), #0d0d14); padding: 8rem 2rem; }
+  body.light-mode .contact-section { background: linear-gradient(to bottom, var(--color-bg), #eef0f2); }
+  .contact-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+  .contact-inner .section-label { justify-content: center; }
+  .contact-inner .section-description { margin: 0 auto 3rem; }
+  .contact-links { display: flex; justify-content: center; gap: 2rem; margin-top: 3rem; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.5rem; color: var(--color-text-secondary);
+    text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.3s;
+  }
+  .contact-link:hover { color: var(--color-text); }
+  .contact-link i { width: 16px; text-align: center; font-size: 1rem; }
 
-        #scroll-top {
-            position: fixed;
-            bottom: 32px; right: 32px;
-            width: 48px; height: 48px;
-            background: linear-gradient(135deg, var(--brand-blue), #3b82f6);
-            color: white;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            cursor: none;
-            z-index: 200;
-            opacity: 0; pointer-events: none;
-            transform: translateY(16px) scale(0.85);
-            transition: opacity 300ms, transform 350ms var(--spring), box-shadow 300ms;
-            box-shadow: 0 6px 24px rgba(30,144,255,0.3);
-        }
-        #scroll-top.visible {
-            opacity: 1; pointer-events: auto;
-            transform: translateY(0) scale(1);
-        }
-        #scroll-top:hover {
-            box-shadow: 0 10px 36px rgba(30,144,255,0.45);
-            transform: translateY(-3px) scale(1.07);
-        }
-        #scroll-top:active { transform: scale(0.95); }
+  /* ── FOOTER ── */
+  .footer { padding: 3rem 2rem; border-top: 1px solid var(--color-border); background: #08080c; }
+  body.light-mode .footer { background: #eef0f2; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-text { font-size: 0.8rem; color: var(--color-text-secondary); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: var(--color-text-secondary); text-decoration: none; font-size: 0.8rem; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--color-text); }
 
-        /* Floating Mobile Menu Card - FIXED */
-        #mobile-menu {
-            position: absolute;
-            top: 100%;
-            left: 1rem;
-            right: 1rem;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: 16px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-            padding: 0.5rem;
-            z-index: 40;
-            transform: translateY(-10px) scale(0.98);
-            opacity: 0;
-            pointer-events: none;
-            transition: transform 300ms var(--spring), opacity 300ms;
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-            max-height: 70vh;
-            overflow-y: auto;
-        }
-        #mobile-menu.open {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-            pointer-events: auto;
-        }
-        #mobile-menu a {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            border-radius: 12px;
-            color: var(--text-secondary);
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        #mobile-menu a:hover {
-            background: var(--bg-tertiary);
-            color: var(--brand-blue);
-            transform: translateX(4px);
-        }
-        .h-px { height: 1px; }
-        .bg-border-light { background-color: var(--border-light); }
+  /* ── ANIMATIONS ── */
+  .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .fade-in-delay-1 { transition-delay: 0.1s; }
+  .fade-in-delay-2 { transition-delay: 0.2s; }
+  .fade-in-delay-3 { transition-delay: 0.3s; }
+  .fade-in-delay-4 { transition-delay: 0.4s; }
 
-        #hamburger span {
-            display: block;
-            background: currentColor;
-            border-radius: 999px;
-            transition: transform 300ms var(--spring), opacity 250ms, width 300ms;
-        }
+  /* ─ THEME NAV DOTS ── */
+  .theme-nav {
+    position: fixed; right: 1.5rem; top: 50%; transform: translateY(-50%);
+    z-index: 100; display: flex; flex-direction: column; gap: 1rem;
+  }
+  .theme-nav-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.3); background: transparent;
+    cursor: pointer; transition: all 0.3s; position: relative;
+  }
+  body.light-mode .theme-nav-dot { border-color: rgba(0,0,0,0.2); }
+  .theme-nav-dot.active {
+    border-color: var(--color-accent); background: var(--color-accent);
+    box-shadow: 0 0 10px rgba(79,195,247,0.4);
+  }
+  .theme-nav-dot:hover { border-color: rgba(255,255,255,0.6); transform: scale(1.3); }
+  body.light-mode .theme-nav-dot:hover { border-color: rgba(0,0,0,0.5); }
+  .theme-nav-dot .tooltip {
+    position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%);
+    background: rgba(10,10,15,0.9); backdrop-filter: blur(10px);
+    border: 1px solid var(--color-border); padding: 0.35rem 0.75rem;
+    border-radius: 6px; font-size: 0.7rem; font-weight: 500;
+    white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .theme-nav-dot:hover .tooltip { opacity: 1; }
 
-        /* Enhanced Theme Toggle & Settings UI */
-        .theme-btn, .cursor-color-btn, .sensitivity-btn {
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-light);
-            color: var(--text-secondary);
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.75rem;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: all var(--duration-fast) var(--easing);
-        }
-        .theme-btn:hover, .cursor-color-btn:hover, .sensitivity-btn:hover {
-            border-color: var(--brand-blue);
-            color: var(--brand-blue);
-            transform: translateY(-1px);
-        }
-        .theme-btn.active, .cursor-color-btn.active, .sensitivity-btn.active {
-            background: var(--brand-blue);
-            border-color: var(--brand-blue);
-            color: white;
-        }
+  /* ── MOBILE MENU ── */
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 9999;
+    background: rgba(10, 10, 15, 0.98); backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px); flex-direction: column;
+    align-items: center; justify-content: center; gap: 1.5rem;
+    padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right);
+    opacity: 0; visibility: hidden; transform: scale(0.98);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  }
+  .mobile-menu.open { display: flex; opacity: 1; visibility: visible; transform: scale(1); }
+  .mobile-close-btn {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    right: calc(1.5rem + env(safe-area-inset-right));
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(255, 255, 255, 0.05);
+    color: #ffffff; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.2s ease; z-index: 10000;
+  }
+  body.light-mode .mobile-close-btn { border-color: rgba(0,0,0,0.1); background: rgba(0,0,0,0.05); color: #18181b; }
+  .mobile-close-btn:hover, .mobile-close-btn:focus { background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.3); outline: none; }
+  body.light-mode .mobile-close-btn:hover { background: rgba(0,0,0,0.1); border-color: rgba(0,0,0,0.2); }
+  .mobile-close-btn:active { transform: scale(0.92); }
+  .mobile-close-btn svg { width: 24px; height: 24px; }
+  .mobile-menu a {
+    font-family: var(--font-display); font-size: clamp(1.25rem, 4vw, 1.5rem);
+    font-weight: 600; color: var(--color-text); text-decoration: none;
+    padding: 0.75rem 2rem; min-height: 48px; display: flex; align-items: center;
+    border-radius: 12px; transition: color 0.2s, background 0.2s;
+    width: 100%; max-width: 320px; justify-content: center; text-align: center; gap: 0.75rem;
+  }
+  .mobile-menu a:hover, .mobile-menu a:focus { color: var(--color-accent); background: rgba(255, 255, 255, 0.05); outline: none; }
+  body.light-mode .mobile-menu a:hover { background: rgba(0,0,0,0.05); }
+  .mobile-menu a:active { transform: scale(0.98); }
+  .mobile-menu.open a { animation: menu-link-fade 0.4s ease forwards; opacity: 0; transform: translateY(10px); }
+  .mobile-menu.open a:nth-child(1) { animation-delay: 0.05s; }
+  .mobile-menu.open a:nth-child(2) { animation-delay: 0.1s; }
+  .mobile-menu.open a:nth-child(3) { animation-delay: 0.15s; }
+  .mobile-menu.open a:nth-child(4) { animation-delay: 0.2s; }
+  .mobile-menu.open a:nth-child(5) { animation-delay: 0.25s; }
+  .mobile-menu.open a:nth-child(6) { animation-delay: 0.3s; }
+  .mobile-menu.open a:nth-child(7) { animation-delay: 0.35s; }
+  @keyframes menu-link-fade { to { opacity: 1; transform: translateY(0); } }
+  body.menu-open { overflow: hidden; position: fixed; width: 100%; height: 100%; top: var(--scroll-top, 0); }
 
-        #settings-toggle, #settings-toggle-mobile {
-            background: transparent;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.1rem;
-            cursor: none;
-            padding: 0.4rem;
-            border-radius: 50%;
-            transition: background 0.2s, color 0.2s, transform 0.2s;
-        }
-        #settings-toggle:hover, #settings-toggle-mobile:hover {
-            color: var(--brand-blue);
-            transform: rotate(45deg);
-            background: var(--bg-tertiary);
-        }
-        #settings-panel {
-            position: fixed;
-            top: 80px; right: 20px;
-            width: 280px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: 16px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-            padding: 1rem;
-            z-index: 1000;
-            transform: translateY(-10px) scale(0.95);
-            opacity: 0; pointer-events: none;
-            transition: transform 300ms var(--spring), opacity 300ms;
-        }
-        #settings-panel.open {
-            transform: translateY(0) scale(1); opacity: 1; pointer-events: auto;
-        }
-        .settings-section {
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-light);
-        }
-        .settings-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .settings-title {
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;
-            color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600;
-        }
-        .settings-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-portrait { max-height: 400px; }
+    .about-stats { grid-template-columns: repeat(3, 1fr); }
+    .skills-grid { grid-template-columns: 1fr; }
+    .thought-grid { grid-template-columns: 1fr; }
+    .theme-nav { display: none; }
+    .section { padding: 4rem 1.5rem; }
+    .hero-cta-group { flex-direction: column; align-items: center; }
+  }
+  @media (max-width: 600px) {
+    .about-stats { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; text-align: center; }
+  }
 
-        /* Icon Theme Inheritance */
-        .icon { color: var(--text-primary); transition: color 250ms ease; }
+  /* ── LOADING SCREEN ── */
+  .loader {
+    position: fixed; inset: 0; z-index: 10000; background: var(--color-bg);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 1.5rem; transition: opacity 0.6s, visibility 0.6s;
+  }
+  .loader.hidden { opacity: 0; visibility: hidden; }
+  .loader-bar { width: 120px; height: 2px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+  body.light-mode .loader-bar { background: rgba(0,0,0,0.1); }
+  .loader-bar-inner { height: 100%; background: var(--color-accent); border-radius: 2px; animation: loader-progress 1.5s ease-in-out forwards; }
+  @keyframes loader-progress { 0% { width: 0%; } 100% { width: 100%; } }
+  .loader-text {
+    font-family: var(--font-display); font-size: 0.75rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-text-secondary);
+  }
 
-        @media (max-width: 640px) {
-            html { scroll-padding-top: 70px; }
-            .profile-wrap { width: 70%; max-width: 260px; height: auto; aspect-ratio: 1/1; margin-left: auto; margin-right: auto; }
-            .badge-float:first-of-type { top: -0.75rem; right: 0.25rem; }
-            .badge-float:last-of-type { bottom: -1.5rem; left: 1rem; }
-            .stat-num.text-3xl { font-size: 1.75rem; }
-            #settings-panel { right: 10px; left: 10px; width: auto; }
-        }
+  /* ── MUSIC SECTION ── */
+  .music-section { background: linear-gradient(to bottom, var(--color-bg), #0d0d14, var(--color-bg)); }
+  body.light-mode .music-section { background: linear-gradient(to bottom, var(--color-bg), #eef0f2, var(--color-bg)); }
 
-        @media (max-width: 480px) {
-            .hero-bg h1 { font-size: 2.8rem; }
-            .badge-float { padding: 0.5rem 1rem; font-size: 0.7rem; }
-        }
+  /* ── REDUCED MOTION ── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; transform: none !important; }
+    .hero-bg-image { transform: none !important; }
+    .fade-in { opacity: 1 !important; transform: none !important; }
+    .mobile-menu { transition: none !important; opacity: 1 !important; visibility: visible !important; transform: none !important; }
+    .mobile-menu.open a { animation: none !important; opacity: 1 !important; transform: none !important; }
+  }
 
-        @media (min-width: 641px) and (max-width: 768px) {
-            .profile-wrap { width: 18rem; height: 18rem; }
-        }
+  /* ── PRINT STYLES ── */
+  @media print {
+    .nav, .theme-nav, .scroll-indicator, .loader, .mobile-menu, #cursor, #cursor-ring { display: none !important; }
+    .hero-section { min-height: auto; page-break-after: always; }
+    body { background: white !important; color: black !important; }
+  }
 
-        @media (hover: none) and (pointer: coarse) {
-            body { cursor: auto; }
-            #cursor, #cursor-ring, #settings-panel { display: none; }
-            .nav-link, #logo-btn, .skill-pill, .card, .btn-glow, #dark-mode-toggle, #settings-toggle { cursor: pointer; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation: none !important; transition: none !important; transform: none !important;
-            }
-            body { cursor: auto; }
-            #cursor, #cursor-ring { display: none; }
-        }
-
-        .btn-glow {
-            position: relative; overflow: hidden;
-            transition: transform 280ms var(--spring), box-shadow 280ms;
-            background: linear-gradient(135deg, var(--brand-blue), #3b82f6);
-            color: white; border: none;
-        }
-        .btn-glow::before {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
-            transform: translateX(-100%); transition: transform 500ms var(--easing);
-        }
-        .btn-glow:hover::before { transform: translateX(100%); }
-        .btn-glow:hover {
-            transform: scale(1.04) translateY(-1px);
-            box-shadow: 0 8px 28px rgba(30,144,255,0.35);
-        }
-        .btn-glow:active { transform: scale(0.97); }
-
-        .text-stroke { -webkit-text-stroke: 1px rgba(30,144,255,0.3); color: transparent; }
-        .bg-brand-blue { background-color: var(--brand-blue); }
-        .text-brand-blue { color: var(--brand-blue); }
-        .border-brand-blue { border-color: var(--brand-blue); }
-        .font-display { font-family: 'Space Grotesk', sans-serif; }
-        .hero-fix { min-height: 100vh; min-height: calc(var(--vh, 1vh) * 100); }
-    </style>
+  /* ── UTILITY ── */
+  .meta-text {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.75rem;
+    display: block;
+    opacity: 0.85;
+  }
+</style>
 </head>
-
 <body>
-    <div id="cursor"></div>
-    <div id="cursor-ring"></div>
 
-    <button id="scroll-top" aria-label="Scroll to top" title="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        <i class="fas fa-chevron-up text-sm" aria-hidden="true"></i>
-    </button>
+<!-- Custom Cursor -->
+<div id="cursor" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
 
-    <nav id="main-nav" class="sticky top-0 z-50" role="navigation" aria-label="Primary">
-        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6">
-            <!-- Logo -->
-            <button id="logo-btn" onclick="scrollToTop(event)" aria-label="Back to top" title="Home">
-                <div id="logo-avatar" class="w-10 h-10 bg-gradient-to-br from-brand-blue to-blue-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg select-none">AM</div>
-                <span id="logo-text" class="heading-font text-xl font-semibold tracking-tight">Atupele Mkagula</span>
-            </button>
-            
-            <!-- Desktop Nav (Hidden on Mobile) -->
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#about"      class="nav-link t-smooth focus-ring"><i class="fas fa-user icon mr-1.5" aria-hidden="true"></i> About</a>
-                <a href="#experience" class="nav-link t-smooth focus-ring"><i class="fas fa-briefcase icon mr-1.5" aria-hidden="true"></i> Experience</a>
-                <a href="#skills"     class="nav-link t-smooth focus-ring"><i class="fas fa-code icon mr-1.5" aria-hidden="true"></i> Skills</a>
-                <a href="#education"  class="nav-link t-smooth focus-ring"><i class="fas fa-graduation-cap icon mr-1.5" aria-hidden="true"></i> Education</a>
-                <a href="#achievements" class="nav-link t-smooth focus-ring"><i class="fas fa-trophy icon mr-1.5" aria-hidden="true"></i> Achievements</a>
-                <a href="#contact"    class="nav-link t-smooth focus-ring"><i class="fas fa-envelope icon mr-1.5" aria-hidden="true"></i> Contact</a>
-                
-                <!-- Desktop Controls -->
-                <div class="flex items-center gap-2 border-l pl-4 border-light">
-                    <button id="settings-toggle" class="p-2 rounded-full hover:bg-tertiary text-muted" aria-label="Settings" title="Preferences"><i class="fas fa-sliders" aria-hidden="true"></i></button>
-                    <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-tertiary text-muted" aria-label="Toggle theme" title="Switch theme"><i class="fas fa-desktop" aria-hidden="true"></i></button>
-                </div>
-            </div>
-            
-            <!-- Mobile Controls -->
-            <div class="flex items-center gap-3 md:hidden">
-                <!-- Single Hamburger Button (Turns into X) -->
-                <button id="hamburger" class="flex flex-col gap-1.5 p-2 focus-ring rounded-xl" aria-label="Toggle menu" aria-expanded="false" title="Menu">
-                    <span class="w-5 h-0.5 bg-current rounded-full transition-all"></span>
-                    <span class="w-5 h-0.5 bg-current rounded-full transition-all"></span>
-                    <span class="w-3 h-0.5 bg-current rounded-full transition-all"></span>
-                </button>
-            </div>
-        </div>
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-text">Loading Experience</div>
+  <div class="loader-bar"><div class="loader-bar-inner"></div></div>
+</div>
 
-        <!-- Floating Mobile Menu Card -->
-        <div id="mobile-menu" class="md:hidden px-4 pb-4">
-            <div class="flex flex-col gap-1">
-                <a href="#about"      class="flex items-center gap-3 p-3 rounded-xl text-secondary font-medium hover:bg-tertiary hover:text-brand-blue transition-all"><i class="fas fa-user w-5"></i> About</a>
-                <a href="#experience" class="flex items-center gap-3 p-3 rounded-xl text-secondary font-medium hover:bg-tertiary hover:text-brand-blue transition-all"><i class="fas fa-briefcase w-5"></i> Experience</a>
-                <a href="#skills"     class="flex items-center gap-3 p-3 rounded-xl text-secondary font-medium hover:bg-tertiary hover:text-brand-blue transition-all"><i class="fas fa-code w-5"></i> Skills</a>
-                <a href="#education"  class="flex items-center gap-3 p-3 rounded-xl text-secondary font-medium hover:bg-tertiary hover:text-brand-blue transition-all"><i class="fas fa-graduation-cap w-5"></i> Education</a>
-                <a href="#achievements" class="flex items-center gap-3 p-3 rounded-xl text-secondary font-medium hover:bg-tertiary hover:text-brand-blue transition-all"><i class="fas fa-trophy w-5"></i> Achievements</a>
-                <a href="#contact"    class="flex items-center gap-3 p-3 rounded-xl text-secondary font-medium hover:bg-tertiary hover:text-brand-blue transition-all"><i class="fas fa-envelope w-5"></i> Contact</a>
-                
-                <div class="h-px bg-border-light my-2"></div>
-                
-                <div class="flex items-center justify-between px-3">
-                    <button id="dark-mode-toggle-mobile" class="flex items-center gap-2 text-sm font-medium text-secondary p-2 rounded-lg hover:bg-tertiary" aria-label="Toggle theme">
-                        <i class="fas fa-desktop w-5"></i> <span>System</span>
-                    </button>
-                    <button id="settings-toggle-mobile" class="flex items-center gap-2 text-sm font-medium text-secondary p-2 rounded-lg hover:bg-tertiary" aria-label="Settings">
-                        <i class="fas fa-sliders w-5"></i> <span>Preferences</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
+<!-- THEME NAV -->
+<nav class="theme-nav" id="themeNav" aria-label="Theme navigation">
+  <button class="theme-nav-dot active" data-target="hero-infrastructure" aria-label="Secure Digital Systems">
+    <span class="tooltip">Secure Systems</span>
+  </button>
+  <button class="theme-nav-dot" data-target="hero-malawi" aria-label="Malawi Urban Future">
+    <span class="tooltip">Local Impact</span>
+  </button>
+  <button class="theme-nav-dot" data-target="hero-creative" aria-label="Creative Technology">
+    <span class="tooltip">Creative Tech</span>
+  </button>
+  <button class="theme-nav-dot" data-target="hero-engineering" aria-label="Systems & Engineering">
+    <span class="tooltip">Front-End Focus</span>
+  </button>
+</nav>
 
-    <!-- Enhanced Settings Panel -->
-    <div id="settings-panel" role="dialog" aria-label="Display & Cursor Settings" title="Customize appearance">
-        <div class="settings-section">
-            <div class="settings-title">Theme Preference</div>
-            <div class="settings-row theme-controls">
-                <button class="theme-btn" data-theme="light"><i class="fas fa-sun mr-1.5" aria-hidden="true"></i> Light</button>
-                <button class="theme-btn" data-theme="dark"><i class="fas fa-moon mr-1.5" aria-hidden="true"></i> Dark</button>
-                <button class="theme-btn" data-theme="system"><i class="fas fa-desktop mr-1.5" aria-hidden="true"></i> System</button>
-            </div>
-        </div>
-        <div class="settings-section">
-            <div class="settings-title">Cursor Color</div>
-            <div class="settings-row cursor-colors">
-                <button class="cursor-color-btn" data-color="white" title="White">W</button>
-                <button class="cursor-color-btn" data-color="cyan" title="Cyan">C</button>
-                <button class="cursor-color-btn" data-color="brand-blue" title="Blue">B</button>
-                <button class="cursor-color-btn" data-color="emerald" title="Emerald">E</button>
-                <input type="text" id="custom-cursor-hex" placeholder="#hex" class="w-full px-2 py-1.5 text-xs rounded border border-light bg-transparent focus:outline-none focus:border-brand-blue mt-1" maxlength="7" aria-label="Custom cursor hex color">
-            </div>
-        </div>
-        <div class="settings-section">
-            <div class="settings-title">Ring Sensitivity</div>
-            <div class="settings-row sensitivity-controls">
-                <button class="sensitivity-btn" data-val="0.6" title="Low: Smooth, cinematic">Low</button>
-                <button class="sensitivity-btn" data-val="1.0" title="Normal: Default">Norm</button>
-                <button class="sensitivity-btn" data-val="1.4" title="High: Faster response">High</button>
-                <button class="sensitivity-btn" data-val="1.8" title="Ultra: Near-instant">Ultra</button>
-            </div>
-        </div>
+<!-- MAIN NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="#hero-infrastructure" class="nav-logo">
+      <span class="logo-dot"></span>
+      Atupele Mkagula
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about"><i class="fa-solid fa-user" aria-hidden="true"></i> About</a></li>
+      <li><a href="#experience"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Experience</a></li>
+      <li><a href="#skills"><i class="fa-solid fa-code" aria-hidden="true"></i> Skills</a></li>
+      <li><a href="#achievements"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Achievements</a></li>
+      <li><a href="#contact" class="nav-cta"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Connect</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="nav-icon-btn" id="theme-toggle" aria-label="Toggle theme">
+        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+      </button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+  </div>
+</nav>
 
-    <header class="hero-bg text-white hero-fix flex items-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(#ffffff06_1px,transparent_1px)] bg-[length:40px_40px] opacity-20 pointer-events-none"></div>
-        <div class="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px]"></div>
-        <div class="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[120px]"></div>
-        
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
-            <div class="space-y-8">
-                <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl px-6 py-3 rounded-3xl text-sm font-medium reveal" data-delay="0">
-                    <div class="w-2 h-2 bg-brand-blue rounded-full animate-pulse"></div>
-                    <span class="flex items-center gap-1.5"><i class="fas fa-map-marker-alt text-xs" aria-hidden="true"></i> Based in Blantyre, Malawi</span>
-                </div>
-                
-                <h1 class="heading-font text-5xl sm:text-6xl md:text-7xl font-bold leading-tight reveal" data-delay="100">
-                    Atupele Nathan<br /><span class="text-white drop-shadow-[0_0_8px_rgba(30,144,255,0.5)]">Mkagula</span>
-                </h1>
-                
-                <p class="text-2xl sm:text-3xl font-light text-blue-100 max-w-lg reveal" data-delay="200">
-                    Secure Digital Systems • Front-End Development • Cybersecurity • IT Consulting
-                </p>
-                
-                <p class="text-lg text-zinc-300 max-w-md reveal" data-delay="300">
-                    I build secure digital systems and solve real technology problems. Driven by a simple idea: that technical skill and creative thinking belong together. Open to collaboration and strategic opportunities.
-                </p>
-                
-                <div class="flex flex-wrap gap-4 reveal" data-delay="400">
-                    <a href="#experience" class="btn-glow px-8 py-4 rounded-3xl flex items-center gap-3 focus-ring">
-                        View My Work <i class="fas fa-arrow-down" aria-hidden="true"></i>
-                    </a>
-                    <a href="#contact" class="px-8 py-4 border-2 border-white/70 hover:border-white font-semibold rounded-3xl flex items-center gap-3 t-smooth focus-ring hover:bg-white/10">
-                        Let's Collaborate
-                    </a>
-                </div>
-                
-                <div class="flex gap-8 text-sm pt-8 border-t border-white/20 reveal" data-delay="500">
-                    <div>
-                        <div class="stat-num text-brand-blue font-mono text-3xl font-bold">75%</div>
-                        <div class="text-zinc-400 text-xs tracking-widest mt-1">AVG FCR @ betPawa</div>
-                    </div>
-                    <div>
-                        <div class="stat-num text-brand-blue font-mono text-3xl font-bold">6×</div>
-                        <div class="text-zinc-400 text-xs tracking-widest mt-1">Excellence Certificates</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="relative flex justify-center items-start">
-                <div class="w-80 h-80 rounded-3xl overflow-hidden border-8 border-blue-500/30 shadow-2xl bg-zinc-900 profile-wrap reveal animate-float" data-delay="200" tabindex="0" aria-label="Profile image">
-                    <img src="assets/headshot.jpg" alt="Atupele Mkagula portrait" class="profile-img">
-                </div>
-                
-                <div class="absolute -top-4 -right-6 badge-float text-xs font-bold px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2">
-                    <i class="fas fa-shield-alt text-brand-blue" aria-hidden="true"></i> Cybersecurity Focus
-                </div>
-                <div class="absolute -bottom-8 left-12 badge-float text-xs font-bold px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2">
-                    <i class="fas fa-code text-brand-blue" aria-hidden="true"></i> Front-End Specialist
-                </div>
-            </div>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+  <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close menu">
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+  </button>
+  <nav aria-label="Mobile primary navigation">
+    <a href="#hero-infrastructure" data-close-menu><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a>
+    <a href="#about" data-close-menu><i class="fa-solid fa-user" aria-hidden="true"></i> About</a>
+    <a href="#experience" data-close-menu><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Experience</a>
+    <a href="#skills" data-close-menu><i class="fa-solid fa-code" aria-hidden="true"></i> Skills</a>
+    <a href="#achievements" data-close-menu><i class="fa-solid fa-trophy" aria-hidden="true"></i> Achievements</a>
+    <a href="#contact" data-close-menu><i class="fa-solid fa-envelope" aria-hidden="true"></i> Connect</a>
+  </nav>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- HERO 1: SECURE DIGITAL SYSTEMS -->
+<!-- ═══════════════════════════════════════ -->
+<section class="hero-section" id="hero-infrastructure" data-theme="infrastructure">
+  <div class="hero-bg">
+    <div class="hero-bg-image"></div>
+    <div class="hero-bg-overlay"></div>
+    <canvas class="hero-canvas" id="canvas-infra" aria-hidden="true"></canvas>
+  </div>
+  <div class="hero-content">
+    <div class="hero-label theme-label-infra fade-in">
+      <i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Secure Digital Systems
+    </div>
+    <h1 class="hero-title fade-in fade-in-delay-1" data-theme="infrastructure">
+      Building <span class="highlight">Secure</span><br>Digital Experiences
+    </h1>
+    <p class="hero-subtitle fade-in fade-in-delay-2">
+      Front-end development, cybersecurity fundamentals, and IT consulting. I solve real technology problems with clean code and user-centric design.
+    </p>
+    <div class="hero-cta-group fade-in fade-in-delay-3">
+      <a href="#about" class="btn-primary filled"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Explore My Work</a>
+      <a href="#contact" class="btn-primary outline"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Get In Touch</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- HERO 2: MALAWI IMPACT -->
+<!-- ═══════════════════════════════════════ -->
+<section class="hero-section" id="hero-malawi" data-theme="malawi">
+  <div class="hero-bg">
+    <div class="hero-bg-image"></div>
+    <div class="hero-bg-overlay"></div>
+    <canvas class="hero-canvas" id="canvas-malawi" aria-hidden="true"></canvas>
+  </div>
+  <div class="hero-content">
+    <div class="hero-label theme-label-malawi fade-in">
+      <i class="fa-solid fa-flag" aria-hidden="true"></i> Local Impact, Global Standards
+    </div>
+    <h1 class="hero-title fade-in fade-in-delay-1" data-theme="malawi">
+      Technology Built in <span class="highlight">Blantyre</span><br>for the World
+    </h1>
+    <p class="hero-subtitle fade-in fade-in-delay-2">
+      Grounded in Malawi's entrepreneurial spirit. I build accessible, secure digital solutions that serve communities while meeting international standards.
+    </p>
+    <div class="hero-cta-group fade-in fade-in-delay-3">
+      <a href="#experience" class="btn-primary filled" style="background:var(--color-accent-warm);color:#0a0a0f;"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> My Experience</a>
+      <a href="#contact" class="btn-primary outline"><i class="fa-solid fa-handshake" aria-hidden="true"></i> Partner With Me</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- HERO 3: CREATIVE-TECH FUSION -->
+<!-- ═══════════════════════════════════════ -->
+<section class="hero-section" id="hero-creative" data-theme="creative">
+  <div class="hero-bg">
+    <div class="hero-bg-image"></div>
+    <div class="hero-bg-overlay"></div>
+    <canvas class="hero-canvas" id="canvas-creative" aria-hidden="true"></canvas>
+  </div>
+  <div class="hero-content">
+    <div class="hero-label theme-label-creative fade-in">
+      <i class="fa-solid fa-music" aria-hidden="true"></i> Creative-Tech Fusion
+    </div>
+    <h1 class="hero-title fade-in fade-in-delay-1" data-theme="creative">
+      Where <span class="highlight">Pattern Recognition</span><br>Meets Code
+    </h1>
+    <p class="hero-subtitle fade-in fade-in-delay-2">
+      Music production sharpened my systems thinking. Now I apply that creative discipline to building intuitive, secure front-end experiences.
+    </p>
+    <div class="hero-cta-group fade-in fade-in-delay-3">
+      <a href="#skills" class="btn-primary filled" style="background:var(--color-accent-purple);color:#0a0a0f;"><i class="fa-solid fa-code" aria-hidden="true"></i> See My Skills</a>
+      <a href="#contact" class="btn-primary outline"><i class="fa-solid fa-handshake" aria-hidden="true"></i> Collaborate</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ -->
+<!-- HERO 4: FRONT-END FOCUS -->
+<!-- ═══════════════════════════════════════ -->
+<section class="hero-section" id="hero-engineering" data-theme="engineering">
+  <div class="hero-bg">
+    <div class="hero-bg-image"></div>
+    <div class="hero-bg-overlay"></div>
+    <canvas class="hero-canvas" id="canvas-eng" aria-hidden="true"></canvas>
+  </div>
+  <div class="hero-content">
+    <div class="hero-label theme-label-engineering fade-in">
+      <i class="fa-solid fa-gear" aria-hidden="true"></i> Front-End Focus
+    </div>
+    <h1 class="hero-title fade-in fade-in-delay-1" data-theme="engineering">
+      Clean Code, <span class="highlight">Secure Interfaces</span><br>Zero Compromise
+    </h1>
+    <p class="hero-subtitle fade-in fade-in-delay-2">
+      HTML5, CSS3, vanilla JavaScript. I build accessible, performant user interfaces with security baked in from the first line.
+    </p>
+    <div class="hero-cta-group fade-in fade-in-delay-3">
+      <a href="#skills" class="btn-primary filled" style="background:var(--color-accent-green);color:#0a0a0f;"><i class="fa-solid fa-code" aria-hidden="true"></i> Technical Depth</a>
+      <a href="#contact" class="btn-primary outline"><i class="fa-solid fa-comments" aria-hidden="true"></i> Discuss Solutions</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- ABOUT SECTION -->
+<!-- ══════════════════════════════════════ -->
+<section class="section about-section" id="about">
+  <div class="section-inner">
+    <div class="section-label fade-in"><i class="fa-solid fa-user" aria-hidden="true"></i> About</div>
+    <h2 class="section-title fade-in fade-in-delay-1">Engineer. Consultant. Problem Solver.</h2>
+    <div class="about-grid">
+      <div class="about-portrait fade-in fade-in-delay-2" aria-label="Profile portrait">
+        <div class="about-portrait-inner">
+          <span class="initials" aria-hidden="true">AM</span>
         </div>
-        
-        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center text-xs tracking-widest text-white/70">
-            <div class="mb-2">SCROLL TO EXPLORE</div>
-            <i class="fas fa-chevron-down animate-bounce" aria-hidden="true"></i>
+      </div>
+      <div class="about-text fade-in fade-in-delay-3">
+        <p>
+          <strong>Atupele Nathan Mkagula</strong> is a technology professional based in Blantyre, Malawi, focused on secure digital systems, front-end development, and practical IT consulting.
+        </p>
+        <p>
+          My philosophy is simple: <em>"Technical skill and creative thinking belong together."</em> I build secure digital systems and solve real technology problems across IT consulting, computer diagnostics, cybersecurity fundamentals, and front-end development.
+        </p>
+        <p>
+          Note: My focus is on front-end and systems security, not backend development. I specialize in clean, accessible, user-centric interfaces and secure architecture patterns.
+        </p>
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-number">4+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Clients Trained</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">75%+</div>
+            <div class="stat-label">First Contact Resolution</div>
+          </div>
         </div>
-    </header>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="about" class="py-20" style="background-color: var(--bg-secondary);">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-12 gap-16 items-center">
-                <div class="md:col-span-7">
-                    <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">WHO I AM</span>
-                    <h2 class="heading-font text-4xl md:text-5xl font-semibold mt-3 leading-tight reveal">
-                        Technology professional who sees both the code <span class="text-brand-blue">and</span> the creative solution
-                    </h2>
-                    <div class="mt-8 space-y-6 text-lg" style="color: var(--text-secondary);">
-                        <p>I build secure digital systems and solve real technology problems, spanning <strong>IT consulting, computer diagnostics, cybersecurity, and front-end development</strong>. Based in Blantyre, Malawi, I'm driven by a simple idea: that technical skill and creative thinking belong together.</p>
-                        <p>Since 2020 I've run my own IT consulting practice, where I diagnose systems, train clients, and secure digital infrastructure. My background in music production taught me pattern recognition, systems thinking, and creative problem-solving—skills I now apply directly to building intuitive, secure front-end experiences.</p>
-                        <p class="text-brand-blue font-medium"><i class="fas fa-info-circle mr-1" aria-hidden="true"></i> Note: My focus is on front-end development and systems security — not backend development.</p>
-                    </div>
-                    <div class="mt-8 flex flex-wrap gap-3">
-                        <button class="skill-pill px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Front-End Development</button>
-                        <button class="skill-pill px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Cybersecurity</button>
-                        <button class="skill-pill px-5 py-2 rounded-3xl text-sm font-medium focus-ring">IT Consulting</button>
-                        <button class="skill-pill px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Computer Diagnostics</button>
-                        <button class="skill-pill px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Systems Thinking</button>
-                        <button class="skill-pill px-5 py-2 rounded-3xl text-sm font-medium focus-ring">Creative Problem-Solving</button>
-                    </div>
-                </div>
-                
-                <aside class="md:col-span-5 bg-zinc-900 text-white p-8 rounded-3xl reveal">
-                    <div class="terminal p-4 rounded-2xl text-sm leading-relaxed font-mono">
-                        <span class="text-brand-blue">$ whoami</span><br>
-                        Atupele Nathan Mkagula<br><br>
-                        <span class="text-brand-blue">$ location</span><br>
-                        <i class="fas fa-map-marker-alt mr-1" aria-hidden="true"></i> Blantyre, Malawi<br><br>
-                        <span class="text-brand-blue">$ focus_areas</span><br>
-                        Front-End Dev • Cybersecurity • IT Consulting • Diagnostics<br><br>
-                        <span class="text-brand-blue">$ philosophy</span><br>
-                        "Technical skill and creative thinking belong together."<br><br>
-                        <span class="text-brand-blue">$ status</span><br>
-                        <i class="fas fa-circle-check text-green-400 mr-1" aria-hidden="true"></i> Open to collaboration & strategic opportunities
-                    </div>
-                </aside>
-            </div>
+<!-- ═══════════════════════════════════════ -->
+<!-- PROFESSIONAL EXPERIENCE -->
+<!-- ═══════════════════════════════════════ -->
+<section class="section skills-section" id="experience">
+  <div class="section-inner">
+    <div class="section-label fade-in"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Experience</div>
+    <h2 class="section-title fade-in fade-in-delay-1">Professional Journey</h2>
+    <p class="section-description fade-in fade-in-delay-2">
+      Real-world experience delivering secure, user-focused technology solutions.
+    </p>
+    <div class="skills-grid">
+      <div class="glass-card skill-card fade-in" style="--card-accent: #4fc3f7;">
+        <div class="skill-icon" style="background:rgba(79,195,247,0.1); color:#4fc3f7;" aria-hidden="true"><i class="fa-solid fa-bullseye"></i></div>
+        <h3>Customer Support Agent</h3>
+        <p class="meta-text">betPawa | 2025 - Present</p>
+        <p>Deliver multi-channel support for Sportsbook, Casino and Virtual Sports platforms. Maintain 75%+ First Contact Resolution on account and OTP issues. Troubleshoot front-end technical issues including UI flows, payment gateways, and session handling.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Front-End Debugging</span>
+          <span class="skill-tag">User Experience</span>
+          <span class="skill-tag">Technical Communication</span>
         </div>
-    </section>
-
-    <section id="experience" class="py-20" style="background-color: var(--bg-tertiary);">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-12">
-                <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">PROFESSIONAL JOURNEY</span>
-                <h2 class="heading-font text-3xl md:text-5xl font-semibold">Work Experience</h2>
-            </div>
-            <div class="space-y-8">
-                <div class="card p-8 rounded-3xl reveal">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="heading-font text-2xl font-semibold" style="color: var(--text-primary);">Customer Support Agent</h3>
-                            <p class="text-brand-blue font-semibold">betPawa</p>
-                        </div>
-                        <span class="text-sm" style="color: var(--text-muted);">2025 – Present</span>
-                    </div>
-                    <p class="mb-4" style="color: var(--text-secondary);">Deliver high-quality multi-channel support while troubleshooting front-end technical issues across sportsbook and casino platforms.</p>
-                    <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
-                        <li><i class="fas fa-check text-brand-blue mr-2" aria-hidden="true"></i>Consistently achieved 75%+ FCR on front-end account access and UI flow issues.</li>
-                        <li><i class="fas fa-check text-brand-blue mr-2" aria-hidden="true"></i>Troubleshot front-end technical issues: payment gateways, session handling, browser compatibility.</li>
-                        <li><i class="fas fa-check text-brand-blue mr-2" aria-hidden="true"></i>Bridged communication between users and technical teams for front-end bug resolution.</li>
-                        <li><i class="fas fa-check text-brand-blue mr-2" aria-hidden="true"></i>Implemented identity verification workflows and secure UI patterns for user protection.</li>
-                    </ul>
-                </div>
-                <div class="card p-8 rounded-3xl reveal">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="heading-font text-2xl font-semibold" style="color: var(--text-primary);">IT Consultant & Freelancer</h3>
-                            <p class="text-brand-blue font-semibold">Self-Employed</p>
-                        </div>
-                        <span class="text-sm" style="color: var(--text-muted);">2020 – Present</span>
-                    </div>
-                    <p class="mb-4" style="color: var(--text-secondary);">Provide front-end focused technical services and IT support to individuals and small businesses in Malawi.</p>
-                    <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
-                        <li><i class="fas fa-check text-brand-blue mr-2" aria-hidden="true"></i>Computer diagnostics: hardware assessment, OS optimization, malware removal.</li>
-                        <li><i class="fas fa-check text-brand-blue mr-2" aria-hidden="true"></i>Front-end support: HTML/CSS debugging, responsive design, accessibility checks (ARIA).</li>
-                        <li><i class="fas fa-check text-brand-blue mr-2" aria-hidden="true"></i>Cybersecurity basics: secure browsing setup, phishing awareness, password hygiene training.</li>
-                        <li><i class="fas fa-check text-brand-blue mr-2" aria-hidden="true"></i>Digital literacy coaching: teaching clients to navigate and protect their digital presence.</li>
-                    </ul>
-                </div>
-                <div class="card p-8 rounded-3xl reveal">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="heading-font text-2xl font-semibold" style="color: var(--text-primary);">Credit Officer</h3>
-                            <p class="text-brand-blue font-semibold">Yellow Solar Africa</p>
-                        </div>
-                        <span class="text-sm" style="color: var(--text-muted);">2024 – 2025</span>
-                    </div>
-                    <p class="mb-4" style="color: var(--text-secondary);">Managed customer portfolios using digital reporting tools and front-end CRM interfaces.</p>
-                    <ul class="space-y-2 text-sm" style="color: var(--text-secondary);">
-                        <li><i class="fas fa-check text-brand-blue mr-2" aria-hidden="true"></i>Used front-end data visualization tools for risk assessment and portfolio tracking.</li>
-                        <li><i class="fas fa-check text-brand-blue mr-2" aria-hidden="true"></i>Provided financial counseling via digital communication channels and secure interfaces.</li>
-                        <li><i class="fas fa-check text-brand-blue mr-2" aria-hidden="true"></i>Maintained &lt;9-hour response SLA using ticketing systems with intuitive UI workflows.</li>
-                        <li><i class="fas fa-check text-brand-blue mr-2" aria-hidden="true"></i>Applied systems thinking to streamline client onboarding and digital repayment processes.</li>
-                    </ul>
-                </div>
-            </div>
+      </div>
+      <div class="glass-card skill-card fade-in fade-in-delay-1" style="--card-accent: #ffab40;">
+        <div class="skill-icon" style="background:rgba(255,171,64,0.1); color:#ffab40;" aria-hidden="true"><i class="fa-solid fa-laptop-code"></i></div>
+        <h3>IT Consultant & Freelancer</h3>
+        <p class="meta-text">Self-Employed | 2020 - Present</p>
+        <p>Computer diagnostics, front-end support, cybersecurity basics, and digital literacy training. Help clients optimize workflows, secure their digital presence, and troubleshoot hardware and software issues.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">System Diagnostics</span>
+          <span class="skill-tag">HTML/CSS Support</span>
+          <span class="skill-tag">Security Awareness</span>
         </div>
-    </section>
-
-    <section id="skills" class="py-20" style="background-color: var(--bg-secondary);">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-12">
-                <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">EXPERTISE</span>
-                <h2 class="heading-font text-3xl md:text-5xl font-semibold">Core Skills</h2>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card p-8 rounded-3xl reveal">
-                    <h3 class="heading-font text-xl font-semibold mb-6 flex items-center gap-3" style="color: var(--text-primary);">
-                        <i class="fas fa-code text-brand-blue text-2xl" aria-hidden="true"></i>Front-End Development
-                    </h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">HTML5 & Semantic Markup</span>
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">CSS3 (Tailwind, Animations)</span>
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Vanilla JavaScript</span>
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Responsive & Accessible Design</span>
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Cross-Browser Testing</span>
-                    </div>
-                </div>
-                <div class="card p-8 rounded-3xl reveal">
-                    <h3 class="heading-font text-xl font-semibold mb-6 flex items-center gap-3" style="color: var(--text-primary);">
-                        <i class="fas fa-shield-alt text-brand-blue text-2xl" aria-hidden="true"></i>Cybersecurity & Risk
-                    </h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Secure UI Patterns</span>
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Identity Verification Flows</span>
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Phishing Prevention</span>
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Data Privacy Fundamentals</span>
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Threat Awareness Training</span>
-                    </div>
-                </div>
-                <div class="card p-8 rounded-3xl reveal">
-                    <h3 class="heading-font text-xl font-semibold mb-6 flex items-center gap-3" style="color: var(--text-primary);">
-                        <i class="fas fa-laptop-medical text-brand-blue text-2xl" aria-hidden="true"></i>IT Consulting & Diagnostics
-                    </h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">System Troubleshooting</span>
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Performance Optimization</span>
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">User Training & Digital Literacy</span>
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Workflow Digitization</span>
-                        <span class="skill-pill px-4 py-2 rounded-full text-sm font-medium">Hardware/Software Assessment</span>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="glass-card skill-card fade-in fade-in-delay-2" style="--card-accent: #b388ff;">
+        <div class="skill-icon" style="background:rgba(179,136,255,0.1); color:#b388ff;" aria-hidden="true"><i class="fa-solid fa-coins"></i></div>
+        <h3>Credit Officer</h3>
+        <p class="meta-text">Yellow Solar Africa | 2024 - 2025</p>
+        <p>Managed customer portfolios with focus on digital repayment systems. Conducted risk assessments using data-driven front-end reporting tools. Maintained under 9-hour response SLA using ticketing and CRM interfaces.</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Digital Systems</span>
+          <span class="skill-tag">Risk Assessment</span>
+          <span class="skill-tag">CRM Tools</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="education" class="py-20" style="background-color: var(--bg-tertiary);">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-12">
-                <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">LEARNING JOURNEY</span>
-                <h2 class="heading-font text-3xl md:text-5xl font-semibold">Education</h2>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card p-8 rounded-3xl reveal">
-                    <div class="flex items-start gap-4 mb-4">
-                        <i class="fas fa-graduation-cap text-brand-blue text-3xl mt-1" aria-hidden="true"></i>
-                        <div>
-                            <h3 class="heading-font text-lg font-semibold" style="color: var(--text-primary);">University of Malawi</h3>
-                            <p class="text-sm" style="color: var(--text-secondary);">Chancellor College</p>
-                        </div>
-                    </div>
-                    <p class="text-sm mb-2" style="color: var(--text-secondary);"><strong>Certificate in Music Production</strong></p>
-                    <p class="text-xs" style="color: var(--text-muted);">Pattern Recognition • Creative Systems • Iterative Design | 2022</p>
-                </div>
-                <div class="card p-8 rounded-3xl reveal">
-                    <div class="flex items-start gap-4 mb-4">
-                        <i class="fas fa-graduation-cap text-brand-blue text-3xl mt-1" aria-hidden="true"></i>
-                        <div>
-                            <h3 class="heading-font text-lg font-semibold" style="color: var(--text-primary);">NACIT</h3>
-                            <p class="text-sm" style="color: var(--text-secondary);">National College of Information Technology</p>
-                        </div>
-                    </div>
-                    <p class="text-sm mb-2" style="color: var(--text-secondary);"><strong>Level 4 Diploma in Computing</strong></p>
-                    <p class="text-xs" style="color: var(--text-muted);">IT Foundations • Diagnostics • Digital Systems | 2019 – 2020</p>
-                </div>
-                <div class="card p-8 rounded-3xl reveal">
-                    <div class="flex items-start gap-4 mb-4">
-                        <i class="fas fa-graduation-cap text-brand-blue text-3xl mt-1" aria-hidden="true"></i>
-                        <div>
-                            <h3 class="heading-font text-lg font-semibold" style="color: var(--text-primary);">Chinsapo Secondary School</h3>
-                            <p class="text-sm" style="color: var(--text-secondary);">Malawi</p>
-                        </div>
-                    </div>
-                    <p class="text-sm mb-2" style="color: var(--text-secondary);"><strong>School Certificate of Education</strong></p>
-                    <p class="text-xs" style="color: var(--text-muted);">Analytical Foundation • Problem-Solving Mindset | 2017</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ═══════════════════════════════════════ -->
+<!-- CORE SKILLS -->
+<!-- ═══════════════════════════════════════ -->
+<section class="section projects-section" id="skills">
+  <div class="section-inner">
+    <div class="section-label fade-in"><i class="fa-solid fa-code" aria-hidden="true"></i> Core Skills</div>
+    <h2 class="section-title fade-in fade-in-delay-1">Technical Competencies</h2>
+    <p class="section-description fade-in fade-in-delay-2">
+      A focused toolkit for building secure, accessible, user-centric digital experiences.
+    </p>
+    <div class="skills-grid">
+      <div class="glass-card skill-card fade-in" style="--card-accent: #4fc3f7;">
+        <div class="skill-icon" style="background:rgba(79,195,247,0.1); color:#4fc3f7;" aria-hidden="true"><i class="fa-solid fa-code"></i></div>
+        <h3>Front-End Development</h3>
+        <p>HTML5, CSS3, JavaScript, Tailwind CSS, custom animations, responsive design, accessibility (ARIA), cross-browser testing. Clean, semantic code that works everywhere.</p>
+      </div>
+      <div class="glass-card skill-card fade-in fade-in-delay-1" style="--card-accent: #ffab40;">
+        <div class="skill-icon" style="background:rgba(255,171,64,0.1); color:#ffab40;" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Cybersecurity Fundamentals</h3>
+        <p>Threat awareness, identity verification flows, phishing prevention, data privacy basics. Security considerations baked into front-end architecture.</p>
+      </div>
+      <div class="glass-card skill-card fade-in fade-in-delay-2" style="--card-accent: #b388ff;">
+        <div class="skill-icon" style="background:rgba(179,136,255,0.1); color:#b388ff;" aria-hidden="true"><i class="fa-solid fa-laptop-code"></i></div>
+        <h3>IT Consulting</h3>
+        <p>System troubleshooting, performance optimization, user training, workflow digitization. Empowering clients to navigate and protect their digital presence.</p>
+      </div>
+      <div class="glass-card skill-card fade-in fade-in-delay-3" style="--card-accent: #69f0ae;">
+        <div class="skill-icon" style="background:rgba(105,240,174,0.1); color:#69f0ae;" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></div>
+        <h3>Creative-Tech Fusion</h3>
+        <p>Music production background sharpens systems thinking. Applied to building intuitive interfaces and solving complex UX problems creatively.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="achievements" class="py-20" style="background-color: var(--bg-secondary);">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-12">
-                <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">RECOGNITION</span>
-                <h2 class="heading-font text-3xl md:text-5xl font-semibold">Key Achievements</h2>
-            </div>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(30,144,255,0.1), rgba(50,205,50,0.05));">
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-trophy text-brand-blue text-3xl mt-1" aria-hidden="true"></i>
-                        <div>
-                            <h3 class="heading-font text-lg font-semibold mb-2" style="color: var(--text-primary);">FCR Excellence</h3>
-                            <p style="color: var(--text-secondary);">Consistently exceeded 75% First Contact Resolution on front-end account/access issues at betPawa.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(30,144,255,0.1), rgba(50,205,50,0.05));">
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-star text-brand-blue text-3xl mt-1" aria-hidden="true"></i>
-                        <div>
-                            <h3 class="heading-font text-lg font-semibold mb-2" style="color: var(--text-primary);">Quality Communication</h3>
-                            <p style="color: var(--text-secondary);">Strong CSAT scores through clear, empathetic technical communication and front-end problem explanation.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(30,144,255,0.1), rgba(50,205,50,0.05));">
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-certificate text-brand-blue text-3xl mt-1" aria-hidden="true"></i>
-                        <div>
-                            <h3 class="heading-font text-lg font-semibold mb-2" style="color: var(--text-primary);">pawaTech Training</h3>
-                            <p style="color: var(--text-secondary);">Completed global program with distinction + 6 Excellence Certificates in technical support and UI troubleshooting.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card p-8 rounded-3xl reveal" style="background: linear-gradient(135deg, rgba(30,144,255,0.1), rgba(50,205,50,0.05));">
-                    <div class="flex items-start gap-4">
-                        <i class="fas fa-lightbulb text-brand-blue text-3xl mt-1" aria-hidden="true"></i>
-                        <div>
-                            <h3 class="heading-font text-lg font-semibold mb-2" style="color: var(--text-primary);">Creative-Tech Fusion</h3>
-                            <p style="color: var(--text-secondary);">Applied music production systems-thinking to front-end UX problem-solving and secure interface design.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ═══════════════════════════════════════ -->
+<!-- EDUCATION -->
+<!-- ═══════════════════════════════════════ -->
+<section class="section music-section" id="education">
+  <div class="section-inner">
+    <div class="section-label fade-in" style="color:var(--color-accent-purple);">
+      <span style="display:inline-block;width:24px;height:1px;background:var(--color-accent-purple);"></span>
+      Education
+    </div>
+    <h2 class="section-title fade-in fade-in-delay-1">Learning Journey</h2>
+    <p class="section-description fade-in fade-in-delay-2">
+      Formal training and self-directed learning focused on practical technology skills.
+    </p>
+    <div class="skills-grid" style="margin-top:2rem;">
+      <div class="glass-card skill-card fade-in fade-in-delay-3" style="--card-accent:#b388ff;">
+        <div class="skill-icon" style="background:rgba(179,136,255,0.1);color:#b388ff;" aria-hidden="true"><i class="fa-solid fa-music"></i></div>
+        <h3>University of Malawi</h3>
+        <p class="meta-text">Chancellor College | Certificate in Music Production | 2022</p>
+        <p>Pattern recognition, creative systems, iterative design thinking. Skills directly applicable to front-end problem solving and user experience design.</p>
+      </div>
+      <div class="glass-card skill-card fade-in fade-in-delay-3" style="--card-accent:#4fc3f7;">
+        <div class="skill-icon" style="background:rgba(79,195,247,0.1);color:#4fc3f7;" aria-hidden="true"><i class="fa-solid fa-laptop-code"></i></div>
+        <h3>NACIT</h3>
+        <p class="meta-text">National College of Information Technology | Level 4 Diploma in Computing | 2019-2020</p>
+        <p>Foundations in IT infrastructure, diagnostics, and digital systems. Practical technical training for real-world technology challenges.</p>
+      </div>
+      <div class="glass-card skill-card fade-in fade-in-delay-3" style="--card-accent:#ffab40;">
+        <div class="skill-icon" style="background:rgba(255,171,64,0.1);color:#ffab40;" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></div>
+        <h3>Chinsapo Secondary School</h3>
+        <p class="meta-text">School Certificate of Education | 2017</p>
+        <p>Analytical foundation and problem-solving mindset. Early development of the systematic thinking applied to technology work today.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="contact" class="py-20" style="background-color: var(--bg-secondary);">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">GET IN TOUCH</span>
-            <h2 class="heading-font text-4xl md:text-5xl font-semibold mt-3 mb-8">Let's Collaborate</h2>
-            <p class="text-lg mb-8" style="color: var(--text-secondary); max-width: 600px; margin-left: auto; margin-right: auto;">
-                Based in Blantyre, Malawi. Open to strategic opportunities and creative-tech collaborations worldwide.
-            </p>
-            <div class="flex flex-wrap justify-center gap-6 mb-12">
-                <a href="tel:+265881762894" class="card w-14 h-14 rounded-full flex items-center justify-center t-smooth focus-ring" aria-label="Call" title="Phone">
-                    <i class="fas fa-phone text-brand-blue text-xl" aria-hidden="true"></i>
-                </a>
-                <a href="mailto:atupelemkagulaofficial@gmail.com" class="card w-14 h-14 rounded-full flex items-center justify-center t-smooth focus-ring" aria-label="Email" title="Email">
-                    <i class="fas fa-envelope text-brand-blue text-xl" aria-hidden="true"></i>
-                </a>
-                <a href="https://about.me/atupele.mkagula" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 rounded-full flex items-center justify-center t-smooth focus-ring" aria-label="Portfolio" title="Website">
-                    <i class="fas fa-globe text-brand-blue text-xl" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div class="flex justify-center gap-6">
-                <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 rounded-full flex items-center justify-center text-brand-blue t-smooth focus-ring" aria-label="LinkedIn" title="LinkedIn">
-                    <i class="fab fa-linkedin text-2xl" aria-hidden="true"></i>
-                </a>
-                <a href="https://github.com/lord-tupe" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 rounded-full flex items-center justify-center t-smooth focus-ring" style="color: var(--text-primary);" aria-label="GitHub" title="GitHub">
-                    <i class="fab fa-github text-2xl" aria-hidden="true"></i>
-                </a>
-                <a href="https://x.com/lord_tupe" target="_blank" rel="noopener noreferrer" class="card w-14 h-14 rounded-full flex items-center justify-center text-blue-400 t-smooth focus-ring" aria-label="X (Twitter)" title="X">
-                    <i class="fab fa-x-twitter text-2xl" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </section>
+<!-- ═══════════════════════════════════════ -->
+<!-- KEY ACHIEVEMENTS -->
+<!-- ═══════════════════════════════════════ -->
+<section class="section thought-section" id="achievements">
+  <div class="section-inner">
+    <div class="section-label fade-in"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Achievements</div>
+    <h2 class="section-title fade-in fade-in-delay-1">Key Wins</h2>
+    <p class="section-description fade-in fade-in-delay-2">
+      Measurable impact and recognition for technical excellence and client empowerment.
+    </p>
+    <div class="thought-grid">
+      <div class="glass-card thought-card fade-in">
+        <div class="thought-date">Performance Metric</div>
+        <h3>75%+ First Contact Resolution</h3>
+        <p>Consistently exceeded FCR targets on front-end account and access issues at betPawa through clear technical communication and systematic troubleshooting.</p>
+        <div class="read-more">Quality Focus <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </div>
+      <div class="glass-card thought-card fade-in fade-in-delay-1">
+        <div class="thought-date">Training Impact</div>
+        <h3>50+ Clients Empowered</h3>
+        <p>Trained individuals and small businesses in digital literacy and basic cybersecurity hygiene, helping them navigate and protect their online presence.</p>
+        <div class="read-more">Client Success <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </div>
+      <div class="glass-card thought-card fade-in fade-in-delay-2">
+        <div class="thought-date">Professional Development</div>
+        <h3>pawaTech Training with Distinction</h3>
+        <p>Completed global training program with distinction and earned 6 Excellence Certificates, demonstrating commitment to continuous learning.</p>
+        <div class="read-more">Growth Mindset <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </div>
+      <div class="glass-card thought-card fade-in fade-in-delay-3">
+        <div class="thought-date">Unique Edge</div>
+        <h3>Creative-Tech Bridge</h3>
+        <p>Applied music production systems-thinking to front-end UX problem-solving, bringing pattern recognition and creative discipline to technical work.</p>
+        <div class="read-more">Innovation <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <footer class="py-12" style="background-color: var(--bg-tertiary); color: var(--text-primary);">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <button onclick="scrollToTop(event)" class="inline-flex items-center gap-3 mb-6 group" aria-label="Back to top" title="Home">
-                <div class="w-9 h-9 bg-gradient-to-br from-brand-blue to-blue-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg
-                    transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110">AM</div>
-                <span class="heading-font text-lg font-semibold transition-colors group-hover:text-brand-blue" style="color: var(--text-secondary);">Atupele Mkagula</span>
-            </button>
-            <p class="mb-2" style="color: var(--text-muted);">&copy; 2026 Atupele Nathan Mkagula. All rights reserved.</p>
-            <p class="text-sm" style="color: var(--text-muted);">Blantyre, Malawi • Open to collaboration worldwide</p>
-        </div>
-    </footer>
-
-    <script>
-    // Viewport Height Fix
-    (function setViewportHeight() {
-        const updateVh = () => {
-            const vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        };
-        updateVh();
-        window.addEventListener('resize', updateVh);
-        window.addEventListener('orientationchange', updateVh);
-    })();
-
-    // ==========================================
-    // CURSOR SYSTEM (Enhanced)
-    // ==========================================
-    const cursor = document.getElementById('cursor');
-    const ring   = document.getElementById('cursor-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-
-    document.addEventListener('mousemove', e => {
-        mx = e.clientX; my = e.clientY;
-        cursor.style.left = mx + 'px';
-        cursor.style.top  = my + 'px';
-    });
-
-    // Cursor Configuration
-    const CURSOR_COLORS = {
-        white: { hex: '#ffffff', blend: 'difference' },
-        cyan: { hex: '#00d4ff', blend: 'exclusion' },
-        'brand-blue': { hex: '#1e90ff', blend: 'exclusion' },
-        emerald: { hex: '#10b981', blend: 'exclusion' }
-    };
-    let sensitivityMultiplier = parseFloat(localStorage.getItem('cursorSensitivity')) || 1.0;
-    let savedColor = localStorage.getItem('cursorColor') || 'white';
+<!-- ═══════════════════════════════════════ -->
+<!-- CONTACT -->
+<!-- ═══════════════════════════════════════ -->
+<section class="section contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="section-label fade-in" style="justify-content:center;"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Connect</div>
+    <h2 class="section-title fade-in fade-in-delay-1" style="text-align:center;">Let's Build Something<br>Meaningful Together</h2>
+    <p class="section-description fade-in fade-in-delay-2" style="text-align:center;">
+      Based in Blantyre, Malawi. Open to collaboration and strategic opportunities in secure digital systems, front-end development, and IT consulting.
+    </p>
     
-    function applyCursorConfig(colorKey, customHex = null) {
-        let colorData = CURSOR_COLORS[colorKey] || { hex: customHex || '#ffffff', blend: 'difference' };
-        if (customHex) {
-            const valid = /^#([0-9A-F]{3}){1,2}$/i.test(customHex);
-            colorData = { hex: valid ? customHex : '#ffffff', blend: valid ? 'exclusion' : 'difference' };
-        }
-        document.documentElement.style.setProperty('--cursor-color', colorData.hex);
-        document.documentElement.style.setProperty('--cursor-blend-mode', colorData.blend);
-        localStorage.setItem('cursorColor', colorKey || 'custom');
-    }
+    <!-- Contact Details -->
+    <div class="contact-links fade-in fade-in-delay-3" style="margin-bottom: 2rem;">
+      <a href="mailto:atupelemkagulaofficial@gmail.com" class="contact-link"><i class="fa-solid fa-envelope" aria-hidden="true"></i> atupelemkagulaofficial@gmail.com</a>
+      <a href="tel:+265881762894" class="contact-link"><i class="fa-solid fa-phone" aria-hidden="true"></i> +265 881 762 894</a>
+      <a href="https://about.me/atupele.mkagula" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fa-solid fa-globe" aria-hidden="true"></i> about.me/atupele.mkagula</a>
+    </div>
+    
+    <!-- Social Links -->
+    <div class="contact-links fade-in fade-in-delay-4">
+      <a href="https://linkedin.com/in/atupele-mkagula" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+      <a href="https://github.com/lord-tupe" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+      <a href="https://x.com/lord_tupe" target="_blank" rel="noopener noreferrer" class="contact-link"><i class="fa-brands fa-x-twitter" aria-hidden="true"></i> Twitter / X</a>
+    </div>
+  </div>
+</section>
 
-    function animRing() {
-        // Apply sensitivity multiplier to interpolation
-        rx += (mx - rx) * (0.14 * sensitivityMultiplier);
-        ry += (my - ry) * (0.14 * sensitivityMultiplier);
-        ring.style.left = rx + 'px';
-        ring.style.top  = ry + 'px';
-        requestAnimationFrame(animRing);
-    }
-    animRing();
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-text">© 2026 Atupele Nathan Mkagula. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#about"><i class="fa-solid fa-user" aria-hidden="true"></i> About</a>
+      <a href="#experience"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Experience</a>
+      <a href="#skills"><i class="fa-solid fa-code" aria-hidden="true"></i> Skills</a>
+      <a href="#achievements"><i class="fa-solid fa-trophy" aria-hidden="true"></i> Achievements</a>
+      <a href="#contact"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact</a>
+    </div>
+  </div>
+</footer>
 
-    // Hover States
-    document.querySelectorAll('a, button, .card, .skill-pill, .badge-float').forEach(el => {
-        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-    });
+<script>
+// ── SAFE INIT: Wait for DOM ─
+document.addEventListener('DOMContentLoaded', () => {
+  
+  // ── LOADER ──
+  const loader = document.getElementById('loader');
+  if (loader) {
+    setTimeout(() => loader.classList.add('hidden'), 800);
+  }
 
-    // ==========================================
-    // THEME MANAGEMENT (Enhanced)
-    // ==========================================
-    const systemDarkQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    let themePreference = localStorage.getItem('themePreference') || 'system';
+  // ── NAV SCROLL ──
+  const nav = document.getElementById('mainNav');
+  const onScroll = () => {
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-    function applyTheme(mode) {
-        themePreference = mode;
-        localStorage.setItem('themePreference', mode);
-        
-        let isDark = false;
-        if (mode === 'dark') isDark = true;
-        else if (mode === 'light') isDark = false;
-        else isDark = systemDarkQuery.matches; // 'system'
-
-        document.body.classList.toggle('dark-mode', isDark);
-        updateThemeUI();
-    }
-
-    function updateThemeUI() {
-        const icons = document.querySelectorAll('#dark-mode-toggle i, #dark-mode-toggle-mobile i');
-        const label = document.querySelector('#dark-mode-toggle-mobile span');
-        const btns = document.querySelectorAll('.theme-btn');
-        
-        btns.forEach(b => b.classList.toggle('active', b.dataset.theme === themePreference));
-        icons.forEach(icon => {
-            if (themePreference === 'dark') icon.className = 'fas fa-moon';
-            else if (themePreference === 'light') icon.className = 'fas fa-sun';
-            else icon.className = 'fas fa-desktop';
-        });
-        if (label) label.textContent = themePreference.charAt(0).toUpperCase() + themePreference.slice(1);
-    }
-
-    systemDarkQuery.addEventListener('change', (e) => {
-        if (themePreference === 'system') applyTheme('system');
-    });
-
-    // ==========================================
-    // INTERACTION LOGIC (Preserved + Enhanced)
-    // ==========================================
-    function scrollToTop(e) {
-        const btn = e.currentTarget;
-        const rect = btn.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = e.clientX - rect.left - size / 2;
-        const y = e.clientY - rect.top  - size / 2;
-        const ripple = document.createElement('span');
-        ripple.className = 'ripple';
-        ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px`;
-        btn.style.position = 'relative';
-        btn.style.overflow = 'hidden';
-        btn.appendChild(ripple);
-        ripple.addEventListener('animationend', () => ripple.remove());
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    const fab = document.getElementById('scroll-top');
-    window.addEventListener('scroll', () => {
-        fab.classList.toggle('visible', window.scrollY > 400);
+  // ── CUSTOM CURSOR SYSTEM ──
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursor-ring');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+  
+  const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  if (!isTouchDevice && !prefersReducedMotion && cursor && cursorRing) {
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
     }, { passive: true });
-
-    const nav = document.getElementById('main-nav');
-    window.addEventListener('scroll', () => {
-        nav.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
-
-    const sections = document.querySelectorAll('section[id], header');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const ioNav = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinks.forEach(l => l.classList.remove('active'));
-                const id = entry.target.id;
-                const active = document.querySelector(`.nav-link[href="#${id}"]`);
-                if (active) active.classList.add('active');
-            }
-        });
-    }, { threshold: 0.4 });
-    sections.forEach(s => ioNav.observe(s));
-
-    const reveals = document.querySelectorAll('.reveal');
-    const ioReveal = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const delay = entry.target.dataset.delay || 0;
-                entry.target.style.animationDelay = delay + 'ms';
-                entry.target.classList.add('in-view');
-                ioReveal.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => ioReveal.observe(el));
-
-    // Hamburger Menu - FIXED
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    let menuOpen = false;
-
-    hamburger.addEventListener('click', () => {
-        menuOpen = !menuOpen;
-        mobileMenu.classList.toggle('open', menuOpen);
-        hamburger.setAttribute('aria-expanded', menuOpen);
-        const spans = hamburger.querySelectorAll('span');
-        if (menuOpen) {
-            // Transform to X
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-            spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-            spans[2].style.width = '20px';
-        } else {
-            // Reset to hamburger
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = '';
-            spans[2].style.width = '12px';
-        }
-    });
-
-    // Close mobile menu when clicking links
-    mobileMenu.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-            menuOpen = false;
-            mobileMenu.classList.remove('open');
-            hamburger.setAttribute('aria-expanded', 'false');
-            const spans = hamburger.querySelectorAll('span');
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = '';
-            spans[2].style.width = '12px';
-        });
-    });
-
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-            const target = document.querySelector(a.getAttribute('href'));
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
-    });
-
-    // ==========================================
-    // SETTINGS PANEL LOGIC (Additive)
-    // ==========================================
-    const settingsToggle = document.getElementById('settings-toggle');
-    const settingsToggleMobile = document.getElementById('settings-toggle-mobile');
-    const settingsPanel = document.getElementById('settings-panel');
-    let settingsOpen = false;
-
-    function toggleSettings() {
-        settingsOpen = !settingsOpen;
-        settingsPanel.classList.toggle('open', settingsOpen);
+    
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.14;
+      ringY += (mouseY - ringY) * 0.14;
+      cursorRing.style.left = ringX + 'px';
+      cursorRing.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
     }
-    if (settingsToggle) settingsToggle.addEventListener('click', toggleSettings);
-    if (settingsToggleMobile) {
-        settingsToggleMobile.addEventListener('click', () => {
-            // Close mobile menu first
-            menuOpen = false;
-            mobileMenu.classList.remove('open');
-            hamburger.setAttribute('aria-expanded', 'false');
-            const spans = hamburger.querySelectorAll('span');
-            spans[0].style.transform = '';
-            spans[1].style.opacity = '1';
-            spans[2].style.transform = '';
-            spans[2].style.width = '12px';
-            // Open settings panel
-            toggleSettings();
-        });
+    animateRing();
+    
+    const interactiveElements = document.querySelectorAll('a, button, .glass-card, .skill-tag, .theme-nav-dot');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+  }
+  
+  // ── THEME TOGGLE LOGIC ──
+  const themeToggle = document.getElementById('theme-toggle');
+  const sunMoonIcon = themeToggle?.querySelector('i');
+
+  function applyTheme(isLight) {
+    if (isLight) {
+      document.body.classList.add('light-mode');
+      document.body.classList.remove('dark-mode');
+      if (sunMoonIcon) {
+        sunMoonIcon.classList.remove('fa-moon');
+        sunMoonIcon.classList.add('fa-sun');
+      }
+      localStorage.setItem('theme', 'light');
+    } else {
+      document.body.classList.remove('light-mode');
+      document.body.classList.add('dark-mode');
+      if (sunMoonIcon) {
+        sunMoonIcon.classList.remove('fa-sun');
+        sunMoonIcon.classList.add('fa-moon');
+      }
+      localStorage.setItem('theme', 'dark');
     }
+  }
 
-    // Close on outside click
-    document.addEventListener('click', e => {
-        if (settingsOpen && !settingsPanel.contains(e.target) && 
-            !settingsToggle.contains(e.target) && !settingsToggleMobile.contains(e.target)) {
-            settingsOpen = false; settingsPanel.classList.remove('open');
+  // Initialize theme from localStorage
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    applyTheme(true);
+  } else {
+    applyTheme(false); // Default to dark
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.body.classList.contains('light-mode');
+      applyTheme(!isLight);
+    });
+  }
+  
+  // ── MOBILE MENU LOGIC ──
+  const hamburgerBtn = document.getElementById('hamburger');
+  const mobileMenuEl = document.getElementById('mobileMenu');
+  const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+  const menuLinks = mobileMenuEl?.querySelectorAll('[data-close-menu]');
+  let scrollY = 0;
+
+  function openMobileMenu() {
+    if (!mobileMenuEl || !hamburgerBtn) return;
+    scrollY = window.scrollY;
+    document.documentElement.style.setProperty('--scroll-top', `-${scrollY}px`);
+    mobileMenuEl.classList.add('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open');
+    const firstLink = mobileMenuEl.querySelector('a');
+    setTimeout(() => firstLink?.focus(), 300);
+    document.addEventListener('keydown', handleFocusTrap);
+  }
+
+  function closeMobileMenu() {
+    if (!mobileMenuEl || !hamburgerBtn) return;
+    mobileMenuEl.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+    document.documentElement.style.removeProperty('--scroll-top');
+    window.scrollTo(0, scrollY);
+    hamburgerBtn?.focus();
+    document.removeEventListener('keydown', handleFocusTrap);
+  }
+
+  function handleFocusTrap(e) {
+    if (e.key !== 'Tab' || !mobileMenuEl.classList.contains('open')) return;
+    const focusable = mobileMenuEl.querySelectorAll('a, button');
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault(); last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault(); first.focus();
+    }
+  }
+
+  if (hamburgerBtn) {
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.preventDefault(); e.stopPropagation(); openMobileMenu();
+    });
+  }
+  if (mobileCloseBtn) {
+    mobileCloseBtn.addEventListener('click', (e) => {
+      e.preventDefault(); e.stopPropagation(); closeMobileMenu();
+    });
+  }
+  menuLinks?.forEach(link => {
+    link.addEventListener('click', () => setTimeout(() => closeMobileMenu(), 100));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenuEl?.classList.contains('open')) closeMobileMenu();
+  });
+  mobileMenuEl?.addEventListener('click', (e) => {
+    if (e.target === mobileMenuEl) closeMobileMenu();
+  });
+
+  // ── INTERSECTION OBSERVER (Fade-in) ──
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+  // ── THEME NAV DOTS ──
+  const themeDots = document.querySelectorAll('.theme-nav-dot');
+  const heroSections = document.querySelectorAll('.hero-section');
+  themeDots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById(dot.dataset.target);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+  const heroObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(heroSections).indexOf(entry.target);
+        themeDots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.5 });
+  heroSections.forEach(s => heroObserver.observe(s));
+
+  // ── CANVAS ANIMATIONS (with error handling) ──
+  function safeCanvasInit(canvasId, drawFn) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    function resize() {
+      const parent = canvas.parentElement;
+      if (parent) { canvas.width = parent.offsetWidth; canvas.height = parent.offsetHeight; }
+    }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+    try { drawFn(ctx, canvas, resize); } catch (err) { console.warn(`Canvas animation failed for ${canvasId}:`, err); }
+  }
+
+  safeCanvasInit('canvas-infra', (ctx, canvas) => {
+    const particles = [];
+    for (let i = 0; i < 60; i++) {
+      particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.3, size: Math.random() * 2 + 0.5, alpha: Math.random() * 0.5 + 0.1, hue: 190 + Math.random() * 30 });
+    }
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = 'rgba(79,195,247,0.03)'; ctx.lineWidth = 1;
+      for (let x = 0; x < canvas.width; x += 80) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke(); }
+      for (let y = 0; y < canvas.height; y += 80) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke(); }
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i]; p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${p.hue}, 80%, 70%, ${p.alpha})`; ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  });
+
+  safeCanvasInit('canvas-malawi', (ctx, canvas) => {
+    const trails = [];
+    for (let i = 0; i < 20; i++) {
+      trails.push({ x: Math.random() * canvas.width, y: canvas.height * 0.6 + Math.random() * canvas.height * 0.4, speed: 0.5 + Math.random() * 1.5, width: 1 + Math.random() * 2, alpha: 0.1 + Math.random() * 0.25, color: Math.random() > 0.5 ? '#ffab40' : '#ffd54f' });
+    }
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const grd = ctx.createRadialGradient(canvas.width * 0.5, canvas.height * 0.5, 0, canvas.width * 0.5, canvas.height * 0.5, canvas.width * 0.5);
+      grd.addColorStop(0, 'rgba(255,171,64,0.03)'); grd.addColorStop(1, 'transparent');
+      ctx.fillStyle = grd; ctx.fillRect(0, 0, canvas.width, canvas.height);
+      trails.forEach(trail => {
+        trail.x += trail.speed; if (trail.x > canvas.width + 50) trail.x = -50;
+        ctx.beginPath(); ctx.moveTo(trail.x, trail.y); ctx.lineTo(trail.x - 30 - trail.speed * 10, trail.y);
+        ctx.strokeStyle = trail.color; ctx.globalAlpha = trail.alpha; ctx.lineWidth = trail.width; ctx.stroke(); ctx.globalAlpha = 1;
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  });
+
+  safeCanvasInit('canvas-creative', (ctx, canvas) => {
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const time = Date.now() * 0.001;
+      for (let w = 0; w < 3; w++) {
+        ctx.beginPath(); const baseY = canvas.height * 0.3 + w * 70;
+        const colors = ['rgba(179,136,255,0.12)', 'rgba(79,195,247,0.1)', 'rgba(255,171,64,0.08)'];
+        ctx.strokeStyle = colors[w]; ctx.lineWidth = 1.5;
+        for (let x = 0; x < canvas.width; x += 5) {
+          const freq1 = Math.sin(x * 0.008 + time * (1.2 + w * 0.3)) * 30;
+          const freq2 = Math.sin(x * 0.015 + time * 1.8 + w) * 15;
+          const y = baseY + freq1 + freq2;
+          if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
         }
-    });
+        ctx.stroke();
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  });
 
-    // Theme Controls
-    document.querySelectorAll('.theme-btn').forEach(btn => {
-        btn.addEventListener('click', () => applyTheme(btn.dataset.theme));
-    });
+  safeCanvasInit('canvas-eng', (ctx, canvas) => {
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.strokeStyle = 'rgba(105,240,174,0.04)'; ctx.lineWidth = 0.5;
+      for (let x = 0; x < canvas.width; x += 50) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, canvas.height); ctx.stroke(); }
+      for (let y = 0; y < canvas.height; y += 50) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke(); }
+      const scanY = (Date.now() * 0.05) % canvas.height;
+      ctx.beginPath(); ctx.moveTo(0, scanY); ctx.lineTo(canvas.width, scanY);
+      ctx.strokeStyle = 'rgba(105,240,174,0.06)'; ctx.lineWidth = 1; ctx.stroke();
+      requestAnimationFrame(draw);
+    }
+    draw();
+  });
 
-    // Cursor Color Controls
-    document.querySelectorAll('.cursor-color-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.cursor-color-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            document.getElementById('custom-cursor-hex').value = '';
-            applyCursorConfig(btn.dataset.color);
-        });
+  // ── PARALLAX EFFECT ──
+  const parallaxBgs = document.querySelectorAll('.hero-bg-image');
+  const onParallaxScroll = () => {
+    const scrollY = window.scrollY;
+    parallaxBgs.forEach(bg => {
+      const section = bg.closest('.hero-section');
+      if (!section) return;
+      const rect = section.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        bg.style.transform = `translateY(${scrollY * 0.15}px) scale(1.05)`;
+      }
     });
-
-    // Custom Hex Input
-    document.getElementById('custom-cursor-hex').addEventListener('change', (e) => {
-        document.querySelectorAll('.cursor-color-btn').forEach(b => b.classList.remove('active'));
-        applyCursorConfig(null, e.target.value);
-    });
-
-    // Sensitivity Controls
-    document.querySelectorAll('.sensitivity-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.sensitivity-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            sensitivityMultiplier = parseFloat(btn.dataset.val);
-            localStorage.setItem('cursorSensitivity', btn.dataset.val);
-        });
-    });
-
-    // Initialize UI
-    applyCursorConfig(savedColor);
-    applyTheme(themePreference);
-    // Highlight active settings buttons
-    document.querySelector(`.theme-btn[data-theme="${themePreference}"]`)?.classList.add('active');
-    document.querySelector(`.cursor-color-btn[data-color="${savedColor}"]`)?.classList.add('active');
-    document.querySelector(`.sensitivity-btn[data-val="${sensitivityMultiplier}"]`)?.classList.add('active');
-
-    // Desktop Dark Mode Toggle (Legacy Compatibility)
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const darkModeToggleMobile = document.getElementById('dark-mode-toggle-mobile');
-    if (darkModeToggle) darkModeToggle.addEventListener('click', () => {
-        const modes = ['light', 'dark', 'system'];
-        const idx = modes.indexOf(themePreference);
-        applyTheme(modes[(idx + 1) % modes.length]);
-    });
-    if (darkModeToggleMobile) darkModeToggleMobile.addEventListener('click', () => {
-        const modes = ['light', 'dark', 'system'];
-        const idx = modes.indexOf(themePreference);
-        applyTheme(modes[(idx + 1) % modes.length]);
-    });
-    </script>
+  };
+  window.addEventListener('scroll', onParallaxScroll, { passive: true });
+  onParallaxScroll();
+});
+</script>
 </body>
 </html>
