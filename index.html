@@ -6,6 +6,21 @@
     <title>Atupele Nathan Mkagula | Cybersecurity & Digital Systems</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': 'var(--brand-blue)',
+                        'secondary': 'var(--text-secondary)',
+                        'tertiary': 'var(--bg-tertiary)',
+                        'border-light': 'var(--border-light)',
+                        'muted': 'var(--text-muted)'
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
@@ -288,49 +303,75 @@
         }
         #scroll-top:active { transform: scale(0.95); }
 
+        /* Floating Mobile Menu Card */
         #mobile-menu {
-            background-color: var(--bg-secondary);
-            transform: translateY(-10px);
+            position: absolute;
+            top: calc(100% + 8px); /* Positions exactly below the nav bar with a slight gap */
+            left: 1rem;
+            right: 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            padding: 0.5rem;
+            z-index: 40;
+            transform: translateY(-10px) scale(0.98);
             opacity: 0;
             pointer-events: none;
-            transition: transform 320ms var(--spring), opacity 320ms;
+            transition: transform 300ms var(--spring), opacity 300ms;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            max-height: 70vh; /* Prevents it from being too tall */
+            overflow-y: auto;
         }
+
+        /* Open State */
         #mobile-menu.open {
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
             opacity: 1;
             pointer-events: auto;
         }
+
+        /* Mobile Link Hover Effects */
         #mobile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            border-radius: 12px;
             color: var(--text-secondary);
-            border-bottom-color: var(--border-light);
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
         }
         #mobile-menu a:hover {
+            background: var(--bg-tertiary);
             color: var(--brand-blue);
-        }
-        #hamburger span {
-            display: block; height: 2px;
-            background: currentColor;
-            border-radius: 999px;
-            transition: transform 300ms var(--spring), opacity 250ms, width 300ms;
+            transform: translateX(4px);
         }
 
-        #dark-mode-toggle {
+        /* Mobile Menu Border Line */
+        .h-px { height: 1px; }
+        .bg-border-light { background-color: var(--border-light); }
+
+        #dark-mode-toggle, #settings-toggle, #dark-mode-toggle-mobile, #settings-toggle-mobile {
             background: transparent;
             border: none;
-            color: var(--text-primary);
-            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-size: 1.1rem;
             cursor: none;
             padding: 0.5rem;
             border-radius: 50%;
             transition: background 0.2s, color 0.2s, transform 0.2s;
         }
-        #dark-mode-toggle:hover {
+        #dark-mode-toggle:hover, #settings-toggle:hover, #dark-mode-toggle-mobile:hover, #settings-toggle-mobile:hover {
             color: var(--brand-blue);
-            transform: rotate(15deg);
+            background: var(--bg-tertiary);
         }
 
         @media (max-width: 640px) {
-            html { scroll-padding-top: 70px; }
+            html { scroll-padding-top: 80px; }
             .profile-wrap {
                 width: 70%;
                 max-width: 260px;
@@ -362,7 +403,7 @@
         @media (hover: none) and (pointer: coarse) {
             body { cursor: auto; }
             #cursor, #cursor-ring { display: none; }
-            .nav-link, #logo-btn, .skill-pill, .card, .btn-glow, #dark-mode-toggle { cursor: pointer; }
+            .nav-link, #logo-btn, .skill-pill, .card, .btn-glow, #dark-mode-toggle, #settings-toggle { cursor: pointer; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -424,43 +465,59 @@
 
     <nav id="main-nav" class="sticky top-0 z-50" role="navigation" aria-label="Primary">
         <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6">
-            <button id="logo-btn" onclick="scrollToTop(event)" aria-label="Back to top">
+            <!-- Logo -->
+            <button id="logo-btn" onclick="scrollToTop(event)" aria-label="Back to top" title="Home">
                 <div id="logo-avatar" class="w-10 h-10 bg-gradient-to-br from-brand-blue to-blue-500 rounded-2xl flex items-center justify-center text-white font-bold text-lg select-none">AM</div>
                 <span id="logo-text" class="heading-font text-xl font-semibold tracking-tight">Atupele Mkagula</span>
             </button>
             
+            <!-- Desktop Nav (Hidden on Mobile) -->
             <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#about"      class="nav-link t-smooth focus-ring">About</a>
-                <a href="#experience" class="nav-link t-smooth focus-ring">Experience</a>
-                <a href="#skills"     class="nav-link t-smooth focus-ring">Skills</a>
-                <a href="#education"  class="nav-link t-smooth focus-ring">Education</a>
-                <a href="#achievements" class="nav-link t-smooth focus-ring">Achievements</a>
-                <a href="#contact"    class="nav-link t-smooth focus-ring">Contact</a>
-                <button id="dark-mode-toggle" aria-label="Toggle dark mode">
-                    <i class="fas fa-moon"></i>
-                </button>
+                <a href="#about"      class="nav-link t-smooth focus-ring"><i class="fas fa-user mr-1.5" aria-hidden="true"></i> About</a>
+                <a href="#experience" class="nav-link t-smooth focus-ring"><i class="fas fa-briefcase mr-1.5" aria-hidden="true"></i> Experience</a>
+                <a href="#skills"     class="nav-link t-smooth focus-ring"><i class="fas fa-code mr-1.5" aria-hidden="true"></i> Skills</a>
+                <a href="#education"  class="nav-link t-smooth focus-ring"><i class="fas fa-graduation-cap mr-1.5" aria-hidden="true"></i> Education</a>
+                <a href="#achievements" class="nav-link t-smooth focus-ring"><i class="fas fa-trophy mr-1.5" aria-hidden="true"></i> Achievements</a>
+                <a href="#contact"    class="nav-link t-smooth focus-ring"><i class="fas fa-envelope mr-1.5" aria-hidden="true"></i> Contact</a>
+                
+                <!-- Desktop Controls -->
+                <div class="flex items-center gap-2 border-l pl-4" style="border-color: var(--border-light);">
+                    <button id="settings-toggle" aria-label="Settings" title="Preferences"><i class="fas fa-sliders" aria-hidden="true"></i></button>
+                    <button id="dark-mode-toggle" aria-label="Toggle theme" title="Switch theme"><i class="fas fa-desktop" aria-hidden="true"></i></button>
+                </div>
             </div>
             
-            <div class="flex items-center gap-3">
-                <button id="hamburger" class="md:hidden flex flex-col gap-1.5 p-2 focus-ring rounded-xl" aria-label="Toggle menu" aria-expanded="false">
-                    <span class="w-5"></span>
-                    <span class="w-5"></span>
-                    <span class="w-3"></span>
+            <!-- Mobile Controls -->
+            <div class="flex items-center gap-3 md:hidden">
+                <!-- Single Hamburger Button (Turns into X) -->
+                <button id="hamburger" class="flex flex-col gap-1.5 p-2 focus-ring rounded-xl" aria-label="Toggle menu" aria-expanded="false" title="Menu">
+                    <span class="w-5 h-0.5 bg-current rounded-full transition-all"></span>
+                    <span class="w-5 h-0.5 bg-current rounded-full transition-all"></span>
+                    <span class="w-3 h-0.5 bg-current rounded-full transition-all"></span>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="md:hidden px-6 pb-4 space-y-1">
-            <a href="#about"      class="block py-3 font-medium border-b t-fast">About</a>
-            <a href="#experience" class="block py-3 font-medium border-b t-fast">Experience</a>
-            <a href="#skills"     class="block py-3 font-medium border-b t-fast">Skills</a>
-            <a href="#education"  class="block py-3 font-medium border-b t-fast">Education</a>
-            <a href="#achievements" class="block py-3 font-medium border-b t-fast">Achievements</a>
-            <a href="#contact"    class="block py-3 font-medium t-fast">Contact</a>
-            <div class="pt-4 flex justify-center">
-                <button id="dark-mode-toggle-mobile" class="flex items-center gap-2 text-sm font-medium">
-                    <i class="fas fa-moon"></i> <span>Dark Mode</span>
-                </button>
+        <!-- Floating Mobile Menu Card -->
+        <div id="mobile-menu" class="md:hidden px-4 pb-4">
+            <div class="flex flex-col gap-1">
+                <a href="#about"      class="flex items-center gap-3 p-3 rounded-xl text-secondary font-medium hover:bg-tertiary hover:text-brand-blue transition-all"><i class="fas fa-user w-5 text-center"></i> About</a>
+                <a href="#experience" class="flex items-center gap-3 p-3 rounded-xl text-secondary font-medium hover:bg-tertiary hover:text-brand-blue transition-all"><i class="fas fa-briefcase w-5 text-center"></i> Experience</a>
+                <a href="#skills"     class="flex items-center gap-3 p-3 rounded-xl text-secondary font-medium hover:bg-tertiary hover:text-brand-blue transition-all"><i class="fas fa-code w-5 text-center"></i> Skills</a>
+                <a href="#education"  class="flex items-center gap-3 p-3 rounded-xl text-secondary font-medium hover:bg-tertiary hover:text-brand-blue transition-all"><i class="fas fa-graduation-cap w-5 text-center"></i> Education</a>
+                <a href="#achievements" class="flex items-center gap-3 p-3 rounded-xl text-secondary font-medium hover:bg-tertiary hover:text-brand-blue transition-all"><i class="fas fa-trophy w-5 text-center"></i> Achievements</a>
+                <a href="#contact"    class="flex items-center gap-3 p-3 rounded-xl text-secondary font-medium hover:bg-tertiary hover:text-brand-blue transition-all"><i class="fas fa-envelope w-5 text-center"></i> Contact</a>
+                
+                <div class="h-px bg-border-light my-2"></div>
+                
+                <div class="flex items-center justify-between px-3">
+                    <button id="dark-mode-toggle-mobile" class="flex items-center gap-2 text-sm font-medium text-secondary p-2 rounded-lg hover:bg-tertiary transition-all" aria-label="Toggle theme">
+                        <i class="fas fa-desktop w-5 text-center"></i> <span>System</span>
+                    </button>
+                    <button id="settings-toggle-mobile" class="flex items-center gap-2 text-sm font-medium text-secondary p-2 rounded-lg hover:bg-tertiary transition-all" aria-label="Settings">
+                        <i class="fas fa-sliders w-5 text-center"></i> <span>Preferences</span>
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
@@ -512,7 +569,7 @@
             
             <div class="relative flex justify-center items-start">
                 <div class="w-80 h-80 rounded-3xl overflow-hidden border-8 border-blue-500/30 shadow-2xl bg-zinc-900 profile-wrap reveal animate-float" data-delay="200" tabindex="0" aria-label="Profile image">
-                    <img src="assets/headshot.jpg" alt="Atupele Mkagula portrait" class="profile-img">
+                    <img src="assets/headshot.jpg" alt="Atupele Mkagula portrait" class="profile-img w-full h-full object-cover">
                 </div>
                 
                 <div class="absolute -top-4 -right-6 badge-float text-xs font-bold px-5 py-2 rounded-2xl shadow-xl flex items-center gap-2">
@@ -769,8 +826,8 @@
             <span class="uppercase text-brand-blue text-sm font-semibold tracking-widest">GET IN TOUCH</span>
             <h2 class="heading-font text-4xl md:text-5xl font-semibold mt-3 mb-8">Let's Connect</h2>
             <div class="flex flex-wrap justify-center gap-6 mb-12">
-                   <a href="tel:+265881762894" class="card w-14 h-14 rounded-full flex items-center justify-center t-smooth focus-ring" aria-label="Phone">
-        <i class="fas fa-phone text-brand-blue text-xl"></i>
+                <a href="tel:+265881762894" class="card w-14 h-14 rounded-full flex items-center justify-center t-smooth focus-ring" aria-label="Phone">
+                    <i class="fas fa-phone text-brand-blue text-xl"></i>
                 </a>
                 <a href="mailto:atupelemkagulaofficial@gmail.com" class="card w-14 h-14 rounded-full flex items-center justify-center t-smooth focus-ring" aria-label="Email">
                     <i class="fas fa-envelope text-brand-blue text-xl"></i>
@@ -893,9 +950,12 @@
     }, { threshold: 0.1 });
     reveals.forEach(el => ioReveal.observe(el));
 
+    // Mobile Menu & Settings Logic
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
+    const settingsPanel = document.getElementById('settings-panel'); // Optional: Add this div if you build a settings panel later
     let menuOpen = false;
+    let settingsOpen = false;
 
     hamburger.addEventListener('click', () => {
         menuOpen = !menuOpen;
@@ -903,15 +963,15 @@
         hamburger.setAttribute('aria-expanded', menuOpen);
         const spans = hamburger.querySelectorAll('span');
         if (menuOpen) {
-            spans[0].style.transform = 'translateY(7px) rotate(45deg)';
+            spans[0].style.transform = 'translateY(8px) rotate(45deg)';
             spans[1].style.opacity = '0';
-            spans[2].style.transform = 'translateY(-7px) rotate(-45deg)';
-            spans[2].style.width = '20px';
+            spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+            spans[2].style.width = '20px'; // Match w-5
         } else {
             spans[0].style.transform = '';
             spans[1].style.opacity = '1';
             spans[2].style.transform = '';
-            spans[2].style.width = '12px';
+            spans[2].style.width = '12px'; // Match w-3
         }
     });
 
@@ -927,6 +987,30 @@
             spans[2].style.width = '12px';
         });
     });
+
+    // Mobile Settings Toggle
+    const settingsToggleMobile = document.getElementById('settings-toggle-mobile');
+    if (settingsToggleMobile) {
+        settingsToggleMobile.addEventListener('click', () => {
+            // Close mobile menu first
+            menuOpen = false;
+            mobileMenu.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            const spans = hamburger.querySelectorAll('span');
+            spans[0].style.transform = '';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = '';
+            spans[2].style.width = '12px';
+            
+            // Open Settings Panel (if it exists in the DOM)
+            settingsOpen = true;
+            if (settingsPanel) {
+                settingsPanel.classList.add('open');
+            } else {
+                console.log('Settings panel not found in DOM. You can add a <div id="settings-panel"> to implement this.');
+            }
+        });
+    }
 
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
@@ -947,11 +1031,11 @@
         if (enabled) {
             document.body.classList.add('dark-mode');
             if (sunMoonIcon) {
-                sunMoonIcon.classList.remove('fa-moon');
+                sunMoonIcon.classList.remove('fa-desktop');
                 sunMoonIcon.classList.add('fa-sun');
             }
             if (sunMoonIconMobile) {
-                sunMoonIconMobile.classList.remove('fa-moon');
+                sunMoonIconMobile.classList.remove('fa-desktop');
                 sunMoonIconMobile.classList.add('fa-sun');
             }
             if (darkModeToggleMobile) {
@@ -961,14 +1045,14 @@
             document.body.classList.remove('dark-mode');
             if (sunMoonIcon) {
                 sunMoonIcon.classList.remove('fa-sun');
-                sunMoonIcon.classList.add('fa-moon');
+                sunMoonIcon.classList.add('fa-desktop');
             }
             if (sunMoonIconMobile) {
                 sunMoonIconMobile.classList.remove('fa-sun');
-                sunMoonIconMobile.classList.add('fa-moon');
+                sunMoonIconMobile.classList.add('fa-desktop');
             }
             if (darkModeToggleMobile) {
-                darkModeToggleMobile.querySelector('span').textContent = 'Dark Mode';
+                darkModeToggleMobile.querySelector('span').textContent = 'System';
             }
         }
         localStorage.setItem('darkMode', enabled ? 'enabled' : 'disabled');
